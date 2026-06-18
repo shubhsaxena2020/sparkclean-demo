@@ -104,14 +104,12 @@ export default function Pricing() {
           ))}
         </RevealGroup>
 
-        <RevealSubtext className="mx-auto mt-8 max-w-2xl text-center">
-          <p className="text-sm text-muted">
-            Final price depends on home size —{" "}
-            <a href="#calculator" className="font-semibold text-primary underline-offset-2 hover:underline">
-              get your exact estimate in the calculator above
-            </a>
-            .
-          </p>
+        <RevealSubtext className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted">
+          Final price depends on home size —{" "}
+          <a href="#calculator" className="font-semibold text-primary underline-offset-2 hover:underline">
+            get your exact estimate in the calculator above
+          </a>
+          .
         </RevealSubtext>
       </div>
     </section>

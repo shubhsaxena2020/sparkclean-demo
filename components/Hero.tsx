@@ -139,7 +139,7 @@ export default function Hero() {
             </a>
           </RevealSubtext>
 
-          <RevealSubtext delay={0.22}>
+          <RevealSubtext delay={0.22} as="div">
             <ul className="mt-10 flex flex-wrap gap-x-3 gap-y-2.5">
               {BADGES.map((b) => (
                 <li

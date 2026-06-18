@@ -188,7 +188,7 @@ export function RevealSubtext({
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: "p" | "div";
+  as?: "p" | "div" | "span";
 }) {
   const reduce = useReducedMotion();
   const MotionTag = motion[as];
