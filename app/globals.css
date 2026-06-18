@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ── Design tokens — single source of truth (from 01_ARCHITECTURE) ───────── */
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f4fbf8; /* faint mint card bg */
+  --color-ink: #0f1a17; /* near-black green-tinted text */
+  --color-primary: #0fb67e; /* fresh clean green */
+  --color-primary-d: #0a8c60; /* darker green (hover/headings) */
+  --color-accent: #ffc53d; /* warm yellow — booking CTAs only */
+  --color-accent-d: #f0a800; /* darker yellow for hover */
+  --color-muted: #66726e;
+  --color-border: #e3eae7;
+
+  --radius-card: 16px;
+
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Plain CSS custom props for arbitrary-value use */
+:root {
+  --maxw: 1180px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Accessible focus ring in primary green */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Honour scroll-margin so smooth-scroll anchors clear the sticky header */
+[id] {
+  scroll-margin-top: 88px;
+}
