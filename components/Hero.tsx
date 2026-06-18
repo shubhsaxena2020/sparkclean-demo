@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
@@ -14,6 +15,48 @@ const BADGES = [
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const layerBg1Ref = useRef<HTMLDivElement>(null);
+  const layerBg2Ref = useRef<HTMLDivElement>(null);
+  const layerImageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) return;
+
+    let ticking = false;
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          
+          // Keep total movement tiny (<= 24px)
+          const yBg1 = Math.min(24, Math.max(-24, scrollY * 0.06));
+          const yBg2 = Math.min(16, Math.max(-16, scrollY * -0.04));
+          const yImg = Math.min(12, Math.max(-12, scrollY * 0.03));
+
+          if (layerBg1Ref.current) {
+            layerBg1Ref.current.style.transform = `translate3d(0, ${yBg1}px, 0)`;
+          }
+          if (layerBg2Ref.current) {
+            layerBg2Ref.current.style.transform = `translate3d(0, ${yBg2}px, 0)`;
+          }
+          if (layerImageRef.current) {
+            layerImageRef.current.style.transform = `translate3d(0, ${yImg}px, 0)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -41,7 +84,17 @@ export default function Hero() {
       className="relative overflow-hidden bg-white" 
       style={{ background: "radial-gradient(circle at 10% 20%, rgba(15,182,126,0.04), transparent 50%)" }}
     >
-      <div className="mx-auto grid max-w-[var(--maxw)] items-center gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:py-36">
+      {/* Background blobs for parallax */}
+      <div 
+        ref={layerBg1Ref}
+        className="absolute -left-10 top-10 w-72 h-72 rounded-full bg-[rgba(15,182,126,0.03)] blur-3xl pointer-events-none z-0 will-change-transform" 
+      />
+      <div 
+        ref={layerBg2Ref}
+        className="absolute right-0 bottom-10 w-96 h-96 rounded-full bg-[rgba(15,182,126,0.045)] blur-3xl pointer-events-none z-0 will-change-transform" 
+      />
+
+      <div className="mx-auto grid max-w-[var(--maxw)] items-center gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:py-36 relative z-10">
         <div className="flex flex-col items-start">
           <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block mb-3">
             TORONTO&apos;S TRUSTED HOME CLEANING
@@ -110,28 +163,30 @@ export default function Hero() {
           </ul>
         </div>
 
-        <motion.div
-          className="flex justify-center lg:justify-end items-center"
-          initial={reduce ? false : { opacity: 0, y: 24, scale: 1.03 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="relative w-full max-w-[440px] aspect-[4/3] sm:aspect-square">
-            <div className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] w-full h-full relative">
-              <Image
-                src="/img/hero.jpg"
-                alt="Bright, clean modern living room filled with sunlight"
-                fill
-                sizes="(max-width: 1024px) 100vw, 440px"
-                className="object-cover"
-                priority
-              />
+        <div ref={layerImageRef} className="will-change-transform w-full flex justify-center lg:justify-end">
+          <motion.div
+            className="flex justify-center lg:justify-end items-center w-full max-w-[440px]"
+            initial={reduce ? false : { opacity: 0, y: 24, scale: 1.03 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="relative w-full aspect-[4/3] sm:aspect-square">
+              <div className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] w-full h-full relative">
+                <Image
+                  src="/img/hero.jpg"
+                  alt="Bright, clean modern living room filled with sunlight"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 440px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="absolute -bottom-3 -left-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10">
+                <span>★ 4.9 average rating</span>
+              </div>
             </div>
-            <div className="absolute -bottom-3 -left-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10">
-              <span>★ 4.9 average rating</span>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
