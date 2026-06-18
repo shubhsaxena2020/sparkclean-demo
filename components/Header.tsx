@@ -1,19 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { PhoneIcon, MenuIcon, CloseIcon } from "./icons";
 
 const NAV = [
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Areas", href: "#areas" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Areas", href: "/areas" },
+  { label: "About", href: "/about" },
 ];
 
 function Logo() {
   return (
-    <a href="#main" className="flex items-center gap-2" aria-label="SparkClean home">
+    <Link href="/" className="flex items-center gap-2" aria-label="SparkClean home">
       <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white shadow-[0_0_15px_rgba(15,182,126,0.3)]">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden>
           <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 18.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
@@ -22,7 +24,7 @@ function Logo() {
       <span className="font-display text-xl font-extrabold tracking-tight text-ink">
         SparkClean
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -37,6 +39,7 @@ function DemoPill() {
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -44,6 +47,13 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname === href || pathname?.startsWith(href + "/");
+  };
 
   return (
     <header
@@ -63,15 +73,22 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-ink transition-colors hover:text-primary"
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-sm font-semibold transition-colors hover:text-primary ${
+                  active
+                    ? "text-primary underline decoration-2 underline-offset-4"
+                    : "text-ink"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right side — phone + Book Now stay visible at every breakpoint */}
@@ -117,17 +134,22 @@ export default function Header() {
           aria-label="Mobile"
         >
           <ul className="mx-auto flex max-w-[var(--maxw)] flex-col px-4 py-2">
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-2 py-3 text-base font-medium text-ink transition-colors hover:bg-[var(--color-surface)]"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {NAV.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`block rounded-lg px-2 py-3 text-base font-semibold transition-colors hover:bg-[var(--color-surface)] ${
+                      active ? "text-primary bg-[var(--color-surface)]" : "text-ink"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="px-2 py-3">
               <DemoPill />
             </li>
