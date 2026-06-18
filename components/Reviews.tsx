@@ -40,15 +40,25 @@ function Stars() {
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="w-full bg-white">
+    <section id="reviews" className="w-full bg-white relative overflow-hidden">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+        <Reveal className="mx-auto max-w-2xl text-center relative">
+          <span className="absolute -top-14 left-1/2 -translate-x-1/2 font-display text-[13rem] font-black text-primary/[0.06] leading-none pointer-events-none select-none">
+            “
+          </span>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary relative z-10">
             Reviews
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05] relative z-10">
             GTA homeowners trust SparkClean.
           </h2>
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5 relative z-10">
+            {["Insured ✓", "Bonded ✓", "Eco-Certified ✓", "Background-Checked ✓"].map((label) => (
+              <span key={label} className="rounded-full bg-surface border border-[var(--color-border)] px-3.5 py-1 text-xs font-semibold text-primary-d shadow-[0_2px_6px_rgba(15,182,126,0.02)]">
+                {label}
+              </span>
+            ))}
+          </div>
         </Reveal>
 
         <RevealGroup className="mt-12 grid gap-8 md:grid-cols-3">
@@ -56,7 +66,7 @@ export default function Reviews() {
             <RevealItem
               key={r.name}
               as="article"
-              className="flex flex-col rounded-[var(--radius)] border-l-[3px] border-l-primary border-y border-r border-[var(--color-border)] bg-white p-8 shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] transition-all duration-300 hover:shadow-[0_18px_44px_-14px_rgba(15,26,23,0.18)]"
+              className="flex flex-col rounded-[var(--radius)] border-l-[3px] border-l-primary border-y border-r border-[var(--color-border)] bg-white p-8 shadow-[0_10px_30px_-12px_rgba(15, 26, 23, 0.12)] transition-all duration-300 hover:shadow-[0_18px_44px_-14px_rgba(15, 26, 23, 0.18)]"
             >
               <Stars />
               <blockquote className="mt-4 flex-1 text-[0.95rem] leading-[1.7] text-ink italic">

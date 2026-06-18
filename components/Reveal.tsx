@@ -6,9 +6,8 @@ import type { ReactNode } from "react";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Scroll-reveal wrapper: opacity 0→1, y 20→0, 0.5s, once.
+ * Scroll-reveal wrapper: opacity 0→1, y 24→0, 0.6s, once, when ~15% visible.
  * Respects prefers-reduced-motion (renders final state instantly).
- * Pass `stagger` on a parent and use <RevealItem> children for grouped reveals.
  */
 export function Reveal({
   children,
@@ -27,10 +26,10 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
+      initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: EASE, delay }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6, ease: EASE, delay }}
     >
       {children}
     </MotionTag>
@@ -39,12 +38,12 @@ export function Reveal({
 
 const groupVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
 
 /** Parent that staggers its <RevealItem> children into view. */

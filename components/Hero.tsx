@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 import { ArrowRightIcon } from "./icons";
 
@@ -42,7 +43,7 @@ export default function Hero() {
     >
       <div className="mx-auto grid max-w-[var(--maxw)] items-center gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:py-36">
         <div className="flex flex-col items-start">
-          <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary block mb-3">
+          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block mb-3">
             TORONTO&apos;S TRUSTED HOME CLEANING
           </span>
 
@@ -111,33 +112,25 @@ export default function Hero() {
 
         <motion.div
           className="flex justify-center lg:justify-end items-center"
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          initial={reduce ? false : { opacity: 0, y: 24, scale: 1.03 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div
-            animate={reduce ? undefined : { y: [0, -8, 0] }}
-            transition={reduce ? undefined : {
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="w-full max-w-[400px] flex justify-center"
-          >
-            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-[340px] md:max-w-[400px] aspect-square">
-              <circle cx="200" cy="200" r="140" fill="url(#radialGlow)" opacity="0.15" />
-              <circle cx="160" cy="180" r="100" fill="#0fb67e" opacity="0.08" />
-              <circle cx="240" cy="220" r="120" fill="#f4fbf8" opacity="0.6" stroke="#e3eae7" strokeWidth="1" />
-              <circle cx="210" cy="150" r="80" fill="#0a8c60" opacity="0.06" />
-              <circle cx="250" cy="170" r="40" fill="#ffc53d" opacity="0.12" />
-              <defs>
-                <radialGradient id="radialGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(140)">
-                  <stop offset="0" stopColor="#0fb67e" />
-                  <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-            </svg>
-          </motion.div>
+          <div className="relative w-full max-w-[440px] aspect-[4/3] sm:aspect-square">
+            <div className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] w-full h-full relative">
+              <Image
+                src="/img/hero.jpg"
+                alt="Bright, clean modern living room filled with sunlight"
+                fill
+                sizes="(max-width: 1024px) 100vw, 440px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="absolute -bottom-3 -left-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10">
+              <span>★ 4.9 average rating</span>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
