@@ -72,18 +72,19 @@ export default function ServicesPage() {
                 We follow a rigorous protocol to ensure every corner of your home sparkles. Select the plan that best fits your needs.
               </RevealSubtext>
 
-              <RevealSubtext delay={0.15} className="mt-8 relative block">
-                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] bg-white p-3">
+              <RevealSubtext delay={0.15} className="mt-8 relative block" as="div">
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] bg-white p-3 group hover:border-primary/35 hover:shadow-[0_25px_50px_-20px_rgba(15,182,126,0.18)] transition-all duration-500">
                   <div className="relative w-full h-full overflow-hidden rounded-[18px]">
                     <Image
                       src="/img/results3.jpg"
                       alt="Spotless minimalist bathroom with fresh rolled towels"
                       fill
                       sizes="(max-width: 1024px) 100vw, 440px"
-                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </div>
               </RevealSubtext>
             </div>

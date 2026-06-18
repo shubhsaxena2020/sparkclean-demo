@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 import { RevealEyebrow, RevealSubtext } from "./Reveal";
 import { ArrowRightIcon } from "./icons";
+import Scene3D from "./Scene3D";
 
 const BADGES = [
   "Insured & Bonded",
@@ -19,6 +20,29 @@ export default function Hero() {
   const layerBg1Ref = useRef<HTMLDivElement>(null);
   const layerBg2Ref = useRef<HTMLDivElement>(null);
   const layerImageRef = useRef<HTMLDivElement>(null);
+
+  // Mouse tilt tracking values (trysoloai.com premium 3D feel)
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-200, 200], [8, -8]);
+  const rotateY = useTransform(x, [-200, 200], [-8, 8]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (reduce) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const clientX = e.clientX - rect.left - width / 2;
+    const clientY = e.clientY - rect.top - height / 2;
+    x.set(clientX);
+    y.set(clientY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -82,9 +106,15 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative overflow-hidden bg-white" 
+      className="relative overflow-hidden bg-white blueprint-grid border-b border-[var(--color-border)]" 
       style={{ background: "radial-gradient(circle at 10% 20%, rgba(15,182,126,0.04), transparent 50%)" }}
     >
+      {/* Noise overlay for texture */}
+      <div className="noise-overlay" />
+
+      {/* Interactive 3D Soap Bubbles Backdrop */}
+      <Scene3D />
+
       {/* Background blobs for parallax */}
       <div 
         ref={layerBg1Ref}
@@ -121,18 +151,18 @@ export default function Hero() {
             price and book online — no waiting for a callback.
           </RevealSubtext>
 
-          <RevealSubtext delay={0.16} className="mt-8 flex flex-col gap-3.5 w-full sm:w-auto sm:flex-row">
+          <RevealSubtext delay={0.16} className="mt-8 flex flex-col gap-3.5 w-full sm:w-auto sm:flex-row" as="div">
             <a
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0 relative z-25"
             >
               Book Now
             </a>
             <a
               href="#calculator"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-8 py-4 text-base font-bold text-primary transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-8 py-4 text-base font-bold text-primary transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0 relative z-25"
             >
               Calculate Your Price
               <ArrowRightIcon width={18} height={18} className="text-primary" />
@@ -144,7 +174,7 @@ export default function Hero() {
               {BADGES.map((b) => (
                 <li
                   key={b}
-                  className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-transparent px-3.5 py-1 text-xs font-semibold text-ink shadow-[0_2px_8px_rgba(15,182,126,0.02)]"
+                  className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-white/50 backdrop-blur-sm px-3.5 py-1 text-xs font-semibold text-ink shadow-[0_2px_8px_rgba(15,182,126,0.02)] hover:border-primary/40 hover:bg-white/80 transition-all duration-250"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -167,25 +197,72 @@ export default function Hero() {
           </RevealSubtext>
         </div>
 
-        <div ref={layerImageRef} className="will-change-transform w-full flex justify-center lg:justify-end">
+        <div ref={layerImageRef} className="will-change-transform w-full flex justify-center lg:justify-end relative z-20">
           <motion.div
-            className="flex justify-center lg:justify-end items-center w-full max-w-[440px]"
+            className="flex justify-center lg:justify-end items-center w-full max-w-[440px] cursor-grab active:cursor-grabbing"
             initial={reduce ? false : { opacity: 0, y: 24, scale: 1.03 }}
             animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            style={reduce ? {} : { rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
-            <div className="relative w-full aspect-[4/3] sm:aspect-square">
-              <div className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] w-full h-full relative">
+            <div className="relative w-full aspect-[4/3] sm:aspect-square" style={{ transformStyle: "preserve-3d" }}>
+              
+              {/* Floating Cards (SoloAI vibe) */}
+              <div 
+                className="absolute -top-6 -left-6 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md animate-float-1 pointer-events-auto hover:scale-105 transition-transform"
+                style={{ transform: "translateZ(30px)" }}
+              >
+                <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/10 text-primary text-sm font-bold">★</div>
+                <div>
+                  <div className="text-[11px] font-black text-ink">4.9/5 GTA Rating</div>
+                  <div className="text-[9px] text-muted font-bold leading-none mt-0.5">Top-rated clean team</div>
+                </div>
+              </div>
+
+              <div 
+                className="absolute top-1/3 -right-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md animate-float-2 pointer-events-auto hover:scale-105 transition-transform"
+                style={{ transform: "translateZ(40px)" }}
+              >
+                <div className="grid h-8 w-8 place-items-center rounded-xl bg-accent/20 text-[#c2911b] text-sm font-bold">⚡</div>
+                <div>
+                  <div className="text-[11px] font-black text-ink">Booked in 60s</div>
+                  <div className="text-[9px] text-muted font-bold leading-none mt-0.5">Instant online pricing</div>
+                </div>
+              </div>
+
+              <div 
+                className="absolute -bottom-8 -left-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md animate-float-3 pointer-events-auto hover:scale-105 transition-transform"
+                style={{ transform: "translateZ(50px)" }}
+              >
+                <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/10 text-primary text-sm font-bold">✓</div>
+                <div>
+                  <div className="text-[11px] font-black text-ink">Insured & Bonded</div>
+                  <div className="text-[9px] text-muted font-bold leading-none mt-0.5">100% secure service</div>
+                </div>
+              </div>
+
+              {/* Main Image Frame with border glow and perspective */}
+              <div 
+                className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_40px_-15px_rgba(15,26,23,0.18)] w-full h-full relative group"
+                style={{ transform: "translateZ(10px)" }}
+              >
                 <Image
                   src="/img/hero.jpg"
                   alt="Bright, clean modern living room filled with sunlight"
                   fill
                   sizes="(max-width: 1024px) 100vw, 440px"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   priority
                 />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               </div>
-              <div className="absolute -bottom-3 -left-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10">
+              
+              <div 
+                className="absolute -bottom-3 -right-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10 sm:hidden"
+                style={{ transform: "translateZ(20px)" }}
+              >
                 <span>★ 4.9 average rating</span>
               </div>
             </div>
@@ -195,3 +272,4 @@ export default function Hero() {
     </section>
   );
 }
+

@@ -68,7 +68,7 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
           <RevealGroup className="mt-8">
             <RevealItem
               as="article"
-              className="relative overflow-hidden rounded-[32px] border-2 border-primary/20 bg-[#F2FBF7] p-8 sm:p-10 shadow-[0_15px_35px_-12px_rgba(15,182,126,0.1)] transition-all duration-300 hover:border-primary/45"
+              className="relative overflow-hidden rounded-[32px] border-2 border-primary/20 bg-[#F2FBF7] p-8 sm:p-10 shadow-[0_15px_35px_-12px_rgba(15,182,126,0.1)] glow-card-hover"
             >
               <div className="absolute right-0 top-0 -mr-6 -mt-6 w-32 h-32 rounded-full bg-primary/5 pointer-events-none" />
               <div className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white mb-6">
@@ -102,7 +102,7 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
               <RevealItem
                 key={title}
                 as="article"
-                className="group relative overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-6 sm:p-8 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_-12px_rgba(15,26,23,0.12)] hover:bg-gradient-to-b hover:from-white hover:to-surface"
+                className="group relative overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-6 sm:p-8 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] glow-card-hover hover:bg-gradient-to-b hover:from-white hover:to-surface"
               >
                 <span className="grid h-12 w-12 place-items-center rounded-xl bg-surface text-primary border border-[var(--color-border)] group-hover:scale-105 transition-transform duration-300">
                   <Icon width={22} height={22} />
