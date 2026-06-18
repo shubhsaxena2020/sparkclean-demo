@@ -3,11 +3,11 @@ import { LeafIcon } from "./icons";
 
 export default function FounderStory() {
   return (
-    <section className="w-full bg-white">
+    <section className="w-full bg-transparent">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
         <Reveal className="mx-auto max-w-3xl">
-          <div className="flex flex-col items-center gap-6 rounded-[24px] border border-[#e3eae7] bg-white p-10 text-center shadow-[0_20px_40px_rgba(15,26,23,0.06)] sm:p-16">
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary/10 text-xl font-bold text-primary-d">
+          <div className="flex flex-col items-center gap-6 rounded-[24px] glass-panel p-10 text-center shadow-neon-glow sm:p-16">
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-xl font-black text-[#040a0e] shadow-[0_0_25px_rgba(0,255,135,0.4)]">
               SC
             </span>
             <div>

@@ -40,13 +40,13 @@ function Stars() {
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="w-full bg-white">
+    <section id="reviews" className="w-full bg-transparent">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
             Reviews
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight sm:leading-none">
             GTA homeowners trust SparkClean.
           </h2>
         </Reveal>
@@ -56,18 +56,18 @@ export default function Reviews() {
             <RevealItem
               key={r.name}
               as="article"
-              className="flex flex-col rounded-[24px] border-l-4 border-l-primary border-y border-r border-[#e3eae7] bg-[#f2fbf7] p-8 shadow-none transition-all duration-300 hover:shadow-[0_20px_40px_rgba(15,26,23,0.04)]"
+              className="flex flex-col rounded-[24px] border-l-4 border-l-primary border-y border-r border-white/8 bg-white/[0.02] backdrop-blur-md p-8 shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(0,255,135,0.08)]"
             >
               <Stars />
-              <blockquote className="mt-4 flex-1 text-[0.95rem] leading-[1.7] text-ink/85 italic">
+              <blockquote className="mt-4 flex-1 text-[0.95rem] leading-[1.7] text-white/90 italic">
                 &ldquo;{r.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-5 flex items-center gap-3 border-t border-[#e3eae7] pt-4">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-sm font-bold text-primary-d">
+              <figcaption className="mt-5 flex items-center gap-3 border-t border-white/8 pt-4">
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-sm font-bold text-primary">
                   {r.initials}
                 </span>
                 <span className="text-sm">
-                  <span className="block font-bold text-ink">{r.name}</span>
+                  <span className="block font-bold text-white">{r.name}</span>
                   <span className="block text-muted">
                     {r.area} · {r.date}
                   </span>

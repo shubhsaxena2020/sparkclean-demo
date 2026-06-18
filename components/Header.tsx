@@ -14,12 +14,12 @@ const NAV = [
 function Logo() {
   return (
     <a href="#main" className="flex items-center gap-2" aria-label="SparkClean home">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white">
+      <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-bg">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden>
           <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 18.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
         </svg>
       </span>
-      <span className="font-display text-xl font-extrabold tracking-tight text-primary-d">
+      <span className="font-display text-xl font-extrabold tracking-tight text-white">
         SparkClean
       </span>
     </a>
@@ -28,7 +28,7 @@ function Logo() {
 
 function DemoPill() {
   return (
-    <span className="rounded-full border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-muted">
+    <span className="rounded-full border border-border bg-[#0c1b26]/50 px-2.5 py-1 text-xs font-semibold text-primary">
       ✦ DEMO
     </span>
   );
@@ -49,8 +49,8 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
         scrolled
-          ? "bg-white border-[#e3eae7] shadow-[0_4px_20px_rgba(15,26,23,0.02)]"
-          : "bg-bg/90 backdrop-blur border-transparent"
+          ? "bg-[#040a0e]/75 backdrop-blur-md border-white/8 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          : "bg-transparent border-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[var(--maxw)] items-center justify-between gap-4 px-4 sm:px-6">
@@ -67,7 +67,7 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink/80 transition-colors hover:text-primary-d"
+              className="text-sm font-medium text-white/80 transition-colors hover:text-primary"
             >
               {item.label}
             </a>
@@ -78,7 +78,7 @@ export default function Header() {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href={PHONE_TEL}
-            className="hidden items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-primary-d sm:flex"
+            className="hidden items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors hover:text-primary sm:flex"
           >
             <PhoneIcon width={14} height={14} className="text-primary shrink-0" />
             {PHONE_DISPLAY}
@@ -86,7 +86,7 @@ export default function Header() {
           <a
             href={PHONE_TEL}
             aria-label={`Call ${PHONE_DISPLAY}`}
-            className="grid h-10 w-10 place-items-center rounded-full border border-border text-primary-d transition-colors hover:bg-surface sm:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border text-primary transition-colors hover:bg-white/5 sm:hidden"
           >
             <PhoneIcon width={16} height={16} />
           </a>
@@ -94,7 +94,7 @@ export default function Header() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.2)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.35)] active:translate-y-px"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-bg shadow-[0_4px_10px_rgba(255,197,61,0.25)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)] active:translate-y-px"
           >
             Book Now
           </a>
@@ -103,7 +103,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-border text-ink transition-colors hover:bg-surface md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border text-white transition-colors hover:bg-white/5 md:hidden"
           >
             {open ? <CloseIcon width={20} height={20} /> : <MenuIcon width={20} height={20} />}
           </button>
@@ -113,7 +113,7 @@ export default function Header() {
       {/* Mobile dropdown nav */}
       {open && (
         <nav
-          className="border-t border-border bg-bg md:hidden"
+          className="border-t border-border bg-[#040a0e] md:hidden"
           aria-label="Mobile"
         >
           <ul className="mx-auto flex max-w-[var(--maxw)] flex-col px-4 py-2">
@@ -122,7 +122,7 @@ export default function Header() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-2 py-3 text-base font-medium text-ink transition-colors hover:bg-surface"
+                  className="block rounded-lg px-2 py-3 text-base font-medium text-white transition-colors hover:bg-white/5"
                 >
                   {item.label}
                 </a>

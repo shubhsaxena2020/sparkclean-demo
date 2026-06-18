@@ -37,13 +37,13 @@ const PLANS = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="w-full bg-[#f2fbf7]">
+    <section id="pricing" className="w-full bg-transparent">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
             Pricing
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight sm:leading-none">
             Simple, honest pricing.
           </h2>
           <p className="mt-3 text-lg text-muted">
@@ -56,21 +56,21 @@ export default function Pricing() {
             <RevealItem
               key={plan.name}
               as="article"
-              className={`relative flex flex-col rounded-[24px] border p-8 transition-all duration-300 hover:-translate-y-1 ${
+              className={`relative flex flex-col rounded-[24px] border p-8 transition-all duration-300 ${
                 plan.featured
-                  ? "border-primary bg-white shadow-[0_20px_40px_rgba(15,26,23,0.06)] ring-1 ring-primary/10 lg:-mt-4 lg:mb-4"
-                  : "border-[#e3eae7] bg-white shadow-none hover:shadow-[0_20px_40px_rgba(15,26,23,0.04)]"
+                  ? "border-primary bg-[#0c1b26]/50 backdrop-blur-md shadow-[0_0_30px_rgba(0,255,135,0.15)] ring-1 ring-primary/25 lg:-mt-4 lg:mb-4"
+                  : "border-white/8 bg-white/[0.02] backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_36px_rgba(0,255,135,0.08)] hover:border-primary/20 hover:-translate-y-1.5"
               }`}
             >
               {plan.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white shadow-sm">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-bg shadow-sm shadow-primary/25">
                   Most Booked
                 </span>
               )}
-              <h3 className="text-lg font-bold text-ink">{plan.name}</h3>
+              <h3 className="text-lg font-bold text-white">{plan.name}</h3>
               <p className="mt-2 flex items-baseline gap-1">
                 <span className="text-sm font-medium text-muted">from</span>
-                <span className="font-display text-4xl font-extrabold text-primary-d">
+                <span className="font-display text-4xl font-extrabold text-primary">
                   ${plan.from}
                 </span>
               </p>
@@ -78,9 +78,9 @@ export default function Pricing() {
                 {plan.blurb}
               </p>
 
-              <ul className="mt-5 flex flex-col gap-2.5 border-t border-[#e3eae7] pt-5">
+              <ul className="mt-5 flex flex-col gap-2.5 border-t border-white/8 pt-5">
                 {plan.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-ink/85">
+                  <li key={item} className="flex items-start gap-2 text-sm text-white/90">
                     <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-primary" />
                     {item}
                   </li>
@@ -93,8 +93,8 @@ export default function Pricing() {
                 rel="noopener noreferrer"
                 className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold transition-all active:translate-y-px ${
                   plan.featured
-                    ? "bg-accent text-ink shadow-[0_4px_10px_rgba(255,197,61,0.2)] hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.35)]"
-                    : "border border-primary text-primary-d hover:bg-primary/5"
+                    ? "bg-accent text-bg shadow-[0_4px_10px_rgba(255,197,61,0.25)] hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)]"
+                    : "border border-primary text-primary hover:bg-primary/10"
                 }`}
               >
                 {plan.cta}
@@ -106,7 +106,7 @@ export default function Pricing() {
         <Reveal className="mx-auto mt-8 max-w-2xl text-center">
           <p className="text-sm text-muted">
             Final price depends on home size —{" "}
-            <a href="#calculator" className="font-semibold text-primary-d underline-offset-2 hover:underline">
+            <a href="#calculator" className="font-semibold text-primary underline-offset-2 hover:underline">
               get your exact estimate in the calculator above
             </a>
             .

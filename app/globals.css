@@ -2,17 +2,17 @@
 
 /* ── Design tokens — single source of truth (from 01_ARCHITECTURE) ───────── */
 @theme {
-  --color-bg: #ffffff;
-  --color-surface: #f4fbf8; /* faint mint card bg */
-  --color-ink: #0f1a17; /* near-black green-tinted text */
-  --color-primary: #0fb67e; /* fresh clean green */
-  --color-primary-d: #0a8c60; /* darker green (hover/headings) */
-  --color-accent: #ffc53d; /* warm yellow — booking CTAs only */
-  --color-accent-d: #f0a800; /* darker yellow for hover */
-  --color-muted: #66726e;
-  --color-border: #e3eae7;
+  --color-bg: #040a0e;
+  --color-surface: rgba(12, 27, 38, 0.4); /* Glassmorphic dark card fill */
+  --color-ink: #f8fafc; /* Slate white text */
+  --color-primary: #00ff87; /* Cyber neon green */
+  --color-primary-d: #00cc6a; /* Darker neon green */
+  --color-accent: #ffc53d; /* Golden highlight yellow */
+  --color-accent-d: #f5b014;
+  --color-muted: #94a3b8; /* Cool slate gray for descriptions */
+  --color-border: rgba(255, 255, 255, 0.08); /* Transparent hairline border */
 
-  --radius-card: 16px;
+  --radius-card: 24px;
 
   --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -32,6 +32,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background-color: #040a0e;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -46,6 +47,14 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Hide cursor globally for the custom cursor experience (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  html, body, a, button, select, input, label, [role="button"], [role="radiogroup"] label {
+    cursor: none !important;
+  }
 }
 
 h1,
@@ -66,4 +75,36 @@ h4 {
 /* Honour scroll-margin so smooth-scroll anchors clear the sticky header */
 [id] {
   scroll-margin-top: 88px;
+}
+
+/* ── Custom Glassmorphism & Neon Glow Utilities ─────────────────────────── */
+.glass-panel {
+  background: rgba(12, 27, 38, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shadow-neon-glow {
+  box-shadow: 0 0 25px rgba(0, 255, 135, 0.15);
+}
+
+.shadow-cyan-glow {
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.1);
+}
+
+/* Custom Scrollbar for premium dark sites */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #040a0e;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  border: 2px solid #040a0e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
 }
