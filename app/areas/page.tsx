@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
 import { NEIGHBOURHOODS, BOOKING_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -73,17 +73,18 @@ export default function AreasPage() {
       {/* 4. Tidy 2-column list of areas */}
       <section className="w-full bg-surface py-16 sm:py-20 border-t border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
+          <div className="mx-auto max-w-2xl text-center">
+            <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
               LOCATIONS
-            </span>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]">
-              Neighborhoods We Cover
-            </h2>
-            <p className="mt-3 text-base text-muted">
+            </RevealEyebrow>
+            <RevealHeading
+              text="Neighborhoods We Cover"
+              className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]"
+            />
+            <RevealSubtext className="mt-3 text-base text-muted">
               Discover how we care for homes in your specific part of the GTA.
-            </p>
-          </Reveal>
+            </RevealSubtext>
+          </div>
 
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 max-w-4xl mx-auto">
             {AREA_DETAILS.map((item) => (

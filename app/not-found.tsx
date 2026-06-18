@@ -1,25 +1,28 @@
 import Link from "next/link";
+import { RevealEyebrow, RevealHeading, RevealSubtext } from "@/components/Reveal";
 
 export default function NotFound() {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center bg-white px-4 text-center">
-      <span className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">
+      <RevealEyebrow className="text-sm font-semibold uppercase tracking-[0.22em] text-primary block" as="span">
         404 ERROR
-      </span>
-      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-        Page not found
-      </h1>
-      <p className="mt-4 max-w-md text-base text-muted">
+      </RevealEyebrow>
+      <RevealHeading
+        as="h1"
+        text="Page not found"
+        className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl"
+      />
+      <RevealSubtext className="mt-4 max-w-md text-base text-muted">
         The page you are looking for doesn&apos;t exist, has been moved, or is temporarily unavailable.
-      </p>
-      <div className="mt-8">
+      </RevealSubtext>
+      <RevealSubtext delay={0.16} className="mt-8">
         <Link
           href="/"
-          className="inline-flex items-center justify-center gap-1.5 rounded-full border border-primary px-6 py-3 text-sm font-bold text-primary transition-colors hover:bg-primary/5"
+          className="inline-flex items-center justify-center gap-1.5 rounded-full border border-primary px-6 py-3 text-sm font-bold text-primary transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0"
         >
           Back to Home
         </Link>
-      </div>
+      </RevealSubtext>
     </div>
   );
 }

@@ -11,7 +11,7 @@ import {
   type Frequency,
 } from "@/lib/pricing";
 import { BOOKING_URL } from "@/lib/site";
-import { Reveal } from "./Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
 import { MinusIcon, PlusIcon, ArrowRightIcon, CheckIcon } from "./icons";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -157,17 +157,18 @@ export default function Calculator() {
       style={{ background: "linear-gradient(180deg, #FFFFFF, #F2FBF7, #FFFFFF)" }}
     >
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+        <div className="mx-auto max-w-2xl text-center">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
             Instant price
-          </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
-            Get your instant price.
-          </h2>
-          <p className="mt-3 text-lg text-muted">
+          </RevealEyebrow>
+          <RevealHeading
+            text="Get your instant price."
+            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+          />
+          <RevealSubtext className="mt-3 text-lg text-muted">
             Most cleans in the GTA fall between $120 and $500. Build yours below.
-          </p>
-        </Reveal>
+          </RevealSubtext>
+        </div>
 
         <Reveal delay={0.05}>
           <div className="mx-auto mt-12 grid max-w-4xl overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white shadow-[0_10px_30px_-12px_rgba(15, 26, 23, 0.12)] md:grid-cols-[1.15fr_1fr]">
@@ -254,7 +255,7 @@ export default function Calculator() {
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-px"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0"
                 >
                   Book this clean
                   <ArrowRightIcon width={18} height={18} />

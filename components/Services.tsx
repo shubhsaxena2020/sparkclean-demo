@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
+import { StarIcon } from "./icons";
 import {
   RepeatIcon,
   SparkleIcon,
@@ -45,14 +46,15 @@ const SERVICES = [
 export default function Services({ showLink = false }: { showLink?: boolean }) {
   return (
     <section id="services" className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-      <Reveal className="max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+      <div className="max-w-2xl">
+        <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
           What we clean
-        </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
-          Every kind of clean your home needs.
-        </h2>
-      </Reveal>
+        </RevealEyebrow>
+        <RevealHeading
+          text="Every kind of clean your home needs."
+          className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+        />
+      </div>
 
       <RevealGroup className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {SERVICES.map(({ icon: Icon, title, body }) => (
@@ -71,14 +73,14 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
       </RevealGroup>
 
       {showLink && (
-        <Reveal className="mt-10 text-center">
+        <RevealSubtext className="mt-10 text-center">
           <Link
             href="/services"
             className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-d transition-colors"
           >
             View all services →
           </Link>
-        </Reveal>
+        </RevealSubtext>
       )}
     </section>
   );

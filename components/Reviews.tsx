@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
 import { StarIcon } from "./icons";
 
 const REVIEWS = [
@@ -43,24 +43,25 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
   return (
     <section id="reviews" className="w-full bg-white relative overflow-hidden">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <Reveal className="mx-auto max-w-2xl text-center relative">
+        <div className="mx-auto max-w-2xl text-center relative">
           <span className="absolute -top-14 left-1/2 -translate-x-1/2 font-display text-[13rem] font-black text-primary/[0.06] leading-none pointer-events-none select-none">
             “
           </span>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary relative z-10">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary relative z-10">
             Reviews
-          </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05] relative z-10">
-            GTA homeowners trust SparkClean.
-          </h2>
-          <div className="mt-6 flex flex-wrap justify-center gap-2.5 relative z-10">
+          </RevealEyebrow>
+          <RevealHeading
+            text="GTA homeowners trust SparkClean."
+            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05] relative z-10"
+          />
+          <RevealSubtext className="mt-6 flex flex-wrap justify-center gap-2.5 relative z-10">
             {["Insured ✓", "Bonded ✓", "Eco-Certified ✓", "Background-Checked ✓"].map((label) => (
               <span key={label} className="rounded-full bg-surface border border-[var(--color-border)] px-3.5 py-1 text-xs font-semibold text-primary-d shadow-[0_2px_6px_rgba(15,182,126,0.02)]">
                 {label}
               </span>
             ))}
-          </div>
-        </Reveal>
+          </RevealSubtext>
+        </div>
 
         <RevealGroup className="mt-12 grid gap-8 md:grid-cols-3">
           {REVIEWS.map((r) => (

@@ -111,7 +111,7 @@ export default function Header() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.25)] transition-all hover:bg-[#F5B625] hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)] active:translate-y-px"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)] active:translate-y-0"
           >
             Book Now
           </a>

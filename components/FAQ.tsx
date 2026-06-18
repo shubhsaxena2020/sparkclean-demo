@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
 import { useReducedMotion } from "framer-motion";
 
 const FAQS = [
@@ -42,17 +42,18 @@ export default function FAQ() {
   return (
     <section className="w-full bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <Reveal className="text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
+        <div className="text-center">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
             FAQ
-          </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-3 text-base text-muted">
+          </RevealEyebrow>
+          <RevealHeading
+            text="Frequently Asked Questions"
+            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]"
+          />
+          <RevealSubtext className="mt-3 text-base text-muted">
             Got questions? We have answers to help you feel confident in our service.
-          </p>
-        </Reveal>
+          </RevealSubtext>
+        </div>
 
         <RevealGroup className="mt-12 flex flex-col gap-4">
           {FAQS.map((faq, idx) => {

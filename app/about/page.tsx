@@ -5,7 +5,7 @@ import Stats from "@/components/Stats";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import CTABanner from "@/components/CTABanner";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
 import {
   ShieldIcon,
   LeafIcon,
@@ -70,17 +70,18 @@ export default function AboutPage() {
       {/* 3. Why choose SparkClean trust grid */}
       <section className="w-full bg-surface py-16 sm:py-20 border-t border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
+          <div className="mx-auto max-w-2xl text-center">
+            <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
               OUR PROMISE
-            </span>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]">
-              Why GTA families choose us.
-            </h2>
-            <p className="mt-3 text-base text-muted">
+            </RevealEyebrow>
+            <RevealHeading
+              text="Why GTA families choose us."
+              className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]"
+            />
+            <RevealSubtext className="mt-3 text-base text-muted">
               We focus on detail, safety, and reliability to keep your home feeling its best.
-            </p>
-          </Reveal>
+            </RevealSubtext>
+          </div>
 
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {WHY_US.map((item) => {

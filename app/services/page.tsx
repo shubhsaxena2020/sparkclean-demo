@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
 import Calculator from "@/components/Calculator";
 import CTABanner from "@/components/CTABanner";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
 import { CheckIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -52,17 +52,18 @@ export default function ServicesPage() {
       {/* 3. A "What's included" sub-section */}
       <section className="w-full bg-surface border-t border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
+          <div className="mx-auto max-w-2xl text-center">
+            <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
               WHAT&apos;S INCLUDED
-            </span>
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
-              Detailed checklists for every clean.
-            </h2>
-            <p className="mt-3 text-lg text-muted">
+            </RevealEyebrow>
+            <RevealHeading
+              text="Detailed checklists for every clean."
+              className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+            />
+            <RevealSubtext className="mt-3 text-lg text-muted">
               We follow a rigorous protocol to ensure every corner of your home sparkles.
-            </p>
-          </Reveal>
+            </RevealSubtext>
+          </div>
 
           <RevealGroup className="mt-12 grid gap-8 lg:grid-cols-3">
             {PLANS.map((plan) => (

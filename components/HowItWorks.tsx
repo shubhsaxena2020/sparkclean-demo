@@ -1,4 +1,4 @@
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { RevealEyebrow, RevealHeading, RevealGroup, RevealItem } from "./Reveal";
 import { TagIcon, ClockIcon, SparkleIcon } from "./icons";
 
 const STEPS = [
@@ -22,14 +22,15 @@ const STEPS = [
 export default function HowItWorks() {
   return (
     <section className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36 bg-white">
-      <Reveal className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+      <div className="mx-auto max-w-2xl text-center">
+        <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
           How it works
-        </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
-          Booked in 60 seconds.
-        </h2>
-      </Reveal>
+        </RevealEyebrow>
+        <RevealHeading
+          text="Booked in 60 seconds."
+          className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+        />
+      </div>
 
       <RevealGroup className="relative mt-16 grid gap-8 md:grid-cols-3">
         {/* connecting line (desktop) */}

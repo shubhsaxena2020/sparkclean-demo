@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
+import { RevealEyebrow, RevealSubtext } from "./Reveal";
 import { ArrowRightIcon } from "./icons";
 
 const BADGES = [
@@ -62,18 +63,18 @@ export default function Hero() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const lineVariants = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: { opacity: 0, y: 12 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.4,
         ease: [0.22, 1, 0.36, 1] as const,
       },
     },
@@ -96,14 +97,15 @@ export default function Hero() {
 
       <div className="mx-auto grid max-w-[var(--maxw)] items-center gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:py-36 relative z-10">
         <div className="flex flex-col items-start">
-          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block mb-3">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block mb-3">
             TORONTO&apos;S TRUSTED HOME CLEANING
-          </span>
+          </RevealEyebrow>
 
           <motion.h1
             variants={reduce ? undefined : containerVariants}
             initial={reduce ? false : "hidden"}
-            animate={reduce ? undefined : "show"}
+            whileInView={reduce ? undefined : "show"}
+            viewport={{ once: true, amount: 0.15 }}
             className="text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[3.8rem]"
           >
             <motion.span variants={reduce ? undefined : lineVariants} className="block">
@@ -114,53 +116,55 @@ export default function Hero() {
             </motion.span>
           </motion.h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-[1.7] text-muted">
+          <RevealSubtext className="mt-6 max-w-xl text-lg leading-[1.7] text-muted">
             Eco-friendly, insured, and trusted across the GTA. Get an instant
             price and book online — no waiting for a callback.
-          </p>
+          </RevealSubtext>
 
-          <div className="mt-8 flex flex-col gap-3.5 w-full sm:w-auto sm:flex-row">
+          <RevealSubtext delay={0.16} className="mt-8 flex flex-col gap-3.5 w-full sm:w-auto sm:flex-row">
             <a
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-px"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0"
             >
               Book Now
             </a>
             <a
               href="#calculator"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-8 py-4 text-base font-bold text-primary transition-colors hover:bg-primary/5"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-8 py-4 text-base font-bold text-primary transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0"
             >
               Calculate Your Price
               <ArrowRightIcon width={18} height={18} className="text-primary" />
             </a>
-          </div>
+          </RevealSubtext>
 
-          <ul className="mt-10 flex flex-wrap gap-x-3 gap-y-2.5">
-            {BADGES.map((b) => (
-              <li
-                key={b}
-                className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-transparent px-3.5 py-1 text-xs font-semibold text-ink shadow-[0_2px_8px_rgba(15,182,126,0.02)]"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="12"
-                  height="12"
-                  className="text-primary shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
+          <RevealSubtext delay={0.22}>
+            <ul className="mt-10 flex flex-wrap gap-x-3 gap-y-2.5">
+              {BADGES.map((b) => (
+                <li
+                  key={b}
+                  className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-transparent px-3.5 py-1 text-xs font-semibold text-ink shadow-[0_2px_8px_rgba(15,182,126,0.02)]"
                 >
-                  <path d="M5 12l5 5 9-10" />
-                </svg>
-                {b}
-              </li>
-            ))}
-          </ul>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="12"
+                    height="12"
+                    className="text-primary shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M5 12l5 5 9-10" />
+                  </svg>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </RevealSubtext>
         </div>
 
         <div ref={layerImageRef} className="will-change-transform w-full flex justify-center lg:justify-end">

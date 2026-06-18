@@ -1,4 +1,4 @@
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
 import { BOOKING_URL } from "@/lib/site";
 import { CheckIcon } from "./icons";
 
@@ -39,17 +39,18 @@ export default function Pricing() {
   return (
     <section id="pricing" className="w-full bg-surface">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+        <div className="mx-auto max-w-2xl text-center">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
             Pricing
-          </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
-            Simple, honest pricing.
-          </h2>
-          <p className="mt-3 text-lg text-muted">
+          </RevealEyebrow>
+          <RevealHeading
+            text="Simple, honest pricing."
+            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+          />
+          <RevealSubtext className="mt-3 text-lg text-muted">
             No hidden fees. Recurring plans save up to 18%.
-          </p>
-        </Reveal>
+          </RevealSubtext>
+        </div>
 
         <RevealGroup className="mt-12 grid items-start gap-8 lg:grid-cols-3">
           {PLANS.map((plan) => (
@@ -91,10 +92,10 @@ export default function Pricing() {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold transition-all active:translate-y-px ${
+                className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold transition-all duration-200 ease-out hover:-translate-y-[2px] active:translate-y-0 ${
                   plan.featured
                     ? "bg-accent text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)]"
-                    : "border border-primary text-primary hover:bg-primary/5"
+                    : "border border-primary text-primary hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)]"
                 }`}
               >
                 {plan.cta}
@@ -103,7 +104,7 @@ export default function Pricing() {
           ))}
         </RevealGroup>
 
-        <Reveal className="mx-auto mt-8 max-w-2xl text-center">
+        <RevealSubtext className="mx-auto mt-8 max-w-2xl text-center">
           <p className="text-sm text-muted">
             Final price depends on home size —{" "}
             <a href="#calculator" className="font-semibold text-primary underline-offset-2 hover:underline">
@@ -111,7 +112,7 @@ export default function Pricing() {
             </a>
             .
           </p>
-        </Reveal>
+        </RevealSubtext>
       </div>
     </section>
   );

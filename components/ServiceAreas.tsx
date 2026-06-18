@@ -1,19 +1,20 @@
 import Link from "next/link";
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { Reveal, RevealEyebrow, RevealHeading, RevealGroup, RevealItem } from "./Reveal";
 import { NEIGHBOURHOODS } from "@/lib/site";
 
 export default function ServiceAreas({ showLink = false }: { showLink?: boolean }) {
   return (
     <section id="areas" className="w-full bg-surface">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+        <div className="mx-auto max-w-2xl text-center">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
             Service areas
-          </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
-            Proudly serving the Greater Toronto Area.
-          </h2>
-        </Reveal>
+          </RevealEyebrow>
+          <RevealHeading
+            text="Proudly serving the Greater Toronto Area."
+            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+          />
+        </div>
 
         <RevealGroup
           as="ul"
