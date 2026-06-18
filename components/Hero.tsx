@@ -36,11 +36,14 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-[var(--maxw)] items-center gap-10 px-4 py-24 sm:px-6 sm:py-28 lg:grid-cols-2 lg:py-36">
+    <section 
+      className="relative overflow-hidden bg-white" 
+      style={{ background: "radial-gradient(circle at 10% 20%, rgba(15,182,126,0.04), transparent 50%)" }}
+    >
+      <div className="mx-auto grid max-w-[var(--maxw)] items-center gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:py-36">
         <div className="flex flex-col items-start">
           <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary block mb-3">
-            Toronto&apos;s trusted home cleaning
+            TORONTO&apos;S TRUSTED HOME CLEANING
           </span>
 
           <motion.h1
@@ -67,7 +70,7 @@ export default function Hero() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-[#0c1b26] shadow-[0_4px_12px_rgba(255,183,3,0.3)] transition-all hover:bg-accent-d hover:shadow-[0_6px_20px_rgba(255,183,3,0.45)] active:translate-y-px"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-px"
             >
               Book Now
             </a>
@@ -84,7 +87,7 @@ export default function Hero() {
             {BADGES.map((b) => (
               <li
                 key={b}
-                className="flex items-center gap-1.5 rounded-full border border-primary/15 bg-white/60 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-ink/90 shadow-[0_2px_8px_rgba(15,182,126,0.04)]"
+                className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-transparent px-3.5 py-1 text-xs font-semibold text-ink shadow-[0_2px_8px_rgba(15,182,126,0.02)]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -107,12 +110,34 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="flex justify-center lg:justify-end min-h-[300px] lg:min-h-[400px] pointer-events-none"
+          className="flex justify-center lg:justify-end items-center"
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Empty spacer space to allow background 3D bubble to float here on desktop */}
+          <motion.div
+            animate={reduce ? undefined : { y: [0, -8, 0] }}
+            transition={reduce ? undefined : {
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="w-full max-w-[400px] flex justify-center"
+          >
+            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-[340px] md:max-w-[400px] aspect-square">
+              <circle cx="200" cy="200" r="140" fill="url(#radialGlow)" opacity="0.15" />
+              <circle cx="160" cy="180" r="100" fill="#0fb67e" opacity="0.08" />
+              <circle cx="240" cy="220" r="120" fill="#f4fbf8" opacity="0.6" stroke="#e3eae7" strokeWidth="1" />
+              <circle cx="210" cy="150" r="80" fill="#0a8c60" opacity="0.06" />
+              <circle cx="250" cy="170" r="40" fill="#ffc53d" opacity="0.12" />
+              <defs>
+                <radialGradient id="radialGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(140)">
+                  <stop offset="0" stopColor="#0fb67e" />
+                  <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+            </svg>
+          </motion.div>
         </motion.div>
       </div>
     </section>

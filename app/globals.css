@@ -1,27 +1,22 @@
 @import "tailwindcss";
 
-/* ── Design tokens — single source of truth (from 01_ARCHITECTURE) ───────── */
+/* ── Design tokens — single source of truth ───────────────────────────────── */
 @theme {
-  --color-bg: #f8fafc; /* Clean, slate-white background */
-  --color-surface: rgba(255, 255, 255, 0.65); /* Light glassmorphic card fill */
-  --color-ink: #0c1b26; /* Deep dark slate for text */
-  --color-primary: #0fb67e; /* Fresh, clean brand green */
-  --color-primary-d: #0a8c60; /* Darker clean green */
-  --color-accent: #ffb703; /* Gold/yellow accent for CTAs */
-  --color-accent-d: #fb8500;
-  --color-muted: #475569; /* Charcoal grey for descriptions */
-  --color-border: rgba(15, 182, 126, 0.12); /* Fresh light green-tinted border */
-
-  --radius-card: 24px;
+  --color-bg:        #FFFFFF;   /* page background — WHITE */
+  --color-surface:   #F4FBF8;   /* faint mint for alternating sections */
+  --color-surface-2: #EFF8F3;   /* slightly deeper mint, optional */
+  --color-ink:       #0F1A17;   /* near-black TEXT colour */
+  --color-primary:   #0FB67E;   /* brand green — accents, icons, eyebrows */
+  --color-primary-d: #0A8C60;   /* darker green — hovers, gradients */
+  --color-accent:    #FFC53D;   /* warm yellow — BOOKING CTAs ONLY */
+  --color-muted:     #66726E;   /* muted grey-green for sub-text */
+  --color-border:    #E3EAE7;   /* hairline borders */
+  --radius:          20px;
+  --maxw:            1180px;
+  --ease:            cubic-bezier(0.22, 1, 0.36, 1);
 
   --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
-
-/* Plain CSS custom props for arbitrary-value use */
-:root {
-  --maxw: 1180px;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
@@ -32,7 +27,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  background-color: #f8fafc;
+  background-color: #FFFFFF;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -48,13 +43,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-}
-
-/* Hide cursor globally for the custom cursor experience (desktop only) */
-@media (hover: hover) and (pointer: fine) {
-  html, body, a, button, select, input, label, [role="button"], [role="radiogroup"] label {
-    cursor: none !important;
-  }
 }
 
 h1,
@@ -73,38 +61,50 @@ h4 {
 }
 
 /* Honour scroll-margin so smooth-scroll anchors clear the sticky header */
-[id] {
-  scroll-margin-top: 88px;
+section[id], footer[id] {
+  scroll-margin-top: 80px;
 }
 
-/* ── Custom Glassmorphism & Neon Glow Utilities ─────────────────────────── */
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-  }
+/* ── Custom Utilities ────────────────────────────────────────────────────── */
+.premium-shadow {
+  box-shadow: 0 10px 30px -12px rgba(15, 26, 23, 0.12);
+  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
 
-  .shadow-neon-glow {
-    box-shadow: 0 10px 30px rgba(15, 182, 126, 0.08);
-  }
+.premium-shadow-hover:hover {
+  box-shadow: 0 18px 44px -14px rgba(15, 26, 23, 0.18);
+  transform: translateY(-4px);
+}
 
-  .shadow-cyan-glow {
-    box-shadow: 0 10px 30px rgba(0, 168, 232, 0.05);
-  }
+.featured-card {
+  box-shadow: 0 0 0 2px var(--color-primary), 0 10px 30px -12px rgba(15, 26, 23, 0.12);
+  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
 
-  /* Custom Scrollbar for premium light sites */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #f8fafc;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.12);
-    border-radius: 5px;
-    border: 2px solid #f8fafc;
-  }
+.featured-card:hover {
+  box-shadow: 0 0 0 2px var(--color-primary), 0 18px 44px -14px rgba(15, 26, 23, 0.18);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* Custom Scrollbar for premium light sites */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 26, 23, 0.12);
+  border-radius: 5px;
+  border: 2px solid #FFFFFF;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }

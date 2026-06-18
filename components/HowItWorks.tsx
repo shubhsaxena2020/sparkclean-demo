@@ -21,12 +21,12 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36 bg-transparent">
+    <section className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36 bg-white">
       <Reveal className="mx-auto max-w-2xl text-center">
-        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
           How it works
         </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
           Booked in 60 seconds.
         </h2>
       </Reveal>
@@ -35,13 +35,13 @@ export default function HowItWorks() {
         {/* connecting line (desktop) */}
         <div
           aria-hidden
-          className="absolute left-[16.6%] right-[16.6%] top-7 hidden border-t-2 border-dashed border-[#0fb67e]/30 md:block"
+          className="absolute left-[16.6%] right-[16.6%] top-7 hidden border-t-2 border-dashed border-primary/20 md:block"
         />
         {STEPS.map(({ icon: Icon, title, body }, i) => (
           <RevealItem key={title} className="relative text-center">
-            <div className="relative mx-auto grid h-14 w-14 place-items-center rounded-full border border-primary/20 bg-white/80 backdrop-blur shadow-[0_4px_12px_rgba(15,182,126,0.06)] text-primary">
+            <div className="relative mx-auto grid h-14 w-14 place-items-center rounded-full border border-primary/20 bg-surface shadow-[0_4px_12px_rgba(15,182,126,0.04)] text-primary">
               <Icon width={24} height={24} />
-              <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full bg-accent text-xs font-extrabold text-[#0c1b26] ring-2 ring-[#f8fafc]">
+              <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full bg-accent text-xs font-extrabold text-ink ring-2 ring-white">
                 {i + 1}
               </span>
             </div>

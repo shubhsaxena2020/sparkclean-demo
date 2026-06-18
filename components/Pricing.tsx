@@ -37,13 +37,13 @@ const PLANS = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="w-full bg-transparent">
-      <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
+    <section id="pricing" className="w-full bg-surface">
+      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
             Pricing
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]">
             Simple, honest pricing.
           </h2>
           <p className="mt-3 text-lg text-muted">
@@ -51,15 +51,15 @@ export default function Pricing() {
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-12 grid items-start gap-6 lg:grid-cols-3">
+        <RevealGroup className="mt-12 grid items-start gap-8 lg:grid-cols-3">
           {PLANS.map((plan) => (
             <RevealItem
               key={plan.name}
               as="article"
-              className={`relative flex flex-col rounded-[24px] border p-8 transition-all duration-300 ${
+              className={`relative flex flex-col rounded-[var(--radius)] border p-8 transition-all duration-300 ${
                 plan.featured
-                  ? "border-2 border-primary bg-white/85 backdrop-blur-md shadow-[0_15px_45px_rgba(15,182,126,0.15)] lg:-mt-4 lg:mb-4"
-                  : "border border-white/80 bg-white/60 backdrop-blur-md shadow-[0_8px_30px_rgba(15,26,23,0.03)] hover:shadow-[0_12px_36px_rgba(15,182,126,0.1)] hover:border-primary/30 hover:-translate-y-1.5"
+                  ? "featured-card border-primary bg-white lg:-mt-4 lg:mb-4 lg:-translate-y-1.5 lg:hover:-translate-y-2.5"
+                  : "border-[var(--color-border)] bg-white shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] hover:shadow-[0_18px_44px_-14px_rgba(15,26,23,0.18)] hover:-translate-y-1"
               }`}
             >
               {plan.featured && (
@@ -78,9 +78,9 @@ export default function Pricing() {
                 {plan.blurb}
               </p>
 
-              <ul className="mt-5 flex flex-col gap-2.5 border-t border-black/5 pt-5">
+              <ul className="mt-5 flex flex-col gap-2.5 border-t border-[var(--color-border)] pt-5">
                 {plan.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-ink/90">
+                  <li key={item} className="flex items-start gap-2 text-sm text-ink">
                     <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-primary" />
                     {item}
                   </li>
@@ -93,8 +93,8 @@ export default function Pricing() {
                 rel="noopener noreferrer"
                 className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold transition-all active:translate-y-px ${
                   plan.featured
-                    ? "bg-accent text-[#0c1b26] shadow-[0_4px_12px_rgba(255,183,3,0.3)] hover:bg-accent-d hover:shadow-[0_6px_20px_rgba(255,183,3,0.45)]"
-                    : "border border-primary text-primary hover:bg-primary/10"
+                    ? "bg-accent text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)]"
+                    : "border border-primary text-primary hover:bg-primary/5"
                 }`}
               >
                 {plan.cta}

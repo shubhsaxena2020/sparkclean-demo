@@ -3,15 +3,15 @@ import { LeafIcon } from "./icons";
 
 export default function FounderStory() {
   return (
-    <section className="w-full bg-transparent">
-      <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
+    <section className="w-full bg-white">
+      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
         <Reveal className="mx-auto max-w-3xl">
-          <div className="flex flex-col items-center gap-6 rounded-[24px] glass-panel p-10 text-center shadow-neon-glow sm:p-16">
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-xl font-black text-white shadow-[0_4px_15px_rgba(15,182,126,0.3)]">
+          <div className="flex flex-col items-center gap-6 rounded-[var(--radius)] border border-[var(--color-border)] bg-surface p-10 text-center shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] sm:p-16">
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-xl font-black text-white">
               SC
             </span>
             <div>
-              <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
+              <p className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                 <LeafIcon width={16} height={16} />
                 Local, and we act like it
               </p>

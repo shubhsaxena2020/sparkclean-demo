@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Scene3D from "@/components/Scene3D";
 import CustomCursor from "@/components/CustomCursor";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -60,7 +59,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <CustomCursor />
-        <Scene3D />
         <Header />
         <main id="main">{children}</main>
         <Footer />

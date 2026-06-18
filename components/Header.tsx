@@ -47,10 +47,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/75 backdrop-blur-md border-black/5 shadow-[0_4px_30px_rgba(15,26,23,0.06)]"
-          : "bg-transparent border-transparent"
+          ? "bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)]"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[var(--maxw)] items-center justify-between gap-4 px-4 sm:px-6">
@@ -67,7 +67,7 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink/80 transition-colors hover:text-primary"
+              className="text-sm font-medium text-ink transition-colors hover:text-primary"
             >
               {item.label}
             </a>
@@ -78,7 +78,7 @@ export default function Header() {
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href={PHONE_TEL}
-            className="hidden items-center gap-1.5 text-sm font-semibold text-ink/90 transition-colors hover:text-primary sm:flex"
+            className="hidden items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-primary sm:flex"
           >
             <PhoneIcon width={14} height={14} className="text-primary shrink-0" />
             {PHONE_DISPLAY}
@@ -86,7 +86,7 @@ export default function Header() {
           <a
             href={PHONE_TEL}
             aria-label={`Call ${PHONE_DISPLAY}`}
-            className="grid h-10 w-10 place-items-center rounded-full border border-black/5 text-primary transition-colors hover:bg-black/5 sm:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-[var(--color-border)] text-primary transition-colors hover:bg-[var(--color-surface)] sm:hidden"
           >
             <PhoneIcon width={16} height={16} />
           </a>
@@ -94,7 +94,7 @@ export default function Header() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-[#0c1b26] shadow-[0_4px_10px_rgba(255,183,3,0.25)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,183,3,0.4)] active:translate-y-px"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.25)] transition-all hover:bg-[#F5B625] hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)] active:translate-y-px"
           >
             Book Now
           </a>
@@ -103,7 +103,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-black/5 text-ink transition-colors hover:bg-black/5 md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-[var(--color-border)] text-ink transition-colors hover:bg-[var(--color-surface)] md:hidden"
           >
             {open ? <CloseIcon width={20} height={20} /> : <MenuIcon width={20} height={20} />}
           </button>
@@ -113,7 +113,7 @@ export default function Header() {
       {/* Mobile dropdown nav */}
       {open && (
         <nav
-          className="border-t border-black/5 bg-white/95 backdrop-blur-md md:hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
+          className="border-t border-[var(--color-border)] bg-white/95 backdrop-blur-md md:hidden shadow-[0_10px_30px_rgba(15,26,23,0.08)]"
           aria-label="Mobile"
         >
           <ul className="mx-auto flex max-w-[var(--maxw)] flex-col px-4 py-2">
@@ -122,7 +122,7 @@ export default function Header() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-2 py-3 text-base font-medium text-ink transition-colors hover:bg-black/5"
+                  className="block rounded-lg px-2 py-3 text-base font-medium text-ink transition-colors hover:bg-[var(--color-surface)]"
                 >
                   {item.label}
                 </a>

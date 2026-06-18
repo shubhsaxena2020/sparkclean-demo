@@ -9,12 +9,12 @@ const ITEMS = [
 
 export default function TrustBar() {
   return (
-    <section aria-label="Why homeowners trust us" className="border-y border-white/5 bg-black/20 backdrop-blur-sm">
-      <ul className="mx-auto grid max-w-[var(--maxw)] grid-cols-2 gap-x-6 gap-y-5 px-4 py-6 sm:px-6 md:grid-cols-4">
+    <section aria-label="Why homeowners trust us" className="border-y border-[var(--color-border)] bg-surface py-5">
+      <ul className="mx-auto flex flex-wrap justify-between items-center gap-x-6 gap-y-4 px-4 max-w-[var(--maxw)] sm:px-6">
         {ITEMS.map(({ icon: Icon, label }) => (
           <li key={label} className="flex items-center gap-2.5">
-            <Icon width={22} height={22} className="shrink-0 text-primary" />
-            <span className="text-sm font-semibold text-white/90">{label}</span>
+            <Icon width={20} height={20} className="shrink-0 text-primary" />
+            <span className="text-sm font-semibold text-ink">{label}</span>
           </li>
         ))}
       </ul>

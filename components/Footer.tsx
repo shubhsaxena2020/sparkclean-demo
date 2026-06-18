@@ -10,7 +10,10 @@ const LINKS = [
 export default function Footer() {
   return (
     <>
-      <div className="h-[1px] w-full bg-primary shadow-[0_0_10px_rgba(15,182,126,0.5)]" />
+      <div 
+        className="h-[1px] w-full" 
+        style={{ background: "linear-gradient(90deg, transparent, var(--color-primary), transparent)" }} 
+      />
       <footer className="bg-[#09131a] border-t border-white/5 text-white/80 backdrop-blur-md">
         <div className="mx-auto max-w-[var(--maxw)] px-4 py-14 sm:px-6">
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
