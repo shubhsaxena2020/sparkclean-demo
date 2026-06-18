@@ -78,6 +78,7 @@ export default function CustomCursor() {
     // --- Animation Loop ---
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
+    let sweepTime = 0;
 
     const tick = () => {
       // 1. Lerp Broom Position for smooth follow
@@ -92,30 +93,46 @@ export default function CustomCursor() {
       mouse.lastX = currentPos.x;
       mouse.lastY = currentPos.y;
 
-      // Update Broom CSS translation & rotation (sweeping tilt)
+      const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+
+      // Increment sweepTime if mouse is moving to animate wiggle
+      if (speed > 0.3) {
+        sweepTime += Math.min(speed * 0.15, 0.4);
+      }
+
+      // Update Broom CSS translation & rotation (sweeping tilt & active wiggle)
       const broom = broomRef.current;
       if (broom) {
-        // Calculate tilt angle based on horizontal speed (cap it for natural look)
-        const speedX = velocity.x;
-        const targetRotation = Math.max(Math.min(speedX * 1.5, 30), -30); // in degrees
+        // Base tilt from movement direction
+        const baseTilt = Math.max(Math.min(velocity.x * 0.8, 15), -15);
+        
+        // Dynamic wiggle when moving (simulates active left-right sweeping)
+        const wiggleAmp = Math.min(speed * 1.5, 14); // max wiggle amplitude 14 degrees
+        const wiggle = Math.sin(sweepTime * 1.8) * wiggleAmp;
+        
+        const targetRotation = baseTilt + wiggle;
         broom.style.transform = `translate3d(${currentPos.x}px, ${currentPos.y}px, 0) rotate(${targetRotation}deg)`;
       }
 
-      // 2. Spawn Neon Dust Particles
-      const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
-      if (speed > 1 && isVisible) {
-        const spawnCount = Math.min(Math.floor(speed / 2) + 1, 4);
+      // 2. Spawn Neon Dust Particles (smooth mist, high density, small sizes)
+      if (speed > 0.8 && isVisible) {
+        const spawnCount = Math.min(Math.floor(speed * 0.8) + 2, 8);
+        const moveAngle = Math.atan2(velocity.y, velocity.x) + Math.PI; // opposite direction
+        
         for (let i = 0; i < spawnCount; i++) {
+          const spread = 0.6; // radians spread
+          const angle = moveAngle + (Math.random() - 0.5) * spread;
+          const force = speed * 0.08 + Math.random() * 0.4;
+          
           particles.push({
-            x: currentPos.x - velocity.x * 0.5, // Spawn slightly behind
-            y: currentPos.y + 12 - velocity.y * 0.5, // Spawn at broom bristles (bristle offset)
-            // Spray particles opposite to movement direction with spread
-            vx: -velocity.x * 0.15 + (Math.random() - 0.5) * 1.5,
-            vy: -velocity.y * 0.15 + (Math.random() - 0.5) * 1.5 - 0.5, // float up slightly
-            size: Math.random() * 3 + 1.5,
+            x: currentPos.x - velocity.x * 0.3 + (Math.random() - 0.5) * 4,
+            y: currentPos.y + 16 - velocity.y * 0.3 + (Math.random() - 0.5) * 2,
+            vx: Math.cos(angle) * force + (Math.random() - 0.5) * 0.3,
+            vy: Math.sin(angle) * force + (Math.random() - 0.5) * 0.3 - 0.15,
+            size: Math.random() * 1.6 + 0.5,
             color: NEON_COLORS[Math.floor(Math.random() * NEON_COLORS.length)],
-            alpha: 1.0,
-            decay: Math.random() * 0.02 + 0.015,
+            alpha: 0.95,
+            decay: Math.random() * 0.035 + 0.02,
           });
         }
       }
@@ -124,29 +141,42 @@ export default function CustomCursor() {
       if (ctx && canvas) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        // Apply blur filter to canvas for smooth neon mist effect
+        ctx.filter = "blur(1.5px)";
+
         // Filter and update particles
         particles = particles.filter((p) => {
           p.x += p.vx;
           p.y += p.vy;
+          
+          // Friction (particles decelerate in air)
+          p.vx *= 0.93;
+          p.vy *= 0.93;
+          
           p.alpha -= p.decay;
 
           if (p.alpha <= 0) return false;
 
-          // Draw neon particle
+          // Draw neon particle with soft radial gradient
           ctx.save();
           ctx.globalAlpha = p.alpha;
+          
+          const pGlow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+          pGlow.addColorStop(0, p.color);
+          pGlow.addColorStop(0.3, p.color);
+          pGlow.addColorStop(1, "transparent");
+          
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-
-          // Neon Glow Shadow Effect
-          ctx.shadowBlur = 6;
-          ctx.shadowColor = p.color;
-          ctx.fillStyle = p.color;
+          ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+          ctx.fillStyle = pGlow;
           ctx.fill();
           ctx.restore();
 
           return true;
         });
+
+        // Reset filter
+        ctx.filter = "none";
       }
 
       animationFrameId = requestAnimationFrame(tick);

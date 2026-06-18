@@ -22,7 +22,7 @@ export default function ServiceAreas() {
             <RevealItem
               as="li"
               key={area}
-              className="rounded-full border border-white/8 bg-white/5 backdrop-blur-md px-4.5 py-2 text-xs font-semibold text-ink/80 transition-all hover:border-primary/45 hover:bg-white/10 hover:text-primary"
+              className="rounded-full border border-primary/15 bg-white/60 backdrop-blur-md px-4.5 py-2 text-xs font-semibold text-ink/80 transition-all hover:border-primary/45 hover:bg-primary/5 hover:text-primary-d hover:shadow-[0_2px_8px_rgba(15,182,126,0.08)]"
             >
               {area}
             </RevealItem>

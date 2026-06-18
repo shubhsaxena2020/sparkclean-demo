@@ -5,7 +5,7 @@ export default function CTABanner() {
   return (
     <section className="mx-auto max-w-[var(--maxw)] px-4 py-14 sm:px-6 sm:py-20">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0c1b26]/90 to-[#040a0e]/95 border border-white/10 px-6 py-20 text-center shadow-neon-glow sm:px-16 sm:py-24">
+        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0c1b26]/90 to-[#040a0e]/95 border border-[#0fb67e]/25 px-6 py-20 text-center shadow-neon-glow sm:px-16 sm:py-24">
           {/* Subtle static dot matrix overlay (<4% opacity) */}
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.035] pointer-events-none" />
 
@@ -21,7 +21,7 @@ export default function CTABanner() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-[#040a0e] shadow-[0_4px_15px_rgba(255,197,61,0.3)] border border-[#ffc53d]/50 transition-all hover:bg-accent-d hover:shadow-[0_0_25px_rgba(255,197,61,0.5)] active:translate-y-px"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-[#0c1b26] shadow-[0_4px_15px_rgba(255,183,3,0.3)] border border-[#ffb703]/55 transition-all hover:bg-accent-d hover:shadow-[0_0_25px_rgba(255,183,3,0.5)] active:translate-y-px"
             >
               Book Now
             </a>

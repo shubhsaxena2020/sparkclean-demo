@@ -26,7 +26,7 @@ export default function HowItWorks() {
         <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
           How it works
         </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight sm:leading-none">
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
           Booked in 60 seconds.
         </h2>
       </Reveal>
@@ -35,17 +35,17 @@ export default function HowItWorks() {
         {/* connecting line (desktop) */}
         <div
           aria-hidden
-          className="absolute left-[16.6%] right-[16.6%] top-7 hidden border-t-2 border-dashed border-primary/20 md:block"
+          className="absolute left-[16.6%] right-[16.6%] top-7 hidden border-t-2 border-dashed border-[#0fb67e]/30 md:block"
         />
         {STEPS.map(({ icon: Icon, title, body }, i) => (
           <RevealItem key={title} className="relative text-center">
-            <div className="relative mx-auto grid h-14 w-14 place-items-center rounded-full border border-white/8 bg-white/5 text-primary">
+            <div className="relative mx-auto grid h-14 w-14 place-items-center rounded-full border border-primary/20 bg-white/80 backdrop-blur shadow-[0_4px_12px_rgba(15,182,126,0.06)] text-primary">
               <Icon width={24} height={24} />
-              <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full bg-accent text-xs font-extrabold text-bg ring-2 ring-[#040a0e]">
+              <span className="absolute -right-1.5 -top-1.5 grid h-6 w-6 place-items-center rounded-full bg-accent text-xs font-extrabold text-[#0c1b26] ring-2 ring-[#f8fafc]">
                 {i + 1}
               </span>
             </div>
-            <h3 className="mt-5 text-lg font-bold text-white">{title}</h3>
+            <h3 className="mt-5 text-lg font-bold text-ink">{title}</h3>
             <p className="mx-auto mt-2 max-w-xs text-sm leading-[1.7] text-muted">
               {body}
             </p>

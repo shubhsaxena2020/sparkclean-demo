@@ -48,7 +48,7 @@ export default function Services() {
         <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
           What we clean
         </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight sm:leading-none">
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
           Every kind of clean your home needs.
         </h2>
       </Reveal>
@@ -58,14 +58,14 @@ export default function Services() {
           <RevealItem
             key={title}
             as="article"
-            className="group relative overflow-hidden rounded-[24px] border border-white/8 bg-white/[0.02] backdrop-blur-md p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(0,255,135,0.12)] hover:border-primary/30"
+            className="group relative overflow-hidden rounded-[24px] border border-white/80 bg-white/60 backdrop-blur-md p-8 shadow-[0_8px_30px_rgba(15,26,23,0.03)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_35px_rgba(15,182,126,0.15)] hover:border-primary/40"
           >
             {/* Neon highlight at the card foot on hover */}
-            <span className="absolute inset-x-0 bottom-0 h-1 bg-primary/25 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
-            <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/5 text-primary">
+            <span className="absolute inset-x-0 bottom-0 h-1 bg-primary origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
+            <span className="grid h-12 w-12 place-items-center rounded-xl bg-[#0fb67e]/10 text-primary-d">
               <Icon width={24} height={24} />
             </span>
-            <h3 className="mt-4 text-lg font-bold text-white">{title}</h3>
+            <h3 className="mt-4 text-lg font-bold text-ink">{title}</h3>
             <p className="mt-2 text-sm leading-[1.7] text-muted">{body}</p>
           </RevealItem>
         ))}

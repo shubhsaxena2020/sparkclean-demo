@@ -47,7 +47,7 @@ export default function Hero() {
             variants={reduce ? undefined : containerVariants}
             initial={reduce ? false : "hidden"}
             animate={reduce ? undefined : "show"}
-            className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[3.8rem]"
+            className="text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[3.8rem]"
           >
             <motion.span variants={reduce ? undefined : lineVariants} className="block">
               A spotless home,
@@ -67,7 +67,7 @@ export default function Hero() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-bg shadow-[0_4px_10px_rgba(255,197,61,0.25)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)] active:translate-y-px"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-[#0c1b26] shadow-[0_4px_12px_rgba(255,183,3,0.3)] transition-all hover:bg-accent-d hover:shadow-[0_6px_20px_rgba(255,183,3,0.45)] active:translate-y-px"
             >
               Book Now
             </a>
@@ -84,7 +84,7 @@ export default function Hero() {
             {BADGES.map((b) => (
               <li
                 key={b}
-                className="flex items-center gap-1.5 rounded-full border border-white/8 bg-white/5 px-3.5 py-1 text-xs font-semibold text-white/95"
+                className="flex items-center gap-1.5 rounded-full border border-primary/15 bg-white/60 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-ink/90 shadow-[0_2px_8px_rgba(15,182,126,0.04)]"
               >
                 <svg
                   viewBox="0 0 24 24"

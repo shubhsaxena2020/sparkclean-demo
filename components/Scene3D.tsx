@@ -54,22 +54,22 @@ export default function Scene3D() {
     containerRef.current.appendChild(renderer.domElement);
 
     // --- Lighting ---
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
     dirLight.position.set(5, 5, 5);
     scene.add(dirLight);
 
-    const pointLightGreen = new THREE.PointLight(0x00ff87, 2, 10);
+    const pointLightGreen = new THREE.PointLight(0x0fb67e, 1.8, 10);
     pointLightGreen.position.set(-3, 2, 1);
     scene.add(pointLightGreen);
 
-    const pointLightCyan = new THREE.PointLight(0x00f3ff, 2, 10);
+    const pointLightCyan = new THREE.PointLight(0x00a8e8, 1.8, 10);
     pointLightCyan.position.set(3, -2, 1);
     scene.add(pointLightCyan);
 
-    // --- Custom Shader Material (Holographic Fresnel Bubble) ---
+    // --- Custom Shader Material (Holographic Fresnel Glass Soap Bubble) ---
     const shaderMaterial = new THREE.ShaderMaterial({
       uniforms: {
         uTime: { value: 0.0 },
@@ -110,36 +110,36 @@ export default function Scene3D() {
           // Fresnel Effect (Schlick's approximation)
           float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.0);
 
-          // Premium neon clean colors
-          vec3 colorGreen = vec3(0.0, 1.0, 0.53); // #00ff87
-          vec3 colorCyan = vec3(0.0, 0.95, 1.0);  // #00f3ff
-          vec3 colorGold = vec3(1.0, 0.77, 0.24);  // #ffc53d
+          // Fresh premium clean light colors
+          vec3 colorGreen = vec3(0.06, 0.71, 0.49); // #0fb67e
+          vec3 colorCyan = vec3(0.0, 0.66, 0.91);  // #00a8e8
+          vec3 colorGold = vec3(1.0, 0.72, 0.01);  // #ffb703
 
           // Dynamic colors mixed using time and spatial vectors
           float mixColor = sin(vPosition.x * 1.5 + uTime) * 0.5 + 0.5;
           vec3 baseColor = mix(colorGreen, colorCyan, mixColor);
 
-          // Subtle gold highlights on highlights
+          // Soft gold highlights
           float goldHighlight = cos(vPosition.y * 2.0 - uTime * 1.0) * 0.5 + 0.5;
-          baseColor = mix(baseColor, colorGold, goldHighlight * 0.12);
+          baseColor = mix(baseColor, colorGold, goldHighlight * 0.1);
 
-          // Transparency: transparent in center, glowing edges
-          float alpha = fresnel * 0.75 + 0.04;
+          // Transparency: almost fully transparent in center, visible refractive edges
+          float alpha = fresnel * 0.45 + 0.012;
 
           // Rim glow color
-          vec3 finalColor = baseColor * (fresnel * 1.8 + 0.4);
+          vec3 finalColor = baseColor * (fresnel * 1.4 + 0.35);
 
-          // Specular glossy reflection highlights
+          // Specular glossy reflection highlights (shimmering soap bubble highlight)
           vec3 lightDir = normalize(vec3(1.0, 1.5, 1.0));
           vec3 halfDir = normalize(lightDir + viewDir);
-          float spec = pow(max(dot(normal, halfDir), 0.0), 40.0);
-          finalColor += vec3(1.0) * spec * 0.75;
+          float spec = pow(max(dot(normal, halfDir), 0.0), 50.0);
+          finalColor += vec3(1.0) * spec * 0.95;
 
           gl_FragColor = vec4(finalColor, alpha);
         }
       `,
       transparent: true,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       side: THREE.DoubleSide,
     });
 
@@ -148,7 +148,7 @@ export default function Scene3D() {
     scene.add(bubbleMesh);
 
     // --- Floating Particle Field (Specs of glowing dust) ---
-    const particleCount = 450;
+    const particleCount = 250;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const speeds = new Float32Array(particleCount);
@@ -166,15 +166,28 @@ export default function Scene3D() {
     );
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.015,
-      color: 0x00ff87,
+      size: 0.022,
+      color: 0x0fb67e,
       transparent: true,
-      opacity: 0.4,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.28,
+      blending: THREE.NormalBlending,
     });
 
     const particleSystem = new THREE.Points(particleGeo, particleMat);
     scene.add(particleSystem);
+
+    // --- Click Splash Bubbles State ---
+    interface SplashBubble {
+      mesh: THREE.Mesh;
+      vx: number;
+      vy: number;
+      vz: number;
+      life: number;
+      decay: number;
+      wobbleOffset: number;
+    }
+    const activeSplashes: SplashBubble[] = [];
+    const splashGeometry = new THREE.SphereGeometry(0.12, 16, 16);
 
     // --- Interaction States ---
     let scrollPct = 0;
@@ -200,9 +213,48 @@ export default function Scene3D() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
+    const handleClick = (e: MouseEvent) => {
+      if (reduce) return;
+      const mx = (e.clientX / window.innerWidth) * 2 - 1;
+      const my = -(e.clientY / window.innerHeight) * 2 + 1;
+
+      // Project click coordinates onto z = 0 plane using unproject
+      const vec = new THREE.Vector3(mx, my, 0.5);
+      vec.unproject(camera);
+      vec.sub(camera.position).normalize();
+      const distance = -camera.position.z / vec.z;
+      const clickPos = camera.position.clone().add(vec.multiplyScalar(distance));
+
+      // Spawn 10 small bubbles
+      for (let i = 0; i < 10; i++) {
+        const mat = shaderMaterial.clone();
+        const mesh = new THREE.Mesh(splashGeometry, mat);
+        
+        mesh.position.copy(clickPos);
+        mesh.position.x += (Math.random() - 0.5) * 0.15;
+        mesh.position.y += (Math.random() - 0.5) * 0.15;
+
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 0.025 + 0.012;
+
+        activeSplashes.push({
+          mesh,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed + 0.008, // float up
+          vz: (Math.random() - 0.5) * 0.008,
+          life: 1.0,
+          decay: Math.random() * 0.025 + 0.015,
+          wobbleOffset: Math.random() * 100,
+        });
+
+        scene.add(mesh);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("resize", handleResize);
+    window.addEventListener("click", handleClick);
 
     // Initial setup
     handleScroll();
@@ -265,6 +317,38 @@ export default function Scene3D() {
       }
       particleGeo.attributes.position.needsUpdate = true;
 
+      // Update click splash bubbles
+      for (let i = activeSplashes.length - 1; i >= 0; i--) {
+        const sb = activeSplashes[i];
+        sb.mesh.position.x += sb.vx;
+        sb.mesh.position.y += sb.vy;
+        sb.mesh.position.z += sb.vz;
+
+        sb.vx *= 0.95;
+        sb.vy *= 0.95;
+        sb.vz *= 0.95;
+        sb.vy += 0.0004; // upward buoyant drift
+
+        sb.life -= sb.decay;
+
+        // Animate size with a small wiggle
+        const s = Math.max(sb.life, 0) * (1.0 + Math.sin(elapsedTime * 6.0 + sb.wobbleOffset) * 0.15);
+        sb.mesh.scale.set(s, s, s);
+
+        if (sb.mesh.material instanceof THREE.ShaderMaterial) {
+          sb.mesh.material.uniforms.uTime.value = elapsedTime * 1.5 + sb.wobbleOffset;
+        }
+
+        if (sb.life <= 0) {
+          scene.remove(sb.mesh);
+          sb.mesh.geometry.dispose();
+          if (sb.mesh.material instanceof THREE.Material) {
+            sb.mesh.material.dispose();
+          }
+          activeSplashes.splice(i, 1);
+        }
+      }
+
       renderer.render(scene, camera);
     };
 
@@ -276,6 +360,7 @@ export default function Scene3D() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("click", handleClick);
 
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
@@ -285,6 +370,15 @@ export default function Scene3D() {
       shaderMaterial.dispose();
       particleGeo.dispose();
       particleMat.dispose();
+      splashGeometry.dispose();
+      
+      activeSplashes.forEach((sb) => {
+        scene.remove(sb.mesh);
+        if (sb.mesh.material instanceof THREE.Material) {
+          sb.mesh.material.dispose();
+        }
+      });
+
       renderer.dispose();
     };
   }, [reduce]);
@@ -292,7 +386,7 @@ export default function Scene3D() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none overflow-hidden bg-[#040a0e]"
+      className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none overflow-hidden bg-[#f8fafc]"
     />
   );
 }

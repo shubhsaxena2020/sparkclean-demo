@@ -7,7 +7,7 @@ export default function FounderStory() {
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
         <Reveal className="mx-auto max-w-3xl">
           <div className="flex flex-col items-center gap-6 rounded-[24px] glass-panel p-10 text-center shadow-neon-glow sm:p-16">
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-xl font-black text-[#040a0e] shadow-[0_0_25px_rgba(0,255,135,0.4)]">
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-xl font-black text-white shadow-[0_4px_15px_rgba(15,182,126,0.3)]">
               SC
             </span>
             <div>

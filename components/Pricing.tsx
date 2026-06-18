@@ -43,7 +43,7 @@ export default function Pricing() {
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
             Pricing
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight sm:leading-none">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
             Simple, honest pricing.
           </h2>
           <p className="mt-3 text-lg text-muted">
@@ -58,16 +58,16 @@ export default function Pricing() {
               as="article"
               className={`relative flex flex-col rounded-[24px] border p-8 transition-all duration-300 ${
                 plan.featured
-                  ? "border-primary bg-[#0c1b26]/50 backdrop-blur-md shadow-[0_0_30px_rgba(0,255,135,0.15)] ring-1 ring-primary/25 lg:-mt-4 lg:mb-4"
-                  : "border-white/8 bg-white/[0.02] backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_12px_36px_rgba(0,255,135,0.08)] hover:border-primary/20 hover:-translate-y-1.5"
+                  ? "border-2 border-primary bg-white/85 backdrop-blur-md shadow-[0_15px_45px_rgba(15,182,126,0.15)] lg:-mt-4 lg:mb-4"
+                  : "border border-white/80 bg-white/60 backdrop-blur-md shadow-[0_8px_30px_rgba(15,26,23,0.03)] hover:shadow-[0_12px_36px_rgba(15,182,126,0.1)] hover:border-primary/30 hover:-translate-y-1.5"
               }`}
             >
               {plan.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-bg shadow-sm shadow-primary/25">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white shadow-sm shadow-primary/25">
                   Most Booked
                 </span>
               )}
-              <h3 className="text-lg font-bold text-white">{plan.name}</h3>
+              <h3 className="text-lg font-bold text-ink">{plan.name}</h3>
               <p className="mt-2 flex items-baseline gap-1">
                 <span className="text-sm font-medium text-muted">from</span>
                 <span className="font-display text-4xl font-extrabold text-primary">
@@ -78,9 +78,9 @@ export default function Pricing() {
                 {plan.blurb}
               </p>
 
-              <ul className="mt-5 flex flex-col gap-2.5 border-t border-white/8 pt-5">
+              <ul className="mt-5 flex flex-col gap-2.5 border-t border-black/5 pt-5">
                 {plan.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-white/90">
+                  <li key={item} className="flex items-start gap-2 text-sm text-ink/90">
                     <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-primary" />
                     {item}
                   </li>
@@ -93,7 +93,7 @@ export default function Pricing() {
                 rel="noopener noreferrer"
                 className={`mt-7 inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold transition-all active:translate-y-px ${
                   plan.featured
-                    ? "bg-accent text-bg shadow-[0_4px_10px_rgba(255,197,61,0.25)] hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)]"
+                    ? "bg-accent text-[#0c1b26] shadow-[0_4px_12px_rgba(255,183,3,0.3)] hover:bg-accent-d hover:shadow-[0_6px_20px_rgba(255,183,3,0.45)]"
                     : "border border-primary text-primary hover:bg-primary/10"
                 }`}
               >

@@ -10,14 +10,14 @@ const LINKS = [
 export default function Footer() {
   return (
     <>
-      <div className="h-[1px] w-full bg-primary shadow-[0_0_10px_rgba(0,255,135,0.5)]" />
-      <footer className="bg-[#03070a] border-t border-white/5 text-white/80 backdrop-blur-md">
+      <div className="h-[1px] w-full bg-primary shadow-[0_0_10px_rgba(15,182,126,0.5)]" />
+      <footer className="bg-[#09131a] border-t border-white/5 text-white/80 backdrop-blur-md">
         <div className="mx-auto max-w-[var(--maxw)] px-4 py-14 sm:px-6">
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
             {/* Brand */}
             <div>
               <div className="flex items-center gap-2">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-[#040a0e] shadow-[0_0_15px_rgba(0,255,135,0.4)]">
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white shadow-[0_0_15px_rgba(15,182,126,0.3)]">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden>
                     <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 18.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
                   </svg>

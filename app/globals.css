@@ -2,15 +2,15 @@
 
 /* ── Design tokens — single source of truth (from 01_ARCHITECTURE) ───────── */
 @theme {
-  --color-bg: #040a0e;
-  --color-surface: rgba(12, 27, 38, 0.4); /* Glassmorphic dark card fill */
-  --color-ink: #f8fafc; /* Slate white text */
-  --color-primary: #00ff87; /* Cyber neon green */
-  --color-primary-d: #00cc6a; /* Darker neon green */
-  --color-accent: #ffc53d; /* Golden highlight yellow */
-  --color-accent-d: #f5b014;
-  --color-muted: #94a3b8; /* Cool slate gray for descriptions */
-  --color-border: rgba(255, 255, 255, 0.08); /* Transparent hairline border */
+  --color-bg: #f8fafc; /* Clean, slate-white background */
+  --color-surface: rgba(255, 255, 255, 0.65); /* Light glassmorphic card fill */
+  --color-ink: #0c1b26; /* Deep dark slate for text */
+  --color-primary: #0fb67e; /* Fresh, clean brand green */
+  --color-primary-d: #0a8c60; /* Darker clean green */
+  --color-accent: #ffb703; /* Gold/yellow accent for CTAs */
+  --color-accent-d: #fb8500;
+  --color-muted: #475569; /* Charcoal grey for descriptions */
+  --color-border: rgba(15, 182, 126, 0.12); /* Fresh light green-tinted border */
 
   --radius-card: 24px;
 
@@ -32,7 +32,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  background-color: #040a0e;
+  background-color: #f8fafc;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,33 +78,33 @@ h4 {
 }
 
 /* ── Custom Glassmorphism & Neon Glow Utilities ─────────────────────────── */
-.glass-panel {
-  background: rgba(12, 27, 38, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+  }
 
-.shadow-neon-glow {
-  box-shadow: 0 0 25px rgba(0, 255, 135, 0.15);
-}
+  .shadow-neon-glow {
+    box-shadow: 0 10px 30px rgba(15, 182, 126, 0.08);
+  }
 
-.shadow-cyan-glow {
-  box-shadow: 0 0 25px rgba(0, 243, 255, 0.1);
-}
+  .shadow-cyan-glow {
+    box-shadow: 0 10px 30px rgba(0, 168, 232, 0.05);
+  }
 
-/* Custom Scrollbar for premium dark sites */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #040a0e;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  border: 2px solid #040a0e;
-}
+  /* Custom Scrollbar for premium light sites */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f8fafc;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    border: 2px solid #f8fafc;
+  }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }
