@@ -3,19 +3,19 @@ import { LeafIcon } from "./icons";
 
 export default function FounderStory() {
   return (
-    <section className="bg-surface">
-      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6">
+    <section className="w-full bg-white">
+      <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
         <Reveal className="mx-auto max-w-3xl">
-          <div className="flex flex-col items-center gap-6 rounded-[var(--radius-card)] border border-border bg-bg p-8 text-center shadow-[0_1px_2px_rgba(15,26,23,0.04)] sm:p-10">
-            <span className="grid h-16 w-16 place-items-center rounded-2xl bg-primary text-xl font-extrabold text-white shadow-md">
+          <div className="flex flex-col items-center gap-6 rounded-[24px] border border-[#e3eae7] bg-white p-10 text-center shadow-[0_20px_40px_rgba(15,26,23,0.06)] sm:p-16">
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-primary/10 text-xl font-bold text-primary-d">
               SC
             </span>
             <div>
-              <p className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wider text-primary">
+              <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
                 <LeafIcon width={16} height={16} />
                 Local, and we act like it
               </p>
-              <blockquote className="mt-4 text-lg leading-relaxed text-ink sm:text-xl">
+              <blockquote className="mt-4 text-lg leading-[1.75] text-ink sm:text-xl italic">
                 &ldquo;SparkClean started with one family, one minivan, and a
                 simple promise: show up on time, use products safe for kids and
                 pets, and leave every home better than we found it. We&apos;re

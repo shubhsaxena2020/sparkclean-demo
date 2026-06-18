@@ -3,19 +3,17 @@ import { BOOKING_URL } from "@/lib/site";
 
 export default function CTABanner() {
   return (
-    <section className="mx-auto max-w-[var(--maxw)] px-4 py-12 sm:px-6">
+    <section className="mx-auto max-w-[var(--maxw)] px-4 py-14 sm:px-6 sm:py-20">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[calc(var(--radius-card)+8px)] bg-primary px-6 py-14 text-center shadow-[0_18px_50px_rgba(15,182,126,0.28)] sm:px-12">
-          {/* decorative sparkles */}
-          <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full opacity-20">
-            <circle cx="12%" cy="30%" r="48" fill="#ffffff" />
-            <circle cx="88%" cy="70%" r="64" fill="#ffffff" />
-          </svg>
-          <div className="relative">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0fb67e] to-[#0a8c60] px-6 py-20 text-center shadow-[0_20px_40px_rgba(10,140,96,0.18)] sm:px-16 sm:py-24">
+          {/* Subtle static dot matrix overlay (<4% opacity) */}
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.035] pointer-events-none" />
+
+          <div className="relative z-10">
+            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-tight sm:leading-none">
               Ready for a spotless space?
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-base text-white/90 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-xl text-base text-white/90 sm:text-lg leading-[1.7]">
               Get your instant price and book in under a minute. Same-day slots
               across the GTA.
             </p>
@@ -23,7 +21,7 @@ export default function CTABanner() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 inline-flex items-center justify-center rounded-xl bg-accent px-7 py-3.5 text-base font-bold text-ink shadow-md transition-all hover:bg-accent-d active:translate-y-px"
+              className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.2)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.35)] active:translate-y-px"
             >
               Book Now
             </a>

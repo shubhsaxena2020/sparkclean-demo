@@ -47,8 +47,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b bg-bg/90 backdrop-blur transition-shadow ${
-        scrolled ? "border-border shadow-sm" : "border-transparent"
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        scrolled
+          ? "bg-white border-[#e3eae7] shadow-[0_4px_20px_rgba(15,26,23,0.02)]"
+          : "bg-bg/90 backdrop-blur border-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[var(--maxw)] items-center justify-between gap-4 px-4 sm:px-6">
@@ -78,21 +80,21 @@ export default function Header() {
             href={PHONE_TEL}
             className="hidden items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-primary-d sm:flex"
           >
-            <PhoneIcon width={16} height={16} className="text-primary" />
+            <PhoneIcon width={14} height={14} className="text-primary shrink-0" />
             {PHONE_DISPLAY}
           </a>
           <a
             href={PHONE_TEL}
             aria-label={`Call ${PHONE_DISPLAY}`}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-border text-primary-d transition-colors hover:bg-surface sm:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border text-primary-d transition-colors hover:bg-surface sm:hidden"
           >
-            <PhoneIcon width={18} height={18} />
+            <PhoneIcon width={16} height={16} />
           </a>
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-ink shadow-sm transition-all hover:bg-accent-d hover:shadow-md active:translate-y-px"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.2)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.35)] active:translate-y-px"
           >
             Book Now
           </a>
@@ -101,7 +103,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-border text-ink transition-colors hover:bg-surface md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border text-ink transition-colors hover:bg-surface md:hidden"
           >
             {open ? <CloseIcon width={20} height={20} /> : <MenuIcon width={20} height={20} />}
           </button>

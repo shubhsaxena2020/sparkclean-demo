@@ -43,29 +43,30 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6">
+    <section id="services" className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
       <Reveal className="max-w-2xl">
-        <p className="text-sm font-bold uppercase tracking-wider text-primary">
+        <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
           What we clean
         </p>
-        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+        <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
           Every kind of clean your home needs.
         </h2>
       </Reveal>
 
-      <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <RevealGroup className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {SERVICES.map(({ icon: Icon, title, body }) => (
           <RevealItem
             key={title}
             as="article"
-            className="group relative overflow-hidden rounded-[var(--radius-card)] border border-border bg-bg p-6 shadow-[0_1px_2px_rgba(15,26,23,0.04)] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+            className="group relative overflow-hidden rounded-[24px] border border-[#e3eae7] bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,26,23,0.06)] hover:border-primary/25"
           >
-            <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-200 group-hover:scale-x-100" />
+            {/* Whisper of mint at the card foot on hover */}
+            <span className="absolute inset-x-0 bottom-0 h-1 bg-primary/15 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
             <span className="grid h-12 w-12 place-items-center rounded-xl bg-surface text-primary-d">
               <Icon width={24} height={24} />
             </span>
             <h3 className="mt-4 text-lg font-bold text-ink">{title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
+            <p className="mt-2 text-sm leading-[1.7] text-muted">{body}</p>
           </RevealItem>
         ))}
       </RevealGroup>

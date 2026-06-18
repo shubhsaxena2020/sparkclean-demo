@@ -72,10 +72,10 @@ function Segmented<T extends string>({
           return (
             <label
               key={opt.id}
-              className={`cursor-pointer rounded-xl border px-3 py-2.5 text-center text-sm font-semibold transition-colors ${
+              className={`cursor-pointer rounded-full border px-3 py-2.5 text-center text-sm font-semibold transition-all outline-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary/60 has-[:focus-visible]:ring-offset-1 ${
                 active
-                  ? "border-primary bg-primary text-white shadow-sm"
-                  : "border-border bg-bg text-ink hover:border-primary/50 hover:bg-surface"
+                  ? "border-primary bg-primary/10 text-primary-d"
+                  : "border-[#e3eae7] bg-white text-ink hover:border-primary/35 hover:bg-surface/50"
               }`}
             >
               <input
@@ -114,13 +114,13 @@ function Stepper({
   return (
     <div>
       <span className="mb-2 block text-sm font-semibold text-ink">{label}</span>
-      <div className="flex items-center justify-between rounded-xl border border-border bg-bg p-1.5">
+      <div className="flex items-center justify-between rounded-full border border-[#e3eae7] bg-white p-1.5">
         <button
           type="button"
           aria-label={`Decrease ${label.toLowerCase()}`}
           disabled={value <= min}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="grid h-9 w-9 place-items-center rounded-lg text-ink transition-colors hover:bg-surface disabled:cursor-not-allowed disabled:opacity-30"
+          className="grid h-9 w-9 place-items-center rounded-full text-ink transition-all hover:bg-primary/10 hover:text-primary-d disabled:cursor-not-allowed disabled:opacity-30 outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
         >
           <MinusIcon width={18} height={18} />
         </button>
@@ -132,7 +132,7 @@ function Stepper({
           aria-label={`Increase ${label.toLowerCase()}`}
           disabled={value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="grid h-9 w-9 place-items-center rounded-lg text-ink transition-colors hover:bg-surface disabled:cursor-not-allowed disabled:opacity-30"
+          className="grid h-9 w-9 place-items-center rounded-full text-ink transition-all hover:bg-primary/10 hover:text-primary-d disabled:cursor-not-allowed disabled:opacity-30 outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
         >
           <PlusIcon width={18} height={18} />
         </button>
@@ -151,13 +151,13 @@ export default function Calculator() {
   const included = getService(service).included;
 
   return (
-    <section id="calculator" className="bg-surface">
-      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6">
+    <section id="calculator" className="w-full bg-gradient-to-b from-white via-[#f2fbf7] to-white">
+      <div className="mx-auto max-w-[var(--maxw)] px-4 py-28 sm:px-6 sm:py-36">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-bold uppercase tracking-wider text-primary">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
             Instant price
           </p>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight sm:leading-none">
             Get your instant price.
           </h2>
           <p className="mt-3 text-lg text-muted">
@@ -166,7 +166,7 @@ export default function Calculator() {
         </Reveal>
 
         <Reveal delay={0.05}>
-          <div className="mx-auto mt-10 grid max-w-4xl overflow-hidden rounded-[var(--radius-card)] border border-border bg-bg shadow-[0_8px_40px_rgba(15,26,23,0.07)] md:grid-cols-[1.15fr_1fr]">
+          <div className="mx-auto mt-12 grid max-w-4xl overflow-hidden rounded-[24px] border border-[#e3eae7] bg-white shadow-[0_24px_48px_rgba(15,26,23,0.06)] md:grid-cols-[1.15fr_1fr]">
             {/* Inputs */}
             <div className="flex flex-col gap-6 p-6 sm:p-8">
               <Segmented
@@ -210,14 +210,14 @@ export default function Calculator() {
             </div>
 
             {/* Output */}
-            <div className="flex flex-col justify-between gap-5 border-t border-border bg-gradient-to-b from-surface to-bg p-6 sm:p-8 md:border-l md:border-t-0">
+            <div className="flex flex-col justify-between gap-5 border-t border-[#e3eae7] bg-gradient-to-b from-surface/50 to-white p-6 sm:p-8 md:border-l md:border-t-0">
               <div>
                 <p className="text-sm font-semibold text-muted">Your estimated price</p>
                 <div
                   aria-live="polite"
                   className="mt-1 flex items-end gap-2"
                 >
-                  <span className="font-display text-5xl font-extrabold tracking-tight text-primary-d sm:text-6xl">
+                  <span className="font-display text-6xl font-bold tracking-tight text-primary-d sm:text-7xl leading-none">
                     $<AnimatedPrice value={result.price} />
                   </span>
                   {result.discountPct > 0 && (
@@ -228,13 +228,13 @@ export default function Calculator() {
                 </div>
 
                 {result.discountPct > 0 ? (
-                  <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-sm font-bold text-primary-d">
+                  <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary-d">
                     You save {result.discountPct}% with{" "}
                     {FREQUENCIES.find((f) => f.id === frequency)?.label.toLowerCase()}{" "}
                     service
                   </span>
                 ) : (
-                  <span className="mt-3 inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-muted">
+                  <span className="mt-3 inline-flex items-center rounded-full bg-surface px-3 py-1 text-xs font-semibold text-muted">
                     One-time clean — no commitment
                   </span>
                 )}
@@ -250,7 +250,7 @@ export default function Calculator() {
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-base font-bold text-ink shadow-sm transition-all hover:bg-accent-d hover:shadow-md active:translate-y-px"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-base font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.2)] transition-all hover:bg-accent-d hover:shadow-[0_6px_15px_rgba(255,197,61,0.35)] active:translate-y-px"
                 >
                   Book this clean
                   <ArrowRightIcon width={18} height={18} />
