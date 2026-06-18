@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import {
   RepeatIcon,
@@ -30,18 +31,18 @@ const SERVICES = [
     body: "Fast, thorough cleans built for downtown condos and rentals.",
   },
   {
-    icon: HardHatIcon,
-    title: "Post-Construction",
-    body: "Dust, debris, and reno mess gone. Move-in ready.",
-  },
-  {
     icon: BriefcaseIcon,
     title: "Office Cleaning",
     body: "After-hours commercial cleaning that keeps your workspace sharp.",
   },
+  {
+    icon: HardHatIcon,
+    title: "Post-Construction",
+    body: "Dust, debris, and reno mess gone. Move-in ready.",
+  },
 ];
 
-export default function Services() {
+export default function Services({ showLink = false }: { showLink?: boolean }) {
   return (
     <section id="services" className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <Reveal className="max-w-2xl">
@@ -68,6 +69,17 @@ export default function Services() {
           </RevealItem>
         ))}
       </RevealGroup>
+
+      {showLink && (
+        <Reveal className="mt-10 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-d transition-colors"
+          >
+            View all services →
+          </Link>
+        </Reveal>
+      )}
     </section>
   );
 }

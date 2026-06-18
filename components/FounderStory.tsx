@@ -3,8 +3,9 @@
 import { Reveal } from "./Reveal";
 import { LeafIcon } from "./icons";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function FounderStory() {
+export default function FounderStory({ showLink = false }: { showLink?: boolean }) {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
@@ -42,6 +43,16 @@ export default function FounderStory() {
               <p className="mt-5 text-sm font-semibold text-muted">
                 — The SparkClean family · Family-owned in the GTA
               </p>
+              {showLink && (
+                <div className="mt-6">
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-d transition-colors"
+                  >
+                    About us →
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </Reveal>

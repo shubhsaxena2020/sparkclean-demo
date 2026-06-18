@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { NEIGHBOURHOODS } from "@/lib/site";
 
-export default function ServiceAreas() {
+export default function ServiceAreas({ showLink = false }: { showLink?: boolean }) {
   return (
     <section id="areas" className="w-full bg-surface">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
@@ -28,6 +29,17 @@ export default function ServiceAreas() {
             </RevealItem>
           ))}
         </RevealGroup>
+
+        {showLink && (
+          <Reveal className="mt-10 text-center">
+            <Link
+              href="/areas"
+              className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-d transition-colors"
+            >
+              See all areas →
+            </Link>
+          </Reveal>
+        )}
       </div>
     </section>
   );

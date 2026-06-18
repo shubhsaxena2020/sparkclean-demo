@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { StarIcon } from "./icons";
 
@@ -38,7 +39,7 @@ function Stars() {
   );
 }
 
-export default function Reviews() {
+export default function Reviews({ showLink = false }: { showLink?: boolean }) {
   return (
     <section id="reviews" className="w-full bg-white relative overflow-hidden">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
@@ -86,6 +87,17 @@ export default function Reviews() {
             </RevealItem>
           ))}
         </RevealGroup>
+
+      {showLink && (
+        <Reveal className="mt-8 text-center">
+          <Link
+            href="/about#reviews"
+            className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-d transition-colors"
+          >
+            Read more reviews →
+          </Link>
+        </Reveal>
+      )}
 
         <Reveal className="mt-6 text-center">
           <p className="text-xs text-muted/80">

@@ -24,14 +24,14 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <Stats />
-      <Services />
+      <Services showLink={true} />
       <Calculator />
       <HowItWorks />
       <Pricing />
-      <Reviews />
-      <ServiceAreas />
+      <Reviews showLink={true} />
+      <ServiceAreas showLink={true} />
       <Gallery />
-      <FounderStory />
+      <FounderStory showLink={true} />
       <CTABanner />
     </>
   );
