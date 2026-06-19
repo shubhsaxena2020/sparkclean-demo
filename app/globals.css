@@ -2,7 +2,7 @@
 
 /* ── Design tokens — single source of truth ───────────────────────────────── */
 @theme {
-  --color-bg:        #FAFAF9;   /* stone white background */
+  --color-bg:        rgba(250, 250, 249, 0.45);   /* stone white background */
   --color-surface:   #F4F8F6;   /* ultra light emerald tint */
   --color-surface-2: #EDF3F0;   
   --color-ink:       #0A120F;   /* rich charcoal ink */
@@ -190,7 +190,7 @@ section[id], footer[id] {
 }
 
 .ambient-bg {
-  background: linear-gradient(-45deg, #FAFAF9, #F5F8F6, #EDF3F0, #FDFBF7);
+  background: linear-gradient(-45deg, rgba(250, 250, 249, 0.35), rgba(245, 248, 246, 0.3), rgba(237, 243, 240, 0.35), rgba(253, 251, 247, 0.3));
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }

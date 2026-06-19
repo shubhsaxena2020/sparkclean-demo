@@ -6,8 +6,6 @@ import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 import { RevealEyebrow, RevealSubtext } from "./Reveal";
 import { ArrowRightIcon } from "./icons";
-import Scene3D from "./Scene3D";
-import CursorFollower from "./CursorFollower";
 import BeforeAfter from "./BeforeAfter";
 import MagneticButton from "./MagneticButton";
 
@@ -91,12 +89,6 @@ export default function Hero() {
     >
       {/* Noise overlay for texture */}
       <div className="noise-overlay" />
-
-      {/* Interactive 3D Soap Bubbles Backdrop */}
-      <Scene3D />
-
-      {/* Interactive Cursor Glow Follower */}
-      <CursorFollower />
 
 
       {/* Background blobs for parallax */}

@@ -1,8 +1,6 @@
 "use client";
 
 import { RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
-import Scene3D from "./Scene3D";
-import CursorFollower from "./CursorFollower";
 
 interface PageHeroProps {
   eyebrow: string;
@@ -18,12 +16,6 @@ export default function PageHero({ eyebrow, title, intro }: PageHeroProps) {
     >
       {/* Noise overlay for texture */}
       <div className="noise-overlay" />
-
-      {/* Interactive 3D Soap Bubbles Backdrop */}
-      <Scene3D />
-
-      {/* Interactive Cursor Glow Follower */}
-      <CursorFollower />
 
       <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl">
