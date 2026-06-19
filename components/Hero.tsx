@@ -8,6 +8,8 @@ import { RevealEyebrow, RevealSubtext } from "./Reveal";
 import { ArrowRightIcon } from "./icons";
 import Scene3D from "./Scene3D";
 import CursorFollower from "./CursorFollower";
+import BeforeAfter from "./BeforeAfter";
+import MagneticButton from "./MagneticButton";
 
 const BADGES = [
   "Insured & Bonded",
@@ -133,22 +135,26 @@ export default function Hero() {
             price and book online — no waiting for a callback.
           </RevealSubtext>
 
-          <RevealSubtext delay={0.16} className="mt-8 flex flex-col gap-3.5 w-full sm:w-auto sm:flex-row" as="div">
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:scale-[1.02] hover:shadow-[0_8px_25px_rgba(212,175,55,0.45)] active:translate-y-0 relative z-25"
-            >
-              Book in 60 Seconds
-            </a>
-            <a
-              href="#calculator"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[var(--color-primary)] px-8 py-4 text-base font-bold text-[var(--color-primary)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-[var(--color-primary)]/5 hover:shadow-[0_4px_15px_rgba(9,79,59,0.15)] active:translate-y-0 relative z-25"
-            >
-              Calculate Your Price
-              <ArrowRightIcon width={18} height={18} className="text-[var(--color-primary)]" />
-            </a>
+          <RevealSubtext delay={0.16} className="mt-8 flex flex-wrap gap-4 w-full" as="div">
+            <MagneticButton>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[0_8px_25px_rgba(212,175,55,0.45)] relative z-25"
+              >
+                Book in 60 Seconds
+              </a>
+            </MagneticButton>
+            <MagneticButton>
+              <a
+                href="#calculator"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[var(--color-primary)] px-8 py-4 text-base font-bold text-[var(--color-primary)] transition-all duration-300 ease-out hover:bg-[var(--color-primary)]/5 hover:shadow-[0_4px_15px_rgba(9,79,59,0.15)] relative z-25"
+              >
+                Calculate Your Price
+                <ArrowRightIcon width={18} height={18} className="text-[var(--color-primary)]" />
+              </a>
+            </MagneticButton>
           </RevealSubtext>
 
           <RevealSubtext delay={0.22} as="div">
@@ -181,65 +187,12 @@ export default function Hero() {
 
         <div ref={layerImageRef} className="will-change-transform w-full flex justify-center lg:justify-end relative z-20">
           <motion.div
-            className="flex justify-center lg:justify-end items-center w-full max-w-[440px]"
-            initial={reduce ? false : { opacity: 0, y: 24, scale: 1.03 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            className="w-full max-w-[500px]"
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative w-full aspect-[4/3] sm:aspect-square">
-              
-              {/* Trust Cards */}
-              <div 
-                className="absolute -top-6 -left-6 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md pointer-events-auto hover:-translate-y-1 transition-transform"
-              >
-                <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/10 text-primary text-sm font-bold">★</div>
-                <div>
-                  <div className="text-[11px] font-black text-ink">4.9/5 GTA Rating</div>
-                  <div className="text-[9px] text-muted font-bold leading-none mt-0.5">Top-rated clean team</div>
-                </div>
-              </div>
-
-              <div 
-                className="absolute top-1/3 -right-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md pointer-events-auto hover:-translate-y-1 transition-transform"
-              >
-                <div className="grid h-8 w-8 place-items-center rounded-xl bg-accent/20 text-[#c2911b] text-sm font-bold">⚡</div>
-                <div>
-                  <div className="text-[11px] font-black text-ink">Booked in 60s</div>
-                  <div className="text-[9px] text-muted font-bold leading-none mt-0.5">Instant online pricing</div>
-                </div>
-              </div>
-
-              <div 
-                className="absolute -bottom-8 -left-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md pointer-events-auto hover:-translate-y-1 transition-transform"
-              >
-                <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/10 text-primary text-sm font-bold">✓</div>
-                <div>
-                  <div className="text-[11px] font-black text-ink">Insured & Bonded</div>
-                  <div className="text-[9px] text-muted font-bold leading-none mt-0.5">100% secure service</div>
-                </div>
-              </div>
-
-              {/* Main Image Frame with border glow */}
-              <div 
-                className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_40px_-15px_rgba(15,26,23,0.18)] w-full h-full relative group"
-              >
-                <Image
-                  src="/img/hero.jpg"
-                  alt="Bright, clean modern living room filled with sunlight"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 440px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
-              
-              <div 
-                className="absolute -bottom-3 -right-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10 sm:hidden"
-              >
-                <span>★ 4.9 average rating</span>
-              </div>
-            </div>
+            <BeforeAfter />
           </motion.div>
         </div>
       </div>

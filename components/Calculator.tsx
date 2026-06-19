@@ -151,127 +151,104 @@ export default function Calculator() {
   const included = getService(service).included;
 
   return (
-    <section 
-      id="calculator" 
-      className="w-full"
-      style={{ background: "linear-gradient(180deg, #FFFFFF, #F2FBF7, #FFFFFF)" }}
-    >
-      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <div className="mx-auto max-w-2xl text-center">
-          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-            Instant price
-          </RevealEyebrow>
-          <RevealHeading
-            text="Get your instant price."
-            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+    <div className="w-full grid overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white/75 backdrop-blur-md shadow-[0_20px_50px_-15px_rgba(9,79,59,0.1)] md:grid-cols-[1.15fr_1fr]">
+      {/* Inputs */}
+      <div className="flex flex-col gap-6 p-6 sm:p-8 md:p-10">
+        <Segmented
+          legend="Service type"
+          name="service"
+          value={service}
+          onChange={setService}
+          options={SERVICES.map((s) => ({ id: s.id, label: s.label.replace(" Clean", "").replace("Move-In / Move-Out", "Move") }))}
+        />
+
+        <div className="grid grid-cols-2 gap-4">
+          <Stepper
+            label="Bedrooms"
+            value={bedrooms}
+            min={0}
+            max={MAX_BEDROOMS}
+            display={bedroomLabel(bedrooms)}
+            onChange={setBedrooms}
           />
-          <RevealSubtext className="mt-3 text-lg text-muted">
-            Most cleans in the GTA fall between $120 and $500. Build yours below.
-          </RevealSubtext>
+          <Stepper
+            label="Bathrooms"
+            value={bathrooms}
+            min={1}
+            max={MAX_BATHROOMS}
+            display={bathroomLabel(bathrooms)}
+            onChange={setBathrooms}
+          />
         </div>
 
-        <Reveal delay={0.05}>
-          <div className="mx-auto mt-12 grid max-w-4xl overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white/75 backdrop-blur-md shadow-[0_20px_50px_-15px_rgba(9,79,59,0.1)] md:grid-cols-[1.15fr_1fr]">
-            {/* Inputs */}
-            <div className="flex flex-col gap-6 p-6 sm:p-8 md:p-10">
-              <Segmented
-                legend="Service type"
-                name="service"
-                value={service}
-                onChange={setService}
-                options={SERVICES.map((s) => ({ id: s.id, label: s.label.replace(" Clean", "").replace("Move-In / Move-Out", "Move") }))}
-              />
-
-              <div className="grid grid-cols-2 gap-4">
-                <Stepper
-                  label="Bedrooms"
-                  value={bedrooms}
-                  min={0}
-                  max={MAX_BEDROOMS}
-                  display={bedroomLabel(bedrooms)}
-                  onChange={setBedrooms}
-                />
-                <Stepper
-                  label="Bathrooms"
-                  value={bathrooms}
-                  min={1}
-                  max={MAX_BATHROOMS}
-                  display={bathroomLabel(bathrooms)}
-                  onChange={setBathrooms}
-                />
-              </div>
-
-              <Segmented
-                legend="How often?"
-                name="frequency"
-                cols={2}
-                value={frequency}
-                onChange={setFrequency}
-                options={FREQUENCIES.map((f) => ({ id: f.id, label: f.label }))}
-              />
-              <p className="-mt-2 text-xs text-muted">
-                Recurring plans save up to 18% — Weekly saves the most.
-              </p>
-            </div>
-
-            {/* Output */}
-            <div className="flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-[var(--color-surface)]/60 backdrop-blur-md p-6 sm:p-8 md:p-10 md:border-l md:border-t-0">
-              <div>
-                <p className="text-sm font-semibold text-muted">Your estimated price</p>
-                <div
-                  aria-live="polite"
-                  className="mt-1 flex items-end gap-2"
-                >
-                  <span className="font-display text-6xl font-extrabold tracking-tight text-ink sm:text-7xl leading-none">
-                    $<AnimatedPrice value={result.price} />
-                  </span>
-                  {result.discountPct > 0 && (
-                    <span className="mb-2 text-sm font-medium text-muted line-through">
-                      ${result.fullPrice}
-                    </span>
-                  )}
-                </div>
-
-                {result.discountPct > 0 ? (
-                  <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
-                    You save {result.discountPct}% with{" "}
-                    {FREQUENCIES.find((f) => f.id === frequency)?.label.toLowerCase()}{" "}
-                    service
-                  </span>
-                ) : (
-                  <span className="mt-3 inline-flex items-center rounded-full bg-[var(--color-border)] px-3 py-1 text-xs font-semibold text-ink/80">
-                    One-time clean — no commitment
-                  </span>
-                )}
-
-                <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-ink/80">
-                  <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-primary" />
-                  <span>{included}</span>
-                </p>
-              </div>
-
-              <div>
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-[#c39c2c] hover:shadow-[0_6px_20px_rgba(212,175,55,0.45)] active:translate-y-0"
-                >
-                  Book this clean
-                  <ArrowRightIcon width={18} height={18} />
-                </a>
-                <p className="mt-3 text-center text-sm text-muted">
-                  Send your address and preferred time in the DM and we&apos;ll
-                  confirm your slot.
-                </p>
-                <p className="mt-2 text-center text-xs text-muted/80">
-                  Estimate only — final quote confirmed at booking.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
+        <Segmented
+          legend="How often?"
+          name="frequency"
+          cols={2}
+          value={frequency}
+          onChange={setFrequency}
+          options={FREQUENCIES.map((f) => ({ id: f.id, label: f.label }))}
+        />
+        <p className="-mt-2 text-xs text-muted">
+          Recurring plans save up to 18% — Weekly saves the most.
+        </p>
       </div>
-    </section>
+
+      {/* Output */}
+      <div className="flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-[var(--color-surface)]/60 backdrop-blur-md p-6 sm:p-8 md:p-10 md:border-l md:border-t-0">
+        <div>
+          <p className="text-sm font-semibold text-muted">Your estimated price</p>
+          <div
+            aria-live="polite"
+            className="mt-1 flex items-end gap-2"
+          >
+            <span className="font-display text-6xl font-extrabold tracking-tight text-ink sm:text-7xl leading-none">
+              $<AnimatedPrice value={result.price} />
+            </span>
+            {result.discountPct > 0 && (
+              <span className="mb-2 text-sm font-medium text-muted line-through">
+                ${result.fullPrice}
+              </span>
+            )}
+          </div>
+
+          {result.discountPct > 0 ? (
+            <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+              You save {result.discountPct}% with{" "}
+              {FREQUENCIES.find((f) => f.id === frequency)?.label.toLowerCase()}{" "}
+              service
+            </span>
+          ) : (
+            <span className="mt-3 inline-flex items-center rounded-full bg-[var(--color-border)] px-3 py-1 text-xs font-semibold text-ink/80">
+              One-time clean — no commitment
+            </span>
+          )}
+
+          <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-ink/80">
+            <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-primary" />
+            <span>{included}</span>
+          </p>
+        </div>
+
+        <div>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-[#c39c2c] hover:shadow-[0_6px_20px_rgba(212,175,55,0.45)] active:translate-y-0"
+          >
+            Book this clean
+            <ArrowRightIcon width={18} height={18} />
+          </a>
+          <p className="mt-3 text-center text-sm text-muted">
+            Send your address and preferred time in the DM and we&apos;ll
+            confirm your slot.
+          </p>
+          <p className="mt-2 text-center text-xs text-muted/80">
+            Estimate only — final quote confirmed at booking.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
