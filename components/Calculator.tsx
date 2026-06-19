@@ -19,12 +19,10 @@ const bedroomLabel = (n: number) =>
   n === 0 ? "Studio" : n >= MAX_BEDROOMS ? `${n}+` : `${n}`;
 const bathroomLabel = (n: number) => (n >= MAX_BATHROOMS ? `${n}+` : `${n}`);
 
-/** Static price output; the quote form is the primary conversion interaction. */
-function AnimatedPrice({ value }: { value: number }) {
+function Price({ value }: { value: number }) {
   return <>{value}</>;
 }
 
-/** Accessible segmented radio control. */
 function Segmented<T extends string>({
   legend,
   name,
@@ -42,7 +40,7 @@ function Segmented<T extends string>({
 }) {
   const colClass = cols === 2 ? "grid-cols-2" : cols === 4 ? "grid-cols-4" : "grid-cols-3";
   return (
-    <fieldset className="border-0 p-0 m-0">
+    <fieldset className="m-0 border-0 p-0">
       <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-primary)]">{legend}</legend>
       <div className={`grid ${colClass} gap-2.5`} role="radiogroup" aria-label={legend}>
         {options.map((opt) => {
@@ -73,7 +71,6 @@ function Segmented<T extends string>({
   );
 }
 
-/** Labelled stepper with −/+ buttons. */
 function Stepper({
   label,
   value,
@@ -129,11 +126,10 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
   const included = getService(service).included;
 
   return (
-    <div className={`w-full grid overflow-hidden rounded-[32px] border border-[var(--color-primary)]/10 bg-white/40 backdrop-blur-xl shadow-[0_20px_50px_rgba(6,61,46,0.05)] ${compact ? "grid-cols-1" : "md:grid-cols-[1.2fr_1fr]"}`}>
-      {/* Inputs */}
+    <div className={`grid w-full overflow-hidden rounded-[32px] border border-[var(--color-primary)]/10 bg-white/40 shadow-[0_20px_50px_rgba(6,61,46,0.05)] backdrop-blur-xl ${compact ? "grid-cols-1" : "md:grid-cols-[1.2fr_1fr]"}`}>
       <div className={`flex flex-col gap-7 p-6 sm:p-8 ${compact ? "" : "md:p-10"}`}>
         <Segmented
-          legend="Select Cleaning tier"
+          legend="Select Cleaning Tier"
           name="service"
           value={service}
           onChange={setService}
@@ -168,20 +164,16 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
           options={FREQUENCIES.map((f) => ({ id: f.id, label: f.label }))}
         />
         <p className="-mt-2.5 text-[11px] font-medium text-[var(--color-muted)]">
-          * Recurring elite plans save up to 18% — Weekly saves the most.
+          * Recurring plans save up to 18% - weekly saves the most.
         </p>
       </div>
 
-      {/* Output */}
-      <div className={`flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-white/50 backdrop-blur-md p-6 sm:p-8 ${compact ? "" : "md:p-10 md:border-l md:border-t-0"}`}>
+      <div className={`flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-white/50 p-6 backdrop-blur-md sm:p-8 ${compact ? "" : "md:border-l md:border-t-0 md:p-10"}`}>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">Your estimated rate</p>
-          <div
-            aria-live="polite"
-            className="mt-2 flex items-baseline gap-2"
-          >
-            <span className="font-display text-5xl font-extrabold tracking-tight text-[var(--color-ink)] sm:text-6xl leading-none">
-              $<AnimatedPrice value={result.price} />
+          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">Your Estimated Rate</p>
+          <div aria-live="polite" className="mt-2 flex items-baseline gap-2">
+            <span className="font-display text-5xl font-extrabold leading-none tracking-tight text-[var(--color-ink)] sm:text-6xl">
+              $<Price value={result.price} />
             </span>
             {result.discountPct > 0 && (
               <span className="text-base font-semibold text-[var(--color-muted)] line-through">
@@ -197,7 +189,7 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
               </span>
             ) : (
               <span className="inline-flex items-center rounded-full bg-[var(--color-surface-2)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)]">
-                One-time premium clean
+                One-Time Premium Clean
               </span>
             )}
           </div>
@@ -213,13 +205,13 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
         <div>
           <a
             href={BOOKING_URL}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-d)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-[background-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-[2px]"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-[background-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-[2px] hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
           >
             Request {getService(service).label} Quote
             <ArrowRightIcon width={16} height={16} className="text-white" />
           </a>
-          <p className="mt-4 text-center text-xs text-[var(--color-muted)] leading-relaxed">
-            Estimate only — final quotes confirmed at dispatch booking.
+          <p className="mt-4 text-center text-xs leading-relaxed text-[var(--color-muted)]">
+            Estimate only - final quotes are confirmed after scope and availability review.
           </p>
         </div>
       </div>

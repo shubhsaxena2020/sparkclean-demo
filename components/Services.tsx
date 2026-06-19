@@ -45,7 +45,7 @@ const SERVICES = [
 
 const FEATURE_POINTS = [
   "Recurring estimate discount shown in calculator",
-  "Cleaner vetting policy shown before booking",
+  "Cleaner expectations clarified before booking",
   "Schedule, access, pets, and parking captured upfront",
 ];
 

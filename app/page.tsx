@@ -5,6 +5,7 @@ import FAQ from "@/components/FAQ";
 import PremiumBackground3D from "@/components/PremiumBackground3D";
 import QuoteForm from "@/components/QuoteForm";
 import Services from "@/components/Services";
+import ServiceScenes from "@/components/ServiceScenes";
 import { CheckIcon, ShieldIcon, LeafIcon, BadgeCheckIcon, GuaranteeIcon } from "@/components/icons";
 import { BOOKING_URL, PROOF_ITEMS, SITE_URL } from "@/lib/site";
 
@@ -193,6 +194,8 @@ export default function Home() {
           <BeforeAfter />
         </div>
       </section>
+
+      <ServiceScenes />
 
       <Services showLink />
 

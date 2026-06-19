@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
+import ServiceScenes from "@/components/ServiceScenes";
 import Calculator from "@/components/Calculator";
 import CTABanner from "@/components/CTABanner";
 import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
 import { CheckIcon } from "@/components/icons";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Cleaning Services in the GTA | SparkClean",
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 const PLANS = [
   {
     name: "Standard Clean",
-    blurb: "Perfect for regular upkeep. Up to a tidy 1–2 bedroom home.",
+    blurb: "Perfect for regular upkeep. Up to a tidy 1-2 bedroom home.",
     includes: ["Dusting", "Vacuum & mop", "Kitchen", "Bathrooms", "7-day rebook"],
   },
   {
@@ -32,7 +33,7 @@ const PLANS = [
   },
   {
     name: "Move-In / Move-Out",
-    blurb: "End-of-tenancy detail. Built to pass inspection.",
+    blurb: "End-of-tenancy detail. Built to support inspection readiness.",
     includes: ["Everything in Deep", "Inside cabinets", "Closets", "Appliances"],
   },
 ];
@@ -40,41 +41,37 @@ const PLANS = [
 export default function ServicesPage() {
   return (
     <div className="min-h-screen ambient-bg">
-      {/* 1. PageHero */}
       <PageHero
         eyebrow="WHAT WE CLEAN"
         title="Cleaning services for every Toronto home."
         intro="Choose the scope first, then request a quote with home size, timing, access notes, and service details. SparkClean reviews the request before confirming final availability."
       />
 
-      {/* 2. Full Services grid */}
       <Services showLink={false} />
+      <ServiceScenes />
 
-      {/* 3. A "What's included" sub-section */}
-      <section className="w-full bg-surface border-t border-b border-[var(--color-border)] py-24 sm:py-32 lg:py-36">
+      <section className="w-full border-b border-t border-[var(--color-border)] bg-surface py-24 sm:py-32 lg:py-36">
         <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-20 items-start">
-            
-            {/* Left Column: Heading, Subtext, and large image */}
-            <div className="lg:col-span-5 flex flex-col justify-start relative">
-              <span className="absolute -top-16 -left-4 font-display text-[9rem] font-black text-primary/[0.04] leading-none pointer-events-none select-none">
+          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-20">
+            <div className="relative flex flex-col justify-start lg:col-span-5">
+              <span className="pointer-events-none absolute -left-4 -top-16 select-none font-display text-[9rem] font-black leading-none text-primary/[0.04]">
                 03
               </span>
-              <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block relative z-10">
-                WHAT&apos;S INCLUDED
+              <RevealEyebrow className="relative z-10 block text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+                What Is Included
               </RevealEyebrow>
               <RevealHeading
                 text="Detailed checklists for every clean."
-                className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05] relative z-10"
+                className="relative z-10 mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-5xl"
                 as="h2"
               />
-              <RevealSubtext className="mt-4 text-base text-muted leading-relaxed relative z-10">
-                We follow a rigorous protocol to ensure every corner of your home sparkles. Select the plan that best fits your needs.
+              <RevealSubtext className="relative z-10 mt-4 text-base leading-relaxed text-muted">
+                Compare the main service tiers and choose the checklist that best matches the level of cleaning you need.
               </RevealSubtext>
 
-              <RevealSubtext delay={0.15} className="mt-8 relative block" as="div">
-                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] bg-white p-3 group hover:border-primary/35 hover:shadow-[0_25px_50px_-20px_rgba(15,182,126,0.18)] transition-[border-color,box-shadow] duration-300">
-                  <div className="relative w-full h-full overflow-hidden rounded-[18px]">
+              <RevealSubtext delay={0.15} className="relative mt-8 block" as="div">
+                <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-3 shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-primary/35 hover:shadow-[0_25px_50px_-20px_rgba(15,182,126,0.18)] sm:aspect-[4/3]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[18px]">
                     <Image
                       src="/img/results3.webp"
                       alt="Spotless minimalist bathroom with fresh rolled towels"
@@ -84,12 +81,11 @@ export default function ServicesPage() {
                       loading="lazy"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
               </RevealSubtext>
             </div>
 
-            {/* Right Column: Stacked plans checklists */}
             <div className="lg:col-span-7">
               <RevealGroup className="flex flex-col gap-6 sm:gap-8">
                 {PLANS.map((plan) => {
@@ -97,7 +93,7 @@ export default function ServicesPage() {
                   return (
                     <RevealItem
                       key={plan.name}
-                      className={`rounded-[24px] border p-6 sm:p-8 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] transition-[border-color,box-shadow,background-color] duration-300 ${
+                      className={`rounded-[24px] border p-6 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] transition-[border-color,box-shadow,background-color] duration-300 sm:p-8 ${
                         isFeatured
                           ? "border-2 border-primary/25 bg-[#F2FBF7] shadow-[0_12px_30px_-10px_rgba(15,182,126,0.08)]"
                           : "border-[var(--color-border)] bg-white"
@@ -112,8 +108,8 @@ export default function ServicesPage() {
                         )}
                       </div>
                       <p className="mt-2 text-sm text-muted">{plan.blurb}</p>
-                      
-                      <ul className="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2.5 border-t border-[var(--color-border)] pt-4">
+
+                      <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2.5 border-t border-[var(--color-border)] pt-4 sm:grid-cols-3">
                         {plan.includes.map((item) => (
                           <li key={item} className="flex items-start gap-2 text-xs font-semibold text-ink">
                             <CheckIcon width={16} height={16} className="mt-0.5 shrink-0 text-primary" />
@@ -126,15 +122,11 @@ export default function ServicesPage() {
                 })}
               </RevealGroup>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 4. Embed Calculator */}
       <Calculator />
-
-      {/* 5. CTABanner */}
       <CTABanner />
     </div>
   );
