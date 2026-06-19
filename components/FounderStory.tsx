@@ -1,34 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion, useMotionValue, useTransform } from "framer-motion";
 import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
 import { LeafIcon } from "./icons";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function FounderStory({ showLink = false }: { showLink?: boolean }) {
-  const reduce = useReducedMotion();
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-200, 200], [8, -8]);
-  const rotateY = useTransform(x, [-200, 200], [-8, 8]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduce) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const clientX = e.clientX - rect.left - width / 2;
-    const clientY = e.clientY - rect.top - height / 2;
-    x.set(clientX);
-    y.set(clientY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
 
   return (
     <section className="relative overflow-hidden bg-surface py-24 sm:py-32 lg:py-36 border-b border-[var(--color-border)]">
@@ -86,13 +63,10 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
           {/* Right Column: Visual (image) */}
           <div className="lg:col-span-5 w-full flex justify-center">
             <Reveal className="w-full max-w-[380px]">
-              <motion.div 
-                className="relative border border-[var(--color-border)] p-4 bg-white shadow-[0_20px_50px_-20px_rgba(15,26,23,0.15)] rounded-[32px] md:-rotate-2 hover:rotate-0 transition-all duration-300 cursor-grab active:cursor-grabbing hover:shadow-[0_25px_60px_-15px_rgba(15,182,126,0.2)]"
-                style={reduce ? {} : { rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+              <div 
+                className="relative border border-[var(--color-border)] p-4 bg-white shadow-[0_20px_50px_-20px_rgba(15,26,23,0.15)] rounded-[32px] md:-rotate-2 hover:rotate-0 transition-all duration-300 hover:shadow-[0_25px_60px_-15px_rgba(15,182,126,0.2)]"
               >
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] border border-[var(--color-border)] group" style={{ transform: "translateZ(10px)" }}>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] border border-[var(--color-border)] group">
                   <Image
                     src="/img/founder.jpg"
                     alt="Friendly professional cleaner smiling in a clean bright house"
@@ -103,7 +77,7 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </div>
-              </motion.div>
+              </div>
             </Reveal>
           </div>
 
