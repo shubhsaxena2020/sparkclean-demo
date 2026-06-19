@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { BOOKING_URL } from "@/lib/site";
@@ -30,6 +30,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -41,10 +43,18 @@ export default function Header() {
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    firstMobileLinkRef.current?.focus();
   }, [open]);
 
   const isActive = (href: string) => {
@@ -90,6 +100,7 @@ export default function Header() {
             Request Quote
           </a>
           <button
+            ref={triggerRef}
             type="button"
             onClick={() => setOpen((value) => !value)}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -109,13 +120,17 @@ export default function Header() {
           aria-label="Mobile"
         >
           <ul className="mx-auto flex max-w-[var(--maxw)] flex-col gap-2 px-6 py-4">
-            {NAV.map((item) => {
+            {NAV.map((item, index) => {
               const active = isActive(item.href);
               return (
                 <li key={item.href}>
                   <Link
+                    ref={index === 0 ? firstMobileLinkRef : undefined}
                     href={item.href}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      triggerRef.current?.focus();
+                    }}
                     className={`block rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-widest transition-colors duration-200 hover:bg-[var(--color-surface-2)]/50 ${
                       active ? "bg-[var(--color-surface-2)]/30 font-bold text-[var(--color-primary)]" : "text-[var(--color-ink)]"
                     }`}

@@ -11,57 +11,57 @@ import { BOOKING_URL, PROOF_ITEMS, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "SparkClean Toronto | Quote-Ready Home Cleaning Website",
   description:
-    "A conversion-ready cleaning service experience for the GTA: transparent estimates, service-area proof slots, booking intake, policies, and trust-first design.",
+    "Request a SparkClean home cleaning quote in Toronto and the GTA with transparent estimates, service details, and postal-code availability checks.",
 };
 
 const HERO_POINTS = [
-  "Transparent estimates before the first call",
-  "Cleaner vetting, re-clean, and access policies built in",
-  "Proof slots for Google reviews, insurance, and service-area evidence",
+  "Transparent estimate before you send the request",
+  "Service scope, access notes, pets, and parking captured upfront",
+  "Written next steps before any cleaning appointment is confirmed",
 ];
 
 const PROCESS = [
   {
     title: "Estimate the clean",
-    body: "Visitors choose service, home size, and frequency before sharing contact details.",
+    body: "Choose service type, home size, and frequency so the estimate is grounded in the actual job.",
   },
   {
     title: "Confirm the scope",
-    body: "The request captures postal code, preferred timing, access notes, pets, parking, and special instructions.",
+    body: "Share postal code, preferred timing, access notes, pets, parking, and special instructions.",
   },
   {
     title: "Dispatch with proof",
-    body: "A real client can connect scheduling, payment, Google reviews, and insurance proof without changing the page structure.",
+    body: "SparkClean replies with availability, final scope, and any questions before confirming the visit.",
   },
 ];
 
 const POLICY_CARDS = [
   {
     icon: ShieldIcon,
-    title: "Insurance Proof Slot",
-    body: "Show the actual policy provider, coverage summary, and certificate link before visitors trust a claim.",
+    title: "Scope In Writing",
+    body: "Every request summarizes the service, room count, access notes, and special instructions before confirmation.",
   },
   {
     icon: BadgeCheckIcon,
-    title: "Vetted Cleaner Policy",
-    body: "Explain screening, training, repeat teams, and what happens if a cleaner is replaced.",
+    title: "Cleaner Expectations",
+    body: "Quote replies can clarify supplies, arrival window, access handling, and whether a recurring team is available.",
   },
   {
     icon: GuaranteeIcon,
-    title: "24-Hour Re-Clean",
-    body: "Define what is covered, how to report an issue, and when the team returns.",
+    title: "24-Hour Issue Window",
+    body: "Report missed details within 24 hours with photos so the team can review the concern quickly.",
   },
   {
     icon: LeafIcon,
-    title: "Product Safety",
-    body: "List product standards and pet/kid-safe defaults instead of vague eco-friendly claims.",
+    title: "Product Preferences",
+    body: "Use the quote notes to flag allergies, pets, fragrance preferences, or client-provided supplies.",
   },
 ];
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "SparkClean quote-ready cleaning website template",
+  name: "SparkClean Toronto home cleaning quotes",
   serviceType: "Residential cleaning quote intake",
   areaServed: {
     "@type": "AdministrativeArea",
@@ -103,14 +103,13 @@ export default function Home() {
         <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-[var(--maxw)] items-center gap-12 px-6 pb-12 pt-32 lg:grid-cols-[1.02fr_0.98fr] lg:pt-36">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">
-            Client-Ready Cleaning Website
+            Toronto Home Cleaning Quotes
           </p>
           <h1 className="mt-5 max-w-4xl font-display text-5xl font-extrabold leading-[0.98] text-pretty sm:text-6xl lg:text-7xl">
-            A cleaning site that sells trust before it sells sparkle.
+            Clear home cleaning quotes without the back-and-forth.
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--color-muted)]">
-            SparkClean is being rebuilt as a launch-ready Toronto cleaning experience:
-            real intake, transparent pricing, policy clarity, proof slots, and premium motion that supports conversion.
+            Choose your cleaning scope, see a transparent estimate, and send the details SparkClean needs to confirm availability across Toronto and the GTA.
           </p>
           <ul className="mt-8 grid gap-3">
             {HERO_POINTS.map((item) => (
@@ -131,7 +130,7 @@ export default function Home() {
               href="#proof"
               className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[var(--color-border)] bg-white/80 px-7 text-sm font-bold text-[var(--color-primary)] transition-colors duration-200 hover:border-[var(--color-primary)] hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
             >
-              Review Trust System
+              See What Is Included
             </a>
           </div>
         </div>
@@ -140,7 +139,7 @@ export default function Home() {
           <div className="relative overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-white p-3 shadow-[0_30px_90px_-45px_rgba(7,15,12,0.45)]">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[20px]">
               <Image
-                src="/img/hero.jpg"
+                src="/img/hero.webp"
                 alt="Bright professionally cleaned living room prepared for a home cleaning service hero"
                 fill
                 priority
@@ -150,9 +149,9 @@ export default function Home() {
             </div>
           </div>
           <div className="absolute -bottom-6 left-6 right-6 rounded-2xl border border-[var(--color-border)] bg-white/92 p-5 shadow-[0_22px_65px_-35px_rgba(7,15,12,0.45)] backdrop-blur-md">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-primary)]">Conversion Status</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-primary)]">Quote Flow</p>
             <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
-              The page now routes visitors toward a structured quote request instead of a social DM.
+              Your request captures service scope, preferred timing, postal code, and access notes in one pass.
             </p>
           </div>
         </div>
@@ -162,9 +161,9 @@ export default function Home() {
       <section id="proof" className="relative z-10 border-y border-[var(--color-border)] bg-white/88 py-14">
         <div className="mx-auto grid max-w-[var(--maxw)] gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Trust System</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Before You Book</p>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-pretty sm:text-4xl">
-              No fake metrics. Only proof a real business can attach.
+              The details are clear before anyone shows up.
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -185,11 +184,10 @@ export default function Home() {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Visual Proof</p>
             <h2 className="mt-3 font-display text-4xl font-extrabold text-pretty sm:text-5xl">
-              Before/after proof gets the spotlight, not buried in decoration.
+              Before/after expectations belong in plain view.
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-muted)]">
-              Real client launches should replace these images with actual work, add room type,
-              service performed, date, and neighborhood. The layout is ready for that proof.
+              Use this comparison to review the level of detail expected from a deeper clean. Final scope is confirmed from your home details and notes.
             </p>
           </div>
           <BeforeAfter />
@@ -202,7 +200,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Booking Flow</p>
           <h2 className="mt-3 font-display text-4xl font-extrabold text-pretty sm:text-5xl">
-            The path to booking is finally concrete.
+            From estimate to confirmed clean.
           </h2>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -221,7 +219,7 @@ export default function Home() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Policies</p>
             <h2 className="mt-3 font-display text-4xl font-extrabold text-pretty sm:text-5xl">
-              Trust claims need operational receipts.
+              Practical policies make the quote easier to trust.
             </h2>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

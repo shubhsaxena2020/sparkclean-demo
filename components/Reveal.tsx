@@ -5,10 +5,6 @@ import type { ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/**
- * Scroll-reveal wrapper: opacity 0→1, y 24→0, 0.6s, once, when ~15% visible.
- * Respects prefers-reduced-motion (renders final state instantly).
- */
 export function Reveal({
   children,
   className,
@@ -26,7 +22,7 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 24 }}
+      initial={reduce ? false : { opacity: 1, y: 18 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, ease: EASE, delay }}
@@ -42,11 +38,10 @@ const groupVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16, scale: 0.98 },
+  hidden: { opacity: 1, y: 14, scale: 0.99 },
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: EASE } },
 };
 
-/** Parent that staggers its <RevealItem> children into view. */
 export function RevealGroup({
   children,
   className,
@@ -84,14 +79,9 @@ export function RevealItem({
   const reduce = useReducedMotion();
   const MotionTag = motion[as];
 
-  return (
-    <MotionTag className={className} variants={reduce ? undefined : itemVariants}>
-      {children}
-    </MotionTag>
-  );
+  return <MotionTag className={className} variants={reduce ? undefined : itemVariants}>{children}</MotionTag>;
 }
 
-/** Word-by-word Heading reveal animation */
 export function RevealHeading({
   text,
   className,
@@ -108,9 +98,7 @@ export function RevealHeading({
     return <MotionTag className={className}>{text}</MotionTag>;
   }
 
-  const words = text.split(" ");
-
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     show: {
       transition: {
@@ -119,8 +107,8 @@ export function RevealHeading({
     },
   };
 
-  const wordVariants = {
-    hidden: { opacity: 0, y: 12 },
+  const wordVariants: Variants = {
+    hidden: { opacity: 1, y: 10 },
     show: {
       opacity: 1,
       y: 0,
@@ -139,12 +127,8 @@ export function RevealHeading({
       whileInView="show"
       viewport={{ once: true, amount: 0.15 }}
     >
-      {words.map((word, idx) => (
-        <motion.span
-          key={idx}
-          variants={wordVariants}
-          className="inline-block mr-[0.22em]"
-        >
+      {text.split(" ").map((word, idx) => (
+        <motion.span key={idx} variants={wordVariants} className="mr-[0.22em] inline-block">
           {word}
         </motion.span>
       ))}
@@ -152,7 +136,6 @@ export function RevealHeading({
   );
 }
 
-/** Left-to-right slide Eyebrow animation */
 export function RevealEyebrow({
   children,
   className,
@@ -168,7 +151,7 @@ export function RevealEyebrow({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 0, x: -8 }}
+      initial={reduce ? false : { opacity: 1, x: -8 }}
       whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.4, ease: EASE }}
@@ -178,7 +161,6 @@ export function RevealEyebrow({
   );
 }
 
-/** Delayed rise-in Subtext/Body animation */
 export function RevealSubtext({
   children,
   className,
@@ -196,7 +178,7 @@ export function RevealSubtext({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 10 }}
+      initial={reduce ? false : { opacity: 1, y: 10 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.5, ease: EASE, delay }}

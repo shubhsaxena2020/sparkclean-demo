@@ -19,9 +19,9 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "SparkClean - Toronto Cleaning Quote Website Template",
+  title: "SparkClean - Toronto Home Cleaning Quotes",
   description:
-    "A premium, conversion-ready cleaning website template with quote intake, transparent estimates, policy modules, and service-area proof slots.",
+    "Request a Toronto and GTA home cleaning quote with transparent estimates, clear service scope, and postal-code availability checks.",
   keywords: [
     "Toronto cleaning service website",
     "GTA house cleaning quote",
@@ -33,15 +33,15 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "SparkClean - Toronto Cleaning Quote Website Template",
+    title: "SparkClean - Toronto Home Cleaning Quotes",
     description:
-      "Transparent estimates, quote intake, policy modules, and proof-ready design for a local cleaning business.",
+      "Transparent estimates, quote intake, service scope, and availability checks for local home cleaning.",
     url: "/",
     siteName: "SparkClean",
     type: "website",
     images: [
       {
-        url: "/img/hero.jpg",
+        url: "/img/hero.webp",
         width: 1200,
         height: 1200,
         alt: "Professionally cleaned bright home interior",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SparkClean - Toronto Cleaning Quote Website Template",
     description:
-      "A client-ready cleaning website experience with quote intake and trust-first conversion design.",
-    images: ["/img/hero.jpg"],
+      "Request a Toronto and GTA home cleaning quote with service details and clear next steps.",
+    images: ["/img/hero.webp"],
   },
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import {
   SERVICES,
@@ -14,17 +14,31 @@ import { EMAIL } from "@/lib/site";
 
 const BEDROOMS = [0, 1, 2, 3, 4, 5];
 const BATHROOMS = [1, 2, 3, 4];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const POSTAL_RE = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
 
+type Errors = Partial<Record<"name" | "email" | "phone" | "postalCode" | "form", string>>;
 type Status =
   | { type: "idle"; message: "" }
+  | { type: "sending"; message: string }
   | { type: "error"; message: string }
-  | { type: "ready"; message: string; href: string };
+  | { type: "success"; message: string };
 
 function FieldLabel({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
     <label htmlFor={htmlFor} className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-primary)]">
       {children}
     </label>
+  );
+}
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null;
+
+  return (
+    <p id={id} className="text-xs font-semibold text-red-700">
+      {message}
+    </p>
   );
 }
 
@@ -38,6 +52,8 @@ function TextInput({
   placeholder,
   autoComplete,
   inputMode,
+  error,
+  required = false,
 }: {
   id: string;
   label: string;
@@ -48,7 +64,11 @@ function TextInput({
   placeholder: string;
   autoComplete: string;
   inputMode?: "text" | "email" | "tel" | "numeric";
+  error?: string;
+  required?: boolean;
 }) {
+  const errorId = `${id}-error`;
+
   return (
     <div className="grid gap-2">
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
@@ -61,9 +81,13 @@ function TextInput({
         autoComplete={autoComplete}
         spellCheck={type === "email" ? false : undefined}
         placeholder={placeholder}
+        required={required}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? errorId : undefined}
         onChange={(event) => onChange(event.target.value)}
         className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 text-sm text-[var(--color-ink)] shadow-[0_1px_0_rgba(255,255,255,0.8)_inset] transition-colors duration-200 placeholder:text-[var(--color-muted)]/70 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
       />
+      <FieldError id={errorId} message={error} />
     </div>
   );
 }
@@ -79,6 +103,7 @@ export default function QuoteForm() {
   const [postalCode, setPostalCode] = useState("");
   const [preferredDate, setPreferredDate] = useState("");
   const [notes, setNotes] = useState("");
+  const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>({ type: "idle", message: "" });
   const statusRef = useRef<HTMLParagraphElement>(null);
 
@@ -86,7 +111,40 @@ export default function QuoteForm() {
   const serviceLabel = getService(service).label;
   const frequencyLabel = FREQUENCIES.find((item) => item.id === frequency)?.label ?? "Bi-weekly";
 
-  const mailtoHref = useMemo(() => {
+  function resetFeedback() {
+    if (status.type !== "idle") setStatus({ type: "idle", message: "" });
+    if (Object.keys(errors).length > 0) setErrors({});
+  }
+
+  function validate(): Errors {
+    const nextErrors: Errors = {};
+
+    if (name.trim().length < 2) nextErrors.name = "Enter your full name.";
+    if (!EMAIL_RE.test(email.trim())) nextErrors.email = "Enter a valid email address.";
+    if (phone.replace(/\D/g, "").length < 10) nextErrors.phone = "Enter a 10-digit phone number.";
+    if (!POSTAL_RE.test(postalCode.trim())) nextErrors.postalCode = "Enter a valid Canadian postal code.";
+
+    return nextErrors;
+  }
+
+  function focusFirstError(nextErrors: Errors) {
+    const first = ["name", "email", "phone", "postalCode"].find((key) => nextErrors[key as keyof Errors]);
+    if (!first) {
+      requestAnimationFrame(() => statusRef.current?.focus());
+      return;
+    }
+
+    const idByField: Record<string, string> = {
+      name: "quote-name",
+      email: "quote-email",
+      phone: "quote-phone",
+      postalCode: "quote-postal",
+    };
+
+    requestAnimationFrame(() => document.getElementById(idByField[first])?.focus());
+  }
+
+  function mailtoHref() {
     const body = [
       `Name: ${name}`,
       `Email: ${email}`,
@@ -103,24 +161,63 @@ export default function QuoteForm() {
     ].join("\n");
 
     return `mailto:${EMAIL}?subject=${encodeURIComponent("SparkClean Quote Request")}&body=${encodeURIComponent(body)}`;
-  }, [bathrooms, bedrooms, email, frequencyLabel, name, notes, phone, postalCode, preferredDate, price.price, serviceLabel]);
+  }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!name.trim() || !email.trim() || !phone.trim() || !postalCode.trim()) {
-      setStatus({
-        type: "error",
-        message: "Add your name, email, phone, and postal code so the quote request is usable.",
-      });
+    const nextErrors = validate();
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      setStatus({ type: "error", message: "Fix the highlighted fields and send the request again." });
+      focusFirstError(nextErrors);
+      return;
+    }
+
+    setErrors({});
+    setStatus({ type: "sending", message: "Sending quote request…" });
+
+    const response = await fetch("/api/quote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        service: serviceLabel,
+        frequency: frequencyLabel,
+        bedrooms,
+        bathrooms,
+        price: price.price,
+        name,
+        email,
+        phone,
+        postalCode,
+        preferredDate,
+        notes,
+      }),
+    });
+
+    const result = (await response.json()) as {
+      ok?: boolean;
+      referenceId?: string;
+      delivery?: "sent" | "not_configured";
+      errors?: Errors;
+    };
+
+    if (!response.ok || !result.ok) {
+      const formError = result.errors?.form ?? "The request could not be sent. Use the email fallback below.";
+      setErrors(result.errors ?? { form: formError });
+      setStatus({ type: "error", message: formError });
       requestAnimationFrame(() => statusRef.current?.focus());
       return;
     }
 
+    const setupNote =
+      result.delivery === "not_configured"
+        ? " Email delivery is not configured in this environment, so use the email fallback before relying on this deployment."
+        : "";
+
     setStatus({
-      type: "ready",
-      message: "Quote summary is ready. Open your email draft to send this request.",
-      href: mailtoHref,
+      type: "success",
+      message: `Quote request received. Reference ${result.referenceId}.${setupNote}`,
     });
     requestAnimationFrame(() => statusRef.current?.focus());
   }
@@ -131,11 +228,10 @@ export default function QuoteForm() {
         <div className="bg-[var(--color-primary)] p-8 text-white sm:p-10 lg:p-12">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-accent)]">Instant Estimate</p>
           <h2 className="mt-4 max-w-md font-display text-4xl font-extrabold leading-tight text-pretty sm:text-5xl">
-            Turn pricing into a real lead, not a dead-end button.
+            Turn your cleaning details into a clear quote request.
           </h2>
           <p className="mt-5 max-w-lg text-sm leading-7 text-white/82">
-            This form captures the details a cleaning operator needs before confirming a job:
-            service scope, home size, location, contact, preferred timing, and access notes.
+            Share the details needed before confirming a job: service scope, home size, location, contact, preferred timing, and access notes.
           </p>
           <div className="mt-10 rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/65">Estimated Rate</p>
@@ -146,12 +242,12 @@ export default function QuoteForm() {
               )}
             </div>
             <p className="mt-4 text-sm leading-6 text-white/75">
-              {serviceLabel} · {frequencyLabel} · {bedrooms === 0 ? "Studio" : `${bedrooms} bed`} · {bathrooms} bath
+              {serviceLabel} - {frequencyLabel} - {bedrooms === 0 ? "Studio" : `${bedrooms} bed`} - {bathrooms} bath
             </p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-7 p-6 sm:p-8 lg:p-10">
+        <form onSubmit={handleSubmit} className="grid gap-7 p-6 sm:p-8 lg:p-10" noValidate>
           <div className="grid gap-5 md:grid-cols-2">
             <div className="grid gap-2">
               <FieldLabel htmlFor="quote-service">Service</FieldLabel>
@@ -159,7 +255,10 @@ export default function QuoteForm() {
                 id="quote-service"
                 name="service"
                 value={service}
-                onChange={(event) => setService(event.target.value as ServiceType)}
+                onChange={(event) => {
+                  resetFeedback();
+                  setService(event.target.value as ServiceType);
+                }}
                 className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] transition-colors duration-200 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
               >
                 {SERVICES.map((item) => (
@@ -175,7 +274,10 @@ export default function QuoteForm() {
                 id="quote-frequency"
                 name="frequency"
                 value={frequency}
-                onChange={(event) => setFrequency(event.target.value as Frequency)}
+                onChange={(event) => {
+                  resetFeedback();
+                  setFrequency(event.target.value as Frequency);
+                }}
                 className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] transition-colors duration-200 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
               >
                 {FREQUENCIES.map((item) => (
@@ -191,7 +293,10 @@ export default function QuoteForm() {
                 id="quote-bedrooms"
                 name="bedrooms"
                 value={bedrooms}
-                onChange={(event) => setBedrooms(Number(event.target.value))}
+                onChange={(event) => {
+                  resetFeedback();
+                  setBedrooms(Number(event.target.value));
+                }}
                 className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] transition-colors duration-200 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
               >
                 {BEDROOMS.map((item) => (
@@ -207,7 +312,10 @@ export default function QuoteForm() {
                 id="quote-bathrooms"
                 name="bathrooms"
                 value={bathrooms}
-                onChange={(event) => setBathrooms(Number(event.target.value))}
+                onChange={(event) => {
+                  resetFeedback();
+                  setBathrooms(Number(event.target.value));
+                }}
                 className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] transition-colors duration-200 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
               >
                 {BATHROOMS.map((item) => (
@@ -220,21 +328,24 @@ export default function QuoteForm() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            <TextInput id="quote-name" name="name" label="Name" value={name} onChange={setName} placeholder="Priya Kumar…" autoComplete="name" />
-            <TextInput id="quote-email" name="email" label="Email" type="email" inputMode="email" value={email} onChange={setEmail} placeholder="priya@example.com…" autoComplete="email" />
-            <TextInput id="quote-phone" name="tel" label="Phone" type="tel" inputMode="tel" value={phone} onChange={setPhone} placeholder="416 800 1234…" autoComplete="tel" />
-            <TextInput id="quote-postal" name="postal-code" label="Postal Code" value={postalCode} onChange={setPostalCode} placeholder="M4W 1A5…" autoComplete="postal-code" />
+            <TextInput id="quote-name" name="name" label="Name" value={name} onChange={(value) => { resetFeedback(); setName(value); }} placeholder="Priya Kumar…" autoComplete="name" error={errors.name} required />
+            <TextInput id="quote-email" name="email" label="Email" type="email" inputMode="email" value={email} onChange={(value) => { resetFeedback(); setEmail(value); }} placeholder="priya@example.com…" autoComplete="email" error={errors.email} required />
+            <TextInput id="quote-phone" name="tel" label="Phone" type="tel" inputMode="tel" value={phone} onChange={(value) => { resetFeedback(); setPhone(value); }} placeholder="416 800 1234…" autoComplete="tel" error={errors.phone} required />
+            <TextInput id="quote-postal" name="postal-code" label="Postal Code" value={postalCode} onChange={(value) => { resetFeedback(); setPostalCode(value); }} placeholder="M4W 1A5…" autoComplete="postal-code" error={errors.postalCode} required />
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            <TextInput id="quote-date" name="preferred-date" label="Preferred Time" value={preferredDate} onChange={setPreferredDate} placeholder="Friday morning…" autoComplete="off" />
+            <TextInput id="quote-date" name="preferred-date" label="Preferred Time" value={preferredDate} onChange={(value) => { resetFeedback(); setPreferredDate(value); }} placeholder="Friday morning…" autoComplete="off" />
             <div className="grid gap-2">
               <FieldLabel htmlFor="quote-notes">Access Notes</FieldLabel>
               <textarea
                 id="quote-notes"
                 name="notes"
                 value={notes}
-                onChange={(event) => setNotes(event.target.value)}
+                onChange={(event) => {
+                  resetFeedback();
+                  setNotes(event.target.value);
+                }}
                 placeholder="Pets, parking, lockbox, supplies…"
                 rows={3}
                 className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-sm text-[var(--color-ink)] transition-colors duration-200 placeholder:text-[var(--color-muted)]/70 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
@@ -243,31 +354,33 @@ export default function QuoteForm() {
           </div>
 
           <div className="flex flex-col gap-4 border-t border-[var(--color-border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
-            <p
-              ref={statusRef}
-              tabIndex={-1}
-              aria-live="polite"
-              className={`min-h-6 text-sm font-semibold ${
-                status.type === "error" ? "text-red-700" : status.type === "ready" ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"
-              }`}
+            <div>
+              <p
+                ref={statusRef}
+                tabIndex={-1}
+                aria-live="polite"
+                className={`min-h-6 text-sm font-semibold ${
+                  status.type === "error" ? "text-red-700" : status.type === "success" ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"
+                }`}
+              >
+                {status.message || "Estimate updates as you change the service details."}
+              </p>
+              {errors.form && (
+                <a
+                  href={mailtoHref()}
+                  className="mt-2 inline-flex text-sm font-bold text-primary transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
+                >
+                  Email the request instead
+                </a>
+              )}
+            </div>
+            <button
+              type="submit"
+              disabled={status.type === "sending"}
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-xl bg-[var(--color-primary)] px-6 text-sm font-bold text-white shadow-[0_14px_32px_-18px_rgba(6,61,46,0.8)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] disabled:cursor-wait disabled:opacity-70 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
             >
-              {status.message || "Estimate updates as you change the service details."}
-            </p>
-            {status.type === "ready" ? (
-              <a
-                href={status.href}
-                className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[var(--color-primary)] px-6 text-sm font-bold text-white shadow-[0_14px_32px_-18px_rgba(6,61,46,0.8)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
-              >
-                Open Email Draft
-              </a>
-            ) : (
-              <button
-                type="submit"
-                className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[var(--color-primary)] px-6 text-sm font-bold text-white shadow-[0_14px_32px_-18px_rgba(6,61,46,0.8)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
-              >
-                Prepare Quote Request
-              </button>
-            )}
+              {status.type === "sending" ? "Sending…" : "Request Quote"}
+            </button>
           </div>
         </form>
       </div>

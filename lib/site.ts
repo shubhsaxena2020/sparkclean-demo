@@ -1,17 +1,14 @@
-// Shared business constants for the SparkClean client-ready template.
-// Replace these with a real client's verified contact and proof assets before launch.
-
 export const BOOKING_URL = "/#quote";
 
-export const PHONE_DISPLAY = "Quote Request";
+export const PHONE_DISPLAY = "Email Quote Request";
 export const EMAIL = "quotes@sparkclean.ca";
-export const SITE_URL = "https://sparkclean-gta.vercel.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sparkclean-gta.vercel.app";
 
 export const PROOF_ITEMS = [
-  "Insurance certificate slot",
-  "Verified Google profile slot",
-  "Cleaner vetting policy",
-  "24-hour re-clean policy",
+  "Clear written cleaning checklist",
+  "Email quote confirmation",
+  "Issue reporting within 24 hours",
+  "Postal-code availability check",
 ];
 
 export const NEIGHBOURHOODS = [

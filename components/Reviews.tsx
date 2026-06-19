@@ -1,31 +1,21 @@
 import Link from "next/link";
 import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
-import { StarIcon } from "./icons";
+import { CheckIcon } from "./icons";
 
-const REVIEW_SLOTS = [
+const CONFIDENCE_ITEMS = [
   {
-    title: "Google Review Slot",
-    body: "Connect a real Google Business Profile and show source, date, rating, and profile link.",
+    title: "Clear Scope",
+    body: "Your request lists service type, room count, frequency, timing, access notes, and special instructions in one summary.",
   },
   {
-    title: "Service Story Slot",
-    body: "Use one real client-approved before/after story with room type, neighborhood, and service scope.",
+    title: "No Surprise Booking",
+    body: "SparkClean confirms availability and final scope before treating the request as a scheduled appointment.",
   },
   {
-    title: "Referral Proof Slot",
-    body: "Show a verified repeat-client or referral metric only after the client can prove it.",
+    title: "Issue Window",
+    body: "If something is missed, report it within 24 hours with photos so the concern can be reviewed quickly.",
   },
 ];
-
-function Stars() {
-  return (
-    <div className="flex gap-0.5 text-[#FFC53D]" aria-label="Review proof placeholder">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <StarIcon key={index} width={18} height={18} />
-      ))}
-    </div>
-  );
-}
 
 export default function Reviews({ showLink = false }: { showLink?: boolean }) {
   return (
@@ -33,29 +23,28 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
         <div className="relative mx-auto max-w-2xl text-center">
           <RevealEyebrow className="relative z-10 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-            Review System
+            Booking Confidence
           </RevealEyebrow>
           <RevealHeading
-            text="Reviews belong here after they are real."
-            className="relative z-10 mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
+            text="The process is designed to reduce cleaning-day surprises."
+            className="relative z-10 mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-5xl"
           />
           <RevealSubtext className="relative z-10 mt-5 text-base leading-7 text-muted">
-            This section is structured for proof, not invented testimonials. Add source links,
-            dates, and customer permission before using live reviews.
+            No invented reviews or star ratings. The site focuses on the information homeowners need before requesting a clean.
           </RevealSubtext>
         </div>
 
         <RevealGroup className="mt-12 grid gap-8 md:grid-cols-3">
-          {REVIEW_SLOTS.map((slot) => (
+          {CONFIDENCE_ITEMS.map((item) => (
             <RevealItem
-              key={slot.title}
+              key={item.title}
               as="article"
-              className="flex flex-col rounded-[var(--radius)] border-l-[3px] border-l-primary border-y border-r border-[var(--color-border)] bg-white p-8 premium-shadow premium-shadow-hover"
+              className="premium-shadow premium-shadow-hover flex flex-col rounded-[var(--radius)] border-y border-r border-l-[3px] border-[var(--color-border)] border-l-primary bg-white p-8"
             >
-              <Stars />
-              <h3 className="mt-5 text-lg font-bold text-ink">{slot.title}</h3>
+              <CheckIcon width={22} height={22} className="text-primary" />
+              <h3 className="mt-5 text-lg font-bold text-ink">{item.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-[1.7] text-muted">
-                {slot.body}
+                {item.body}
               </p>
             </RevealItem>
           ))}
@@ -65,9 +54,9 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
           <Reveal className="mt-8 text-center">
             <Link
               href="/about#reviews"
-              className="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors duration-200 hover:text-primary-d"
+              className="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors duration-200 hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
             >
-              View proof slots
+              View Booking Process
             </Link>
           </Reveal>
         )}

@@ -14,7 +14,7 @@ export default function BeforeAfter() {
       >
         <div className="absolute inset-0 h-full w-full">
           <Image
-            src="/img/after.jpg"
+            src="/img/after.webp"
             alt="Sample kitchen after a professional deep cleaning"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -33,7 +33,7 @@ export default function BeforeAfter() {
         >
           <div className="absolute inset-0 h-full" style={{ width: "100cqw" }}>
             <Image
-              src="/img/before.jpg"
+              src="/img/before.webp"
               alt="Sample kitchen before a professional deep cleaning"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -78,7 +78,7 @@ export default function BeforeAfter() {
           max="100"
           value={sliderPos}
           onChange={(event) => setSliderPos(Number(event.target.value))}
-          className="absolute inset-x-4 bottom-4 z-30 h-8 cursor-ew-resize opacity-0 focus-visible:opacity-100"
+          className="absolute inset-x-4 bottom-4 z-30 h-8 cursor-ew-resize accent-[var(--color-accent)]"
         />
       </div>
       <p id={labelId} className="text-sm font-semibold text-[var(--color-muted)]">

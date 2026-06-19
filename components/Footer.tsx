@@ -1,5 +1,5 @@
-import { BOOKING_URL, EMAIL } from "@/lib/site";
 import Link from "next/link";
+import { BOOKING_URL, EMAIL } from "@/lib/site";
 
 const LINKS = [
   { label: "Services", href: "/services" },
@@ -22,12 +22,12 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/62">
-              A client-ready cleaning website template built around quote intake,
-              transparent estimates, service-area clarity, and replaceable proof modules.
+              Toronto and GTA home cleaning quote requests with transparent estimates,
+              service-area clarity, and written scope before confirmation.
             </p>
             <p className="mt-3 text-xs leading-6 text-white/42">
-              Real launches should connect a verified phone number, business address,
-              review profile, insurance proof, and booking system before claiming them.
+              Email quote requests are reviewed before any visit is confirmed. Final scope,
+              timing, access details, and product preferences are confirmed in writing.
             </p>
           </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs font-semibold uppercase tracking-[0.1em] text-white/70 transition-colors duration-200 hover:text-[var(--color-accent)]"
+                    className="text-xs font-semibold uppercase tracking-[0.1em] text-white/70 transition-colors duration-200 hover:text-[var(--color-accent)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/30"
                   >
                     {link.label}
                   </Link>
@@ -57,15 +57,15 @@ export default function Footer() {
               <li>
                 <a
                   href={BOOKING_URL}
-                  className="text-xs font-semibold uppercase tracking-[0.08em] text-white/70 transition-colors duration-200 hover:text-[var(--color-accent)]"
+                  className="text-xs font-semibold uppercase tracking-[0.08em] text-white/70 transition-colors duration-200 hover:text-[var(--color-accent)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/30"
                 >
-                  Request quote
+                  Request Quote
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="text-xs font-semibold uppercase tracking-[0.08em] text-white/70 transition-colors duration-200 hover:text-[var(--color-accent)]"
+                  className="text-xs font-semibold uppercase tracking-[0.08em] text-white/70 transition-colors duration-200 hover:text-[var(--color-accent)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/30"
                 >
                   {EMAIL}
                 </a>
@@ -75,8 +75,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-white/5 pt-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 SparkClean Toronto. Template content requires client verification before launch.</p>
-          <p>Designed & developed for client conversion workflows.</p>
+          <p>© 2026 SparkClean Toronto. Quote requests are confirmed by email.</p>
+          <p>Serving Toronto and nearby GTA neighborhoods by availability.</p>
         </div>
       </div>
     </footer>

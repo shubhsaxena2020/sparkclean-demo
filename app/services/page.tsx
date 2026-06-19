@@ -10,7 +10,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Cleaning Services in the GTA | SparkClean",
   description:
-    "Professional, eco-friendly house cleaning services tailored to your needs. Discover our standard, deep, and move-in/move-out options in Toronto.",
+    "Cleaning service quote page for Toronto homes with clear scope, transparent estimates, and checklist-based service options.",
 };
 
 const PLANS = [
@@ -44,7 +44,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="WHAT WE CLEAN"
         title="Cleaning services for every Toronto home."
-        intro="We provide custom cleaning solutions designed to elevate your living environment. Whether you need a standard refresh or a detailed moving clean, our team delivers spotless results."
+        intro="Choose the scope first, then request a quote with home size, timing, access notes, and service details. SparkClean reviews the request before confirming final availability."
       />
 
       {/* 2. Full Services grid */}
@@ -73,10 +73,10 @@ export default function ServicesPage() {
               </RevealSubtext>
 
               <RevealSubtext delay={0.15} className="mt-8 relative block" as="div">
-                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] bg-white p-3 group hover:border-primary/35 hover:shadow-[0_25px_50px_-20px_rgba(15,182,126,0.18)] transition-all duration-500">
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] bg-white p-3 group hover:border-primary/35 hover:shadow-[0_25px_50px_-20px_rgba(15,182,126,0.18)] transition-[border-color,box-shadow] duration-300">
                   <div className="relative w-full h-full overflow-hidden rounded-[18px]">
                     <Image
-                      src="/img/results3.jpg"
+                      src="/img/results3.webp"
                       alt="Spotless minimalist bathroom with fresh rolled towels"
                       fill
                       sizes="(max-width: 1024px) 100vw, 440px"
@@ -97,7 +97,7 @@ export default function ServicesPage() {
                   return (
                     <RevealItem
                       key={plan.name}
-                      className={`rounded-[24px] border p-6 sm:p-8 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] transition-all duration-300 ${
+                      className={`rounded-[24px] border p-6 sm:p-8 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] transition-[border-color,box-shadow,background-color] duration-300 ${
                         isFeatured
                           ? "border-2 border-primary/25 bg-[#F2FBF7] shadow-[0_12px_30px_-10px_rgba(15,182,126,0.08)]"
                           : "border-[var(--color-border)] bg-white"

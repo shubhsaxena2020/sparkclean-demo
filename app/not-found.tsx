@@ -18,7 +18,7 @@ export default function NotFound() {
       <RevealSubtext delay={0.16} className="mt-8">
         <Link
           href="/"
-          className="inline-flex items-center justify-center gap-1.5 rounded-full border border-primary px-6 py-3 text-sm font-bold text-primary transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0"
+          className="inline-flex items-center justify-center gap-1.5 rounded-full border border-primary px-6 py-3 text-sm font-bold text-primary transition-[background-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0"
         >
           Back to Home
         </Link>
