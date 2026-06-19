@@ -175,7 +175,7 @@ export default function QuoteForm() {
     }
 
     setErrors({});
-    setStatus({ type: "sending", message: "Sending quote request…" });
+    setStatus({ type: "sending", message: "Sending quote request..." });
 
     const response = await fetch("/api/quote", {
       method: "POST",
@@ -198,7 +198,7 @@ export default function QuoteForm() {
     const result = (await response.json()) as {
       ok?: boolean;
       referenceId?: string;
-      delivery?: "sent" | "not_configured";
+      delivery?: "sent";
       errors?: Errors;
     };
 
@@ -210,14 +210,9 @@ export default function QuoteForm() {
       return;
     }
 
-    const setupNote =
-      result.delivery === "not_configured"
-        ? " Email delivery is not configured in this environment, so use the email fallback before relying on this deployment."
-        : "";
-
     setStatus({
       type: "success",
-      message: `Quote request received. Reference ${result.referenceId}.${setupNote}`,
+      message: `Quote request sent. Reference ${result.referenceId}.`,
     });
     requestAnimationFrame(() => statusRef.current?.focus());
   }
@@ -328,14 +323,14 @@ export default function QuoteForm() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            <TextInput id="quote-name" name="name" label="Name" value={name} onChange={(value) => { resetFeedback(); setName(value); }} placeholder="Priya Kumar…" autoComplete="name" error={errors.name} required />
-            <TextInput id="quote-email" name="email" label="Email" type="email" inputMode="email" value={email} onChange={(value) => { resetFeedback(); setEmail(value); }} placeholder="priya@example.com…" autoComplete="email" error={errors.email} required />
-            <TextInput id="quote-phone" name="tel" label="Phone" type="tel" inputMode="tel" value={phone} onChange={(value) => { resetFeedback(); setPhone(value); }} placeholder="416 800 1234…" autoComplete="tel" error={errors.phone} required />
-            <TextInput id="quote-postal" name="postal-code" label="Postal Code" value={postalCode} onChange={(value) => { resetFeedback(); setPostalCode(value); }} placeholder="M4W 1A5…" autoComplete="postal-code" error={errors.postalCode} required />
+            <TextInput id="quote-name" name="name" label="Name" value={name} onChange={(value) => { resetFeedback(); setName(value); }} placeholder="Priya Kumar..." autoComplete="name" error={errors.name} required />
+            <TextInput id="quote-email" name="email" label="Email" type="email" inputMode="email" value={email} onChange={(value) => { resetFeedback(); setEmail(value); }} placeholder="priya@example.com..." autoComplete="email" error={errors.email} required />
+            <TextInput id="quote-phone" name="tel" label="Phone" type="tel" inputMode="tel" value={phone} onChange={(value) => { resetFeedback(); setPhone(value); }} placeholder="416 800 1234..." autoComplete="tel" error={errors.phone} required />
+            <TextInput id="quote-postal" name="postal-code" label="Postal Code" value={postalCode} onChange={(value) => { resetFeedback(); setPostalCode(value); }} placeholder="M4W 1A5..." autoComplete="postal-code" error={errors.postalCode} required />
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            <TextInput id="quote-date" name="preferred-date" label="Preferred Time" value={preferredDate} onChange={(value) => { resetFeedback(); setPreferredDate(value); }} placeholder="Friday morning…" autoComplete="off" />
+            <TextInput id="quote-date" name="preferred-date" label="Preferred Time" value={preferredDate} onChange={(value) => { resetFeedback(); setPreferredDate(value); }} placeholder="Friday morning..." autoComplete="off" />
             <div className="grid gap-2">
               <FieldLabel htmlFor="quote-notes">Access Notes</FieldLabel>
               <textarea
@@ -346,7 +341,7 @@ export default function QuoteForm() {
                   resetFeedback();
                   setNotes(event.target.value);
                 }}
-                placeholder="Pets, parking, lockbox, supplies…"
+                placeholder="Pets, parking, lockbox, supplies..."
                 rows={3}
                 className="min-h-12 rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-sm text-[var(--color-ink)] transition-colors duration-200 placeholder:text-[var(--color-muted)]/70 focus-visible:border-[var(--color-primary)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
               />
@@ -379,7 +374,7 @@ export default function QuoteForm() {
               disabled={status.type === "sending"}
               className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-xl bg-[var(--color-primary)] px-6 text-sm font-bold text-white shadow-[0_14px_32px_-18px_rgba(6,61,46,0.8)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] disabled:cursor-wait disabled:opacity-70 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
             >
-              {status.type === "sending" ? "Sending…" : "Request Quote"}
+              {status.type === "sending" ? "Sending..." : "Request Quote"}
             </button>
           </div>
         </form>

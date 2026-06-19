@@ -119,6 +119,17 @@ export async function POST(request: Request) {
 
   try {
     const delivery = await sendEmail(body, referenceId);
+    if (delivery === "not_configured") {
+      return NextResponse.json(
+        {
+          ok: false,
+          referenceId,
+          errors: { form: "Email delivery is not configured yet. Use the email fallback below to send this quote request." },
+        },
+        { status: 503 },
+      );
+    }
+
     return NextResponse.json({ ok: true, referenceId, delivery });
   } catch {
     return NextResponse.json(
