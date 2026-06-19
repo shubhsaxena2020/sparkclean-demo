@@ -26,7 +26,7 @@ type Status =
 
 function FieldLabel({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
-    <label htmlFor={htmlFor} className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-primary)]">
+    <label htmlFor={htmlFor} className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-ink)]">
       {children}
     </label>
   );
@@ -355,7 +355,7 @@ export default function QuoteForm() {
                 tabIndex={-1}
                 aria-live="polite"
                 className={`min-h-6 text-sm font-semibold ${
-                  status.type === "error" ? "text-red-700" : status.type === "success" ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"
+                  status.type === "error" ? "text-red-700" : status.type === "success" ? "text-[var(--color-ink)]" : "text-[var(--color-muted)]"
                 }`}
               >
                 {status.message || "Estimate updates as you change the service details."}
@@ -363,7 +363,7 @@ export default function QuoteForm() {
               {errors.form && (
                 <a
                   href={mailtoHref()}
-                  className="mt-2 inline-flex text-sm font-bold text-primary transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
+                  className="mt-2 inline-flex text-sm font-bold text-[var(--color-ink)] transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
                 >
                   Email the request instead
                 </a>

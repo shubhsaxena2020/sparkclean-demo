@@ -56,7 +56,7 @@ export default function AreasPage() {
               Do not see your neighborhood?{" "}
               <a
                 href={BOOKING_URL}
-                className="font-bold text-primary transition-colors duration-200 hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
+                className="font-bold text-[var(--color-ink)] transition-colors duration-200 hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
               >
                 Request availability with your postal code
               </a>
@@ -68,7 +68,7 @@ export default function AreasPage() {
       <section className="w-full border-b border-t border-[var(--color-border)] bg-surface py-16 sm:py-20">
         <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <RevealEyebrow className="block text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            <RevealEyebrow className="block text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
               Coverage Notes
             </RevealEyebrow>
             <RevealHeading

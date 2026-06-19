@@ -29,7 +29,7 @@ export default function ServiceScenes() {
       <div className="mx-auto max-w-[var(--maxw)] px-6">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div>
-            <RevealEyebrow className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">
+            <RevealEyebrow className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">
               Cleaning Detail
             </RevealEyebrow>
             <RevealHeading

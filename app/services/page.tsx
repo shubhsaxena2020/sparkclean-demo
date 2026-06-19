@@ -57,7 +57,7 @@ export default function ServicesPage() {
               <span className="pointer-events-none absolute -left-4 -top-16 select-none font-display text-[9rem] font-black leading-none text-primary/[0.04]">
                 03
               </span>
-              <RevealEyebrow className="relative z-10 block text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              <RevealEyebrow className="relative z-10 block text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
                 What Is Included
               </RevealEyebrow>
               <RevealHeading

@@ -19,7 +19,7 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-primary text-sm font-black text-[var(--color-ink)] shadow-[0_4px_12px_rgba(217,155,0,0.25)]">
                 SC
               </span>
-              <RevealEyebrow className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              <RevealEyebrow className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
                 Founder Story
               </RevealEyebrow>
             </div>
@@ -42,7 +42,7 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
               <RevealSubtext className="relative z-10 mt-8">
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
+                  className="inline-flex items-center gap-1 text-sm font-bold text-[var(--color-ink)] transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
                 >
                   About Us
                 </Link>

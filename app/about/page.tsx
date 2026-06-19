@@ -68,7 +68,7 @@ export default function AboutPage() {
       <section className="w-full border-b border-t border-[var(--color-border)] bg-surface py-16 sm:py-20">
         <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <RevealEyebrow className="block text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            <RevealEyebrow className="block text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
               What You Can Expect
             </RevealEyebrow>
             <RevealHeading

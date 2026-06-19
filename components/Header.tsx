@@ -82,7 +82,7 @@ export default function Header() {
                 href={item.href}
                 className={`relative py-1 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-200 hover:text-[var(--color-primary)] ${
                   active
-                    ? "text-[var(--color-primary)] after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:bg-[var(--color-primary)]"
+                    ? "text-[var(--color-ink)] after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:bg-[var(--color-primary)]"
                     : "text-[var(--color-ink)]"
                 }`}
               >
@@ -132,7 +132,7 @@ export default function Header() {
                       triggerRef.current?.focus();
                     }}
                     className={`block rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-widest transition-colors duration-200 hover:bg-[var(--color-surface-2)]/50 ${
-                      active ? "bg-[var(--color-surface-2)]/30 font-bold text-[var(--color-primary)]" : "text-[var(--color-ink)]"
+                      active ? "bg-[var(--color-surface-2)]/30 font-bold text-[var(--color-ink)]" : "text-[var(--color-ink)]"
                     }`}
                   >
                     {item.label}

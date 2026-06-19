@@ -43,7 +43,7 @@ export default function FAQ() {
     <section className="w-full bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="text-center">
-          <RevealEyebrow className="block text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+          <RevealEyebrow className="block text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
             FAQ
           </RevealEyebrow>
           <RevealHeading

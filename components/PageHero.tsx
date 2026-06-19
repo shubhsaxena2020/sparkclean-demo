@@ -19,7 +19,7 @@ export default function PageHero({ eyebrow, title, intro }: PageHeroProps) {
 
       <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl">
-          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] block">
             {eyebrow}
           </RevealEyebrow>
           <RevealHeading

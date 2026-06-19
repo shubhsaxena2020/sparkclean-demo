@@ -41,7 +41,7 @@ function Segmented<T extends string>({
   const colClass = cols === 2 ? "grid-cols-2" : cols === 4 ? "grid-cols-4" : "grid-cols-3";
   return (
     <fieldset className="m-0 border-0 p-0">
-      <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-primary)]">{legend}</legend>
+      <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-ink)]">{legend}</legend>
       <div className={`grid ${colClass} gap-2.5`} role="radiogroup" aria-label={legend}>
         {options.map((opt) => {
           const active = opt.id === value;
@@ -88,7 +88,7 @@ function Stepper({
 }) {
   return (
     <div>
-      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-primary)]">{label}</span>
+      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-ink)]">{label}</span>
       <div className="flex items-center justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]/80 p-1.5">
         <button
           type="button"

@@ -4,7 +4,7 @@ import { RevealEyebrow, RevealHeading, RevealSubtext } from "@/components/Reveal
 export default function NotFound() {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center bg-white px-4 text-center">
-      <RevealEyebrow className="text-sm font-semibold uppercase tracking-[0.22em] text-primary block" as="span">
+      <RevealEyebrow className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)] block" as="span">
         404 ERROR
       </RevealEyebrow>
       <RevealHeading

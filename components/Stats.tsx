@@ -8,7 +8,7 @@ export default function Stats() {
         <Reveal>
           <div className="grid gap-6 md:grid-cols-[0.7fr_1.3fr] md:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">
                 Quote Confidence
               </p>
               <h2 className="mt-2 font-display text-3xl font-extrabold text-ink text-balance">

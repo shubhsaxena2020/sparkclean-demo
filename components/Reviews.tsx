@@ -22,7 +22,7 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
     <section id="reviews" className="relative w-full overflow-hidden bg-white">
       <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
         <div className="relative mx-auto max-w-2xl text-center">
-          <RevealEyebrow className="relative z-10 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+          <RevealEyebrow className="relative z-10 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
             Booking Confidence
           </RevealEyebrow>
           <RevealHeading
@@ -54,7 +54,7 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
           <Reveal className="mt-8 text-center">
             <Link
               href="/about#reviews"
-              className="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors duration-200 hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
+              className="inline-flex items-center gap-1 text-sm font-bold text-[var(--color-ink)] transition-colors duration-200 hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
             >
               View Booking Process
             </Link>

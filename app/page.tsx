@@ -111,7 +111,7 @@ export default function Home() {
         </div>
         <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-[var(--maxw)] items-center gap-12 px-6 pb-12 pt-32 lg:grid-cols-[1.02fr_0.98fr] lg:pt-36">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">
             Toronto Home Cleaning Quotes
           </p>
           <h1 className="mt-5 max-w-4xl font-display text-5xl font-black leading-[0.96] tracking-[-0.02em] text-pretty sm:text-6xl lg:text-[5rem]">
@@ -186,7 +186,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-4 rounded-2xl border border-[var(--color-border)] bg-white/92 p-5 shadow-[0_22px_65px_-35px_rgba(21,19,13,0.45)] backdrop-blur-md sm:absolute sm:-bottom-6 sm:left-6 sm:right-6 sm:mt-0">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-primary)]">Quote Flow</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-ink)]">Quote Flow</p>
             <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
               Your request captures service scope, preferred timing, postal code, and access notes in one pass.
             </p>
@@ -198,7 +198,7 @@ export default function Home() {
       <section id="proof" className="relative z-10 border-y border-[var(--color-border)] bg-white/88 py-14">
         <div className="mx-auto grid max-w-[var(--maxw)] gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Before You Book</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">Before You Book</p>
             <h2 className="mt-3 font-display text-3xl font-extrabold text-pretty sm:text-4xl">
               The details are clear before anyone shows up.
             </h2>
@@ -219,7 +219,7 @@ export default function Home() {
       <section className="relative z-10 mx-auto max-w-[var(--maxw)] px-6 py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Visual Proof</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">Visual Proof</p>
             <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.02em] text-pretty sm:text-5xl">
               Before/after expectations belong in plain view.
             </h2>
@@ -237,7 +237,7 @@ export default function Home() {
 
       <section className="relative z-10 mx-auto max-w-[var(--maxw)] px-6 py-16 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Booking Flow</p>
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">Booking Flow</p>
           <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.02em] text-pretty sm:text-5xl">
             From estimate to confirmed clean.
           </h2>
@@ -256,7 +256,7 @@ export default function Home() {
       <section className="relative z-10 border-y border-[var(--color-border)] bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[var(--maxw)] px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Policies</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-ink)]">Policies</p>
             <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.02em] text-pretty sm:text-5xl">
               Practical policies make the quote easier to trust.
             </h2>

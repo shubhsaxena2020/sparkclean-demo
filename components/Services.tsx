@@ -58,7 +58,7 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
     <section id="services" className="mx-auto max-w-[var(--maxw)] border-b border-[var(--color-border)] px-4 py-24 sm:px-6 sm:py-32 lg:py-36">
       <div className="grid items-start gap-12 lg:grid-cols-12">
         <div className="flex flex-col justify-start lg:col-span-5">
-          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-ink)]">
             What We Clean
           </RevealEyebrow>
           <RevealHeading
@@ -118,7 +118,7 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
         <RevealSubtext className="mt-16 text-center">
           <Link
             href="/services"
-            className="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
+            className="inline-flex items-center gap-1 text-sm font-bold text-[var(--color-ink)] transition-colors hover:text-primary-d focus-visible:ring-2 focus-visible:ring-primary/30"
           >
             View All Services
           </Link>
