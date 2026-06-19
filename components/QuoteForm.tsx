@@ -220,7 +220,7 @@ export default function QuoteForm() {
   return (
     <section id="quote" className="relative z-10 mx-auto max-w-[var(--maxw)] px-6 py-16 sm:py-20">
       <div className="grid overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-white shadow-[0_24px_80px_-45px_rgba(7,15,12,0.35)] lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="bg-[var(--color-primary)] p-8 text-white sm:p-10 lg:p-12">
+        <div className="bg-[var(--color-ink)] p-8 text-white sm:p-10 lg:p-12">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-accent)]">Instant Estimate</p>
           <h2 className="mt-4 max-w-md font-display text-4xl font-extrabold leading-tight text-pretty sm:text-5xl">
             Turn your cleaning details into a clear quote request.
@@ -372,7 +372,7 @@ export default function QuoteForm() {
             <button
               type="submit"
               disabled={status.type === "sending"}
-              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-xl bg-[var(--color-primary)] px-6 text-sm font-bold text-white shadow-[0_14px_32px_-18px_rgba(6,61,46,0.8)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] disabled:cursor-wait disabled:opacity-70 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-xl bg-[var(--color-primary)] px-6 text-sm font-bold text-[var(--color-ink)] shadow-[0_14px_32px_-18px_rgba(217,155,0,0.85)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] disabled:cursor-wait disabled:opacity-70 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/40"
             >
               {status.type === "sending" ? "Sending..." : "Request Quote"}
             </button>

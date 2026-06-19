@@ -10,7 +10,7 @@ export default function BeforeAfter() {
   return (
     <div className="grid gap-4">
       <div
-        className="@container relative h-[360px] w-full overflow-hidden rounded-[28px] border border-[var(--color-primary)]/10 shadow-[0_12px_40px_rgba(6,61,46,0.06)]"
+        className="@container relative h-[360px] w-full overflow-hidden rounded-[28px] border border-[var(--color-primary)]/15 shadow-[0_12px_40px_rgba(21,19,13,0.07)]"
       >
         <div className="absolute inset-0 h-full w-full">
           <Image
@@ -22,7 +22,7 @@ export default function BeforeAfter() {
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/20 to-transparent pointer-events-none" />
-          <span className="absolute bottom-6 right-6 rounded-full bg-[var(--color-primary)]/84 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-white shadow-md backdrop-blur-md">
+          <span className="absolute bottom-6 right-6 rounded-full bg-[var(--color-primary)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-ink)] shadow-md backdrop-blur-md">
             After
           </span>
         </div>

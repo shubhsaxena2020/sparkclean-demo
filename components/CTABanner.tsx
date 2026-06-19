@@ -5,7 +5,7 @@ export default function CTABanner() {
   return (
     <section
       className="relative w-full overflow-hidden py-20 text-center"
-      style={{ background: "linear-gradient(135deg, #063D2E, #094F3B)" }}
+      style={{ background: "linear-gradient(135deg, #15130D, #2A2618)" }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.035] pointer-events-none" />
 
@@ -13,7 +13,7 @@ export default function CTABanner() {
         <RevealHeading
           as="h2"
           text="Ready to turn estimate interest into a quote request?"
-          className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-[1.05]"
+          className="text-3xl font-black tracking-[-0.02em] text-white sm:text-5xl leading-[1.03]"
         />
         <RevealSubtext className="mx-auto mt-4 max-w-xl text-base leading-[1.7] text-white/90 sm:text-lg">
           Capture the details a cleaning team needs before confirming availability,

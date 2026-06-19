@@ -73,7 +73,7 @@ export default function AreasPage() {
             </RevealEyebrow>
             <RevealHeading
               text="Final availability depends on your exact request."
-              className="mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-4xl"
+              className="mt-2 text-3xl font-black leading-[1.03] tracking-[-0.02em] text-ink text-balance sm:text-4xl"
             />
             <RevealSubtext className="mt-3 text-base text-muted">
               Share your postal code, building access, parking, timing, and service scope so SparkClean can confirm whether the route works.

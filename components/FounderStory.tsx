@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
+import { GuaranteeIcon } from "./icons";
 
 export default function FounderStory({ showLink = false }: { showLink?: boolean }) {
   return (
@@ -15,7 +16,7 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
             </span>
 
             <div className="relative z-10 flex items-center gap-3">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-primary text-sm font-black text-white shadow-[0_4px_12px_rgba(15,182,126,0.15)]">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-primary text-sm font-black text-[var(--color-ink)] shadow-[0_4px_12px_rgba(217,155,0,0.25)]">
                 SC
               </span>
               <RevealEyebrow className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
@@ -25,7 +26,7 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
 
             <RevealHeading
               text="Built around clear cleaning requests."
-              className="mt-4 text-3xl font-extrabold tracking-tight text-ink text-balance sm:text-4xl"
+              className="mt-4 text-3xl font-black tracking-[-0.02em] text-ink text-balance sm:text-4xl"
               as="h2"
             />
 
@@ -50,8 +51,8 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
           </div>
 
           <div className="flex w-full justify-center lg:col-span-5">
-            <Reveal className="w-full max-w-[380px]">
-              <div className="relative rounded-[32px] border border-[var(--color-border)] bg-white p-4 shadow-[0_20px_50px_-20px_rgba(15,26,23,0.15)] transition-[box-shadow,transform] duration-300 hover:shadow-[0_25px_60px_-15px_rgba(15,182,126,0.2)] md:-rotate-2 md:hover:rotate-0">
+            <Reveal className="relative w-full max-w-[380px]">
+              <div className="relative rounded-[32px] border border-[var(--color-border)] bg-white p-4 shadow-[0_20px_50px_-20px_rgba(21,19,13,0.15)] transition-[box-shadow,transform] duration-300 hover:shadow-[0_25px_60px_-15px_rgba(217,155,0,0.25)] md:-rotate-2 md:hover:rotate-0">
                 <div className="group relative aspect-[4/5] overflow-hidden rounded-[24px] border border-[var(--color-border)]">
                   <Image
                     src="/img/founder.webp"
@@ -63,6 +64,16 @@ export default function FounderStory({ showLink = false }: { showLink?: boolean 
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
+              </div>
+
+              <div className="mt-4 inline-flex w-fit items-center gap-3 rounded-2xl bg-[#15130D] px-5 py-4 shadow-[0_20px_50px_-20px_rgba(21,19,13,0.65)] sm:absolute sm:-bottom-5 sm:-left-5 sm:z-20 sm:mt-0">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[var(--color-accent)] text-[var(--color-ink)]">
+                  <GuaranteeIcon width={20} height={20} />
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="font-display text-lg font-black text-[var(--color-bg)]">24-Hour</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/65">Issue Window</span>
+                </span>
               </div>
             </Reveal>
           </div>

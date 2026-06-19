@@ -2,15 +2,15 @@
 
 /* Design tokens - single source of truth */
 @theme {
-  --color-bg: #f9f9f8;
-  --color-surface: rgba(255, 255, 255, 0.4);
-  --color-surface-2: #eeeeed;
-  --color-ink: #070f0c;
-  --color-primary: #063d2e;
-  --color-primary-d: #00261b;
-  --color-accent: #d4af37;
-  --color-muted: #717974;
-  --color-border: #c0c9c3;
+  --color-bg: #FBF8F0;
+  --color-surface: #FFF6E0;
+  --color-surface-2: #F1EAD6;
+  --color-ink: #15130D;
+  --color-primary: #F4B400;
+  --color-primary-d: #D99B00;
+  --color-accent: #F4B400;
+  --color-muted: #6E6657;
+  --color-border: #EAE0C5;
   --radius: 32px;
   --maxw: 1440px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -26,7 +26,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  background-color: #ffffff;
+  background-color: #FBF8F0;
 }
 
 body {
@@ -48,7 +48,7 @@ h4 {
 
 :focus-visible {
   border-radius: 4px;
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-ink);
   outline-offset: 2px;
 }
 
@@ -62,12 +62,12 @@ footer[id] {
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #FBF8F0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(15, 26, 23, 0.12);
-  border: 2px solid #ffffff;
+  background: rgba(21, 19, 13, 0.14);
+  border: 2px solid #FBF8F0;
   border-radius: 5px;
 }
 
@@ -104,8 +104,8 @@ footer[id] {
 
 .blueprint-grid {
   background-image:
-    linear-gradient(to right, rgba(15, 182, 126, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 182, 126, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(217, 155, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(217, 155, 0, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
@@ -130,10 +130,10 @@ footer[id] {
 }
 
 .glow-card-hover:hover {
-  border-color: rgba(15, 182, 126, 0.35) !important;
+  border-color: rgba(244, 180, 0, 0.45) !important;
   box-shadow:
-    0 20px 45px -15px rgba(15, 26, 23, 0.12),
-    0 0 20px 0 rgba(15, 182, 126, 0.08) !important;
+    0 20px 45px -15px rgba(21, 19, 13, 0.12),
+    0 0 20px 0 rgba(244, 180, 0, 0.14) !important;
   translate: 0 -5px;
 }
 
@@ -204,11 +204,11 @@ footer[id] {
 
 .bento-panel {
   overflow: hidden;
-  border: 1px solid rgba(9, 79, 59, 0.08);
+  border: 1px solid rgba(21, 19, 13, 0.08);
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.45);
   box-shadow:
-    0 10px 30px -10px rgba(9, 79, 59, 0.04),
+    0 10px 30px -10px rgba(21, 19, 13, 0.05),
     0 1px 1px 0 rgba(255, 255, 255, 0.8) inset;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -220,11 +220,11 @@ footer[id] {
 }
 
 .bento-panel:hover {
-  border-color: rgba(9, 79, 59, 0.15);
+  border-color: rgba(244, 180, 0, 0.2);
   background: rgba(255, 255, 255, 0.6);
   box-shadow:
-    0 20px 40px -15px rgba(9, 79, 59, 0.08),
-    0 0 0 1px rgba(9, 79, 59, 0.05);
+    0 20px 40px -15px rgba(21, 19, 13, 0.08),
+    0 0 0 1px rgba(244, 180, 0, 0.1);
   translate: 0 -2px;
 }
 
@@ -241,11 +241,11 @@ footer[id] {
 }
 
 .sparkclean-plane {
-  border: 1px solid rgba(6, 61, 46, 0.08);
+  border: 1px solid rgba(217, 155, 0, 0.1);
   background:
     linear-gradient(115deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.08)),
-    linear-gradient(90deg, rgba(6, 61, 46, 0.06), rgba(212, 175, 55, 0.08));
-  box-shadow: 0 24px 80px -60px rgba(6, 61, 46, 0.55);
+    linear-gradient(90deg, rgba(244, 180, 0, 0.07), rgba(255, 246, 224, 0.1));
+  box-shadow: 0 24px 80px -60px rgba(21, 19, 13, 0.4);
   transform-origin: center;
 }
 
@@ -279,7 +279,7 @@ footer[id] {
 
 .sparkclean-glint {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(244, 180, 0, 0.55), transparent);
 }
 
 .sparkclean-glint-a {
@@ -326,6 +326,13 @@ footer[id] {
   50% {
     opacity: 0.58;
     transform: translate3d(6%, 0, 0) rotateZ(-8deg);
+  }
+}
+
+/* Service-card image treatment: clean rectangle on mobile, angled edge on larger screens */
+@media (min-width: 640px) {
+  .diagonal-clip {
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%);
   }
 }
 

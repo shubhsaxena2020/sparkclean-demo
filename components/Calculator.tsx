@@ -50,7 +50,7 @@ function Segmented<T extends string>({
               key={opt.id}
               className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-semibold transition-[background-color,border-color,color,box-shadow] duration-300 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[var(--color-primary)]/40 has-[:focus-visible]:ring-offset-1 ${
                 active
-                  ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)]"
+                  ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-ink)] shadow-[0_4px_15px_rgba(217,155,0,0.25)]"
                   : "border-[var(--color-border)] bg-[var(--color-bg)]/80 text-[var(--color-ink)] hover:border-[var(--color-primary)]/40 hover:bg-white"
               }`}
             >
@@ -95,7 +95,7 @@ function Stepper({
           aria-label={`Decrease ${label.toLowerCase()}`}
           disabled={value <= min}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-[background-color,border-color,color,opacity] duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-[background-color,border-color,color,opacity] duration-200 hover:bg-[var(--color-primary)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-35 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
           <MinusIcon width={16} height={16} />
         </button>
@@ -107,7 +107,7 @@ function Stepper({
           aria-label={`Increase ${label.toLowerCase()}`}
           disabled={value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-[background-color,border-color,color,opacity] duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-[background-color,border-color,color,opacity] duration-200 hover:bg-[var(--color-primary)] hover:text-[var(--color-ink)] disabled:cursor-not-allowed disabled:opacity-35 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
           <PlusIcon width={16} height={16} />
         </button>
@@ -126,7 +126,7 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
   const included = getService(service).included;
 
   return (
-    <div className={`grid w-full overflow-hidden rounded-[32px] border border-[var(--color-primary)]/10 bg-white/40 shadow-[0_20px_50px_rgba(6,61,46,0.05)] backdrop-blur-xl ${compact ? "grid-cols-1" : "md:grid-cols-[1.2fr_1fr]"}`}>
+    <div className={`grid w-full overflow-hidden rounded-[32px] border border-[var(--color-primary)]/10 bg-white/40 shadow-[0_20px_50px_rgba(21,19,13,0.05)] backdrop-blur-xl ${compact ? "grid-cols-1" : "md:grid-cols-[1.2fr_1fr]"}`}>
       <div className={`flex flex-col gap-7 p-6 sm:p-8 ${compact ? "" : "md:p-10"}`}>
         <Segmented
           legend="Select Cleaning Tier"
@@ -184,7 +184,7 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
 
           <div className="mt-4">
             {result.discountPct > 0 ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-primary)] px-3 py-1.5 text-xs font-semibold tracking-wide text-white">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-primary)] px-3 py-1.5 text-xs font-semibold tracking-wide text-[var(--color-ink)]">
                 Save {result.discountPct}% with {FREQUENCIES.find((f) => f.id === frequency)?.label.toLowerCase()}
               </span>
             ) : (
@@ -205,10 +205,10 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
         <div>
           <a
             href={BOOKING_URL}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-[background-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-[2px] hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-4 text-base font-bold text-[var(--color-ink)] shadow-[0_4px_15px_rgba(217,155,0,0.3)] transition-[background-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-[2px] hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/40"
           >
             Request {getService(service).label} Quote
-            <ArrowRightIcon width={16} height={16} className="text-white" />
+            <ArrowRightIcon width={16} height={16} className="text-[var(--color-ink)]" />
           </a>
           <p className="mt-4 text-center text-xs leading-relaxed text-[var(--color-muted)]">
             Estimate only - final quotes are confirmed after scope and availability review.

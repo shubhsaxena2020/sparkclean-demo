@@ -34,7 +34,7 @@ export default function ServiceScenes() {
             </RevealEyebrow>
             <RevealHeading
               text="Photos help define the level of finish."
-              className="mt-3 font-display text-4xl font-extrabold leading-[1.02] text-pretty sm:text-5xl"
+              className="mt-3 font-display text-4xl font-black tracking-[-0.02em] leading-[1.0] text-pretty sm:text-5xl"
             />
             <RevealSubtext className="mt-5 text-base leading-8 text-[var(--color-muted)]">
               These sample room visuals make the service scope easier to understand before the quote is confirmed.
@@ -52,7 +52,7 @@ export default function ServiceScenes() {
               as="article"
               className="group overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[0_18px_55px_-36px_rgba(7,15,12,0.38)]"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="diagonal-clip relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={scene.image}
                   alt={scene.alt}
@@ -62,7 +62,7 @@ export default function ServiceScenes() {
                   loading="eager"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/55 via-transparent to-transparent" />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[var(--color-primary)] backdrop-blur-sm">
+                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[var(--color-ink)] backdrop-blur-sm">
                   0{index + 1}
                 </span>
               </div>

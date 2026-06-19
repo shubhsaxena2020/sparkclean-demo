@@ -62,7 +62,7 @@ export default function ServicesPage() {
               </RevealEyebrow>
               <RevealHeading
                 text="Detailed checklists for every clean."
-                className="relative z-10 mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-5xl"
+                className="relative z-10 mt-2 text-3xl font-black leading-[1.03] tracking-[-0.02em] text-ink text-balance sm:text-5xl"
                 as="h2"
               />
               <RevealSubtext className="relative z-10 mt-4 text-base leading-relaxed text-muted">
@@ -70,7 +70,7 @@ export default function ServicesPage() {
               </RevealSubtext>
 
               <RevealSubtext delay={0.15} className="relative mt-8 block" as="div">
-                <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-3 shadow-[0_15px_35px_-15px_rgba(15,26,23,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-primary/35 hover:shadow-[0_25px_50px_-20px_rgba(15,182,126,0.18)] sm:aspect-[4/3]">
+                <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white p-3 shadow-[0_15px_35px_-15px_rgba(21,19,13,0.15)] transition-[border-color,box-shadow] duration-300 hover:border-primary/45 hover:shadow-[0_25px_50px_-20px_rgba(217,155,0,0.22)] sm:aspect-[4/3]">
                   <div className="relative h-full w-full overflow-hidden rounded-[18px]">
                     <Image
                       src="/img/results3.webp"
@@ -95,14 +95,14 @@ export default function ServicesPage() {
                       key={plan.name}
                       className={`rounded-[24px] border p-6 shadow-[0_8px_24px_-10px_rgba(15,26,23,0.06)] transition-[border-color,box-shadow,background-color] duration-300 sm:p-8 ${
                         isFeatured
-                          ? "border-2 border-primary/25 bg-[#F2FBF7] shadow-[0_12px_30px_-10px_rgba(15,182,126,0.08)]"
+                          ? "border-2 border-primary/30 bg-[var(--color-surface)] shadow-[0_12px_30px_-10px_rgba(217,155,0,0.12)]"
                           : "border-[var(--color-border)] bg-white"
                       }`}
                     >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <h3 className="text-xl font-bold text-ink">{plan.name}</h3>
                         {isFeatured && (
-                          <span className="rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-white">
+                          <span className="rounded-full bg-primary px-3 py-0.5 text-xs font-bold text-[var(--color-ink)]">
                             Recommended Starting Clean
                           </span>
                         )}

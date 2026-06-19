@@ -73,7 +73,7 @@ export default function AboutPage() {
             </RevealEyebrow>
             <RevealHeading
               text="Less guessing before cleaning day."
-              className="mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-4xl"
+              className="mt-2 text-3xl font-black leading-[1.03] tracking-[-0.02em] text-ink text-balance sm:text-4xl"
             />
             <RevealSubtext className="mt-3 text-base text-muted">
               The site avoids invented ratings or broad guarantees. It focuses on clear scope and written confirmation.

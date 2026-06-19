@@ -9,12 +9,12 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-[var(--color-primary)]/20 bg-[#041A14] text-white/80">
+    <footer className="relative z-10 border-t border-[var(--color-primary)]/25 bg-[#15130D] text-white/80">
       <div className="mx-auto max-w-[var(--maxw)] px-6 py-16">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-accent)] text-xs font-black text-[var(--color-primary)] shadow-[0_4px_15px_rgba(212,175,55,0.25)]">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-accent)] text-xs font-black text-[var(--color-ink)] shadow-[0_4px_15px_rgba(244,180,0,0.3)]">
                 SC
               </span>
               <span className="font-display text-xl font-extrabold tracking-tight text-white">
@@ -78,6 +78,17 @@ export default function Footer() {
           <p>© 2026 SparkClean Toronto. Quote requests are confirmed by email.</p>
           <p>Serving Toronto and nearby GTA neighborhoods by availability.</p>
         </div>
+        <p className="mt-6 text-center text-xs text-white/45 sm:text-left">
+          Demo site built by Shubh Saxena —{" "}
+          <a
+            href="https://shubhbuilds.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-[var(--color-accent)] transition-colors duration-200 hover:text-white focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/30"
+          >
+            shubhbuilds.com
+          </a>
+        </p>
       </div>
     </footer>
   );

@@ -27,7 +27,7 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
           </RevealEyebrow>
           <RevealHeading
             text="The process is designed to reduce cleaning-day surprises."
-            className="relative z-10 mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-5xl"
+            className="relative z-10 mt-2 text-3xl font-black leading-[1.03] tracking-[-0.02em] text-ink text-balance sm:text-5xl"
           />
           <RevealSubtext className="relative z-10 mt-5 text-base leading-7 text-muted">
             No invented reviews or star ratings. The site focuses on the information homeowners need before requesting a clean.

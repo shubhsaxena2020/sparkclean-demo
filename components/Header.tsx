@@ -16,7 +16,7 @@ const NAV = [
 function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2.5" aria-label="SparkClean home">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-primary)] text-xs font-black tracking-tight text-white shadow-[0_4px_15px_rgba(6,61,46,0.2)]">
+      <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-primary)] text-xs font-black tracking-tight text-[var(--color-ink)] shadow-[0_4px_15px_rgba(244,180,0,0.3)]">
         SC
       </span>
       <span className="font-display text-xl font-extrabold tracking-tight text-[var(--color-ink)]">
@@ -66,7 +66,7 @@ export default function Header() {
     <header
       className={`fixed left-0 right-0 top-0 z-50 w-full transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
         scrolled
-          ? "border-b border-[var(--color-primary)]/10 bg-white/78 shadow-[0_10px_30px_rgba(6,61,46,0.04)] backdrop-blur-xl"
+          ? "border-b border-[var(--color-primary)]/15 bg-white/78 shadow-[0_10px_30px_rgba(21,19,13,0.05)] backdrop-blur-xl"
           : "border-b border-transparent bg-white/20"
       }`}
     >
@@ -95,7 +95,7 @@ export default function Header() {
         <div className="flex items-center gap-2.5 sm:gap-3">
           <a
             href={BOOKING_URL}
-            className="rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
+            className="rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--color-ink)] shadow-[0_4px_15px_rgba(244,180,0,0.3)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/40"
           >
             Request Quote
           </a>
@@ -116,7 +116,7 @@ export default function Header() {
       {open && (
         <nav
           id="mobile-navigation"
-          className="border-t border-[var(--color-border)] bg-white/95 shadow-[0_10px_35px_rgba(6,61,46,0.06)] backdrop-blur-xl md:hidden"
+          className="border-t border-[var(--color-border)] bg-white/95 shadow-[0_10px_35px_rgba(21,19,13,0.06)] backdrop-blur-xl md:hidden"
           aria-label="Mobile"
         >
           <ul className="mx-auto flex max-w-[var(--maxw)] flex-col gap-2 px-6 py-4">

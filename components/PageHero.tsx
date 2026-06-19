@@ -12,7 +12,7 @@ export default function PageHero({ eyebrow, title, intro }: PageHeroProps) {
   return (
     <section 
       className="relative overflow-hidden bg-[var(--color-bg)] blueprint-grid border-b border-[var(--color-border)] pt-32 pb-20 sm:pt-40 sm:pb-28"
-      style={{ background: "radial-gradient(circle at 10% 20%, rgba(9, 79, 59, 0.05), transparent 60%)" }}
+      style={{ background: "radial-gradient(circle at 10% 20%, rgba(244, 180, 0, 0.07), transparent 60%)" }}
     >
       {/* Noise overlay for texture */}
       <div className="noise-overlay" />
@@ -25,7 +25,7 @@ export default function PageHero({ eyebrow, title, intro }: PageHeroProps) {
           <RevealHeading
             as="h1"
             text={title}
-            className="mt-3 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.05]"
+            className="mt-3 text-4xl font-black tracking-[-0.02em] text-ink sm:text-5xl lg:text-6xl leading-[1.02]"
           />
           <RevealSubtext className="mt-6 text-lg sm:text-xl text-muted leading-relaxed max-w-2xl">
             {intro}

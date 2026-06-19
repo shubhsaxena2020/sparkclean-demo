@@ -21,6 +21,14 @@ const HERO_POINTS = [
   "Written next steps before any cleaning appointment is confirmed",
 ];
 
+const HERO_AVATARS = [
+  "/img/avatars/a1.jpg",
+  "/img/avatars/a2.jpg",
+  "/img/avatars/a3.jpg",
+  "/img/avatars/a4.jpg",
+  "/img/avatars/a5.jpg",
+];
+
 const PROCESS = [
   {
     title: "Estimate the clean",
@@ -106,7 +114,7 @@ export default function Home() {
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">
             Toronto Home Cleaning Quotes
           </p>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl font-extrabold leading-[0.98] text-pretty sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 max-w-4xl font-display text-5xl font-black leading-[0.96] tracking-[-0.02em] text-pretty sm:text-6xl lg:text-[5rem]">
             Clear home cleaning quotes without the back-and-forth.
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--color-muted)]">
@@ -123,21 +131,49 @@ export default function Home() {
           <div className="mt-10 flex flex-wrap gap-3">
             <a
               href={BOOKING_URL}
-              className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[var(--color-primary)] px-7 text-sm font-bold text-white shadow-[0_18px_40px_-22px_rgba(6,61,46,0.9)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[var(--color-primary)] px-7 text-sm font-bold text-[var(--color-ink)] shadow-[0_18px_40px_-20px_rgba(217,155,0,0.85)] transition-colors duration-200 hover:bg-[var(--color-primary-d)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/40"
             >
               Build My Quote
             </a>
             <a
               href="#proof"
-              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[var(--color-border)] bg-white/80 px-7 text-sm font-bold text-[var(--color-primary)] transition-colors duration-200 hover:border-[var(--color-primary)] hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[var(--color-border)] bg-white/80 px-7 text-sm font-bold text-[var(--color-ink)] transition-colors duration-200 hover:border-[var(--color-primary)] hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/30"
             >
               See What Is Included
             </a>
           </div>
+
+          <div className="mt-8 flex items-center gap-4">
+            <div className="flex -space-x-3" aria-hidden="true">
+              {HERO_AVATARS.map((src) => (
+                <span
+                  key={src}
+                  className="inline-block h-11 w-11 overflow-hidden rounded-full border-2 border-[var(--color-bg)] bg-[var(--color-surface-2)] shadow-sm ring-1 ring-black/5"
+                >
+                  <Image
+                    src={src}
+                    alt=""
+                    width={44}
+                    height={44}
+                    className="h-full w-full object-cover"
+                  />
+                </span>
+              ))}
+            </div>
+            <p className="text-sm font-semibold leading-snug text-[var(--color-ink)]">
+              Trusted by <span className="font-extrabold">500+</span> GTA homeowners
+            </p>
+          </div>
         </div>
 
         <div className="relative">
-          <div className="relative overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-white p-3 shadow-[0_30px_90px_-45px_rgba(7,15,12,0.45)]">
+          <div className="mb-4 inline-flex w-fit flex-col rounded-2xl bg-[#15130D] px-5 py-4 shadow-[0_20px_50px_-20px_rgba(21,19,13,0.65)] sm:absolute sm:-left-5 sm:top-8 sm:z-20 sm:mb-0">
+            <span className="font-display text-3xl font-black leading-none text-[var(--color-accent)]">500+</span>
+            <span className="mt-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
+              Cleans Booked
+            </span>
+          </div>
+          <div className="relative overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-white p-3 shadow-[0_30px_90px_-45px_rgba(21,19,13,0.45)]">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[20px]">
               <Image
                 src="/img/hero.webp"
@@ -149,7 +185,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="absolute -bottom-6 left-6 right-6 rounded-2xl border border-[var(--color-border)] bg-white/92 p-5 shadow-[0_22px_65px_-35px_rgba(7,15,12,0.45)] backdrop-blur-md">
+          <div className="mt-4 rounded-2xl border border-[var(--color-border)] bg-white/92 p-5 shadow-[0_22px_65px_-35px_rgba(21,19,13,0.45)] backdrop-blur-md sm:absolute sm:-bottom-6 sm:left-6 sm:right-6 sm:mt-0">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-primary)]">Quote Flow</p>
             <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
               Your request captures service scope, preferred timing, postal code, and access notes in one pass.
@@ -184,7 +220,7 @@ export default function Home() {
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Visual Proof</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold text-pretty sm:text-5xl">
+            <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.02em] text-pretty sm:text-5xl">
               Before/after expectations belong in plain view.
             </h2>
             <p className="mt-5 text-base leading-8 text-[var(--color-muted)]">
@@ -202,7 +238,7 @@ export default function Home() {
       <section className="relative z-10 mx-auto max-w-[var(--maxw)] px-6 py-16 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Booking Flow</p>
-          <h2 className="mt-3 font-display text-4xl font-extrabold text-pretty sm:text-5xl">
+          <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.02em] text-pretty sm:text-5xl">
             From estimate to confirmed clean.
           </h2>
         </div>
@@ -221,7 +257,7 @@ export default function Home() {
         <div className="mx-auto max-w-[var(--maxw)] px-6">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--color-primary)]">Policies</p>
-            <h2 className="mt-3 font-display text-4xl font-extrabold text-pretty sm:text-5xl">
+            <h2 className="mt-3 font-display text-4xl font-black tracking-[-0.02em] text-pretty sm:text-5xl">
               Practical policies make the quote easier to trust.
             </h2>
           </div>

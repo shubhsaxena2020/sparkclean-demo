@@ -63,7 +63,7 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
           </RevealEyebrow>
           <RevealHeading
             text="Every kind of clean your home needs."
-            className="mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight text-ink text-balance sm:text-5xl"
+            className="mt-2 text-3xl font-black leading-[1.03] tracking-[-0.02em] text-ink text-balance sm:text-5xl"
           />
           <p className="mt-4 text-base leading-relaxed text-muted">
             Each service points visitors toward a concrete quote request instead of vague package copy.
@@ -72,12 +72,12 @@ export default function Services({ showLink = false }: { showLink?: boolean }) {
           <RevealGroup className="mt-8">
             <RevealItem
               as="article"
-              className="glow-card-hover relative overflow-hidden rounded-[32px] border-2 border-primary/20 bg-[#F2FBF7] p-8 shadow-[0_15px_35px_-12px_rgba(15,182,126,0.1)] sm:p-10"
+              className="glow-card-hover relative overflow-hidden rounded-[32px] border-2 border-primary/30 bg-[var(--color-surface)] p-8 shadow-[0_15px_35px_-12px_rgba(217,155,0,0.12)] sm:p-10"
             >
-              <span className="mb-6 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+              <span className="mb-6 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-[var(--color-ink)]">
                 Most Popular
               </span>
-              <span className="grid h-14 w-14 place-items-center rounded-2xl border border-primary/10 bg-white text-primary shadow-[0_4px_12px_rgba(15,182,126,0.06)]">
+              <span className="grid h-14 w-14 place-items-center rounded-2xl border border-primary/10 bg-white text-primary shadow-[0_4px_12px_rgba(217,155,0,0.1)]">
                 <FeaturedIcon width={28} height={28} />
               </span>
               <h3 className="mt-6 text-2xl font-extrabold leading-tight text-ink">{featured.title}</h3>
