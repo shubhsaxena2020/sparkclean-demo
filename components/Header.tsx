@@ -28,13 +28,7 @@ function Logo() {
   );
 }
 
-function DemoPill() {
-  return (
-    <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary-d">
-      ✦ DEMO
-    </span>
-  );
-}
+
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -66,9 +60,6 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-[var(--maxw)] items-center justify-between gap-4 px-4 sm:px-6">
         <div className="flex items-center gap-3">
           <Logo />
-          <span className="hidden sm:inline-flex">
-            <DemoPill />
-          </span>
         </div>
 
         {/* Desktop nav */}
@@ -79,9 +70,9 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-semibold transition-colors hover:text-primary ${
+                className={`text-sm font-semibold transition-all duration-300 hover:text-primary relative py-1 ${
                   active
-                    ? "text-primary underline decoration-2 underline-offset-4"
+                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[var(--color-primary)]"
                     : "text-ink"
                 }`}
               >
@@ -150,9 +141,7 @@ export default function Header() {
                 </li>
               );
             })}
-            <li className="px-2 py-3">
-              <DemoPill />
-            </li>
+
           </ul>
         </nav>
       )}

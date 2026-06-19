@@ -75,22 +75,19 @@ export default function Footer() {
           </div>
 
           <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 SparkClean (demo)</p>
+            <p>© 2026 SparkClean. All rights reserved.</p>
             <p>
-              Demo site built by{" "}
+              Designed &amp; Developed by{" "}
               <a
                 href="https://shubhbuilds.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-white underline-offset-2 hover:text-primary hover:underline"
               >
-                Shubh Saxena — shubhbuilds.com
+                Shubh Saxena
               </a>
             </p>
           </div>
-          <p className="mt-3 text-xs text-white/40">
-            Live booking-system integration available on request.
-          </p>
         </div>
       </footer>
     </>
