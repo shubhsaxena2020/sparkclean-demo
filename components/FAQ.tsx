@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "motion/react";
 
 const FAQS = [
   {
@@ -75,7 +75,7 @@ export default function FAQ() {
                     <span>{faq.q}</span>
                     <span
                       className={`ml-4 text-primary transition-transform duration-200 ${
-                        isOpen ? "rotate-185" : ""
+                        isOpen ? "rotate-180" : ""
                       }`}
                       style={reduce ? { transition: "none" } : undefined}
                     >

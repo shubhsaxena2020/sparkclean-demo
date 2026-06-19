@@ -5,7 +5,7 @@ export default function CTABanner() {
   return (
     <section 
       className="w-full py-20 text-center relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0FB67E, #0A8C60)" }}
+      style={{ background: "linear-gradient(135deg, #063D2E, #094F3B)" }}
     >
       {/* Subtle static dot matrix overlay (<5% opacity) */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.035] pointer-events-none" />

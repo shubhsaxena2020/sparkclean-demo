@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { PhoneIcon, MenuIcon, CloseIcon } from "./icons";
 
@@ -15,20 +16,23 @@ const NAV = [
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2" aria-label="SparkClean home">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-white shadow-[0_0_15px_rgba(15,182,126,0.3)]">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden>
-          <path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 18.8 6.2 20.4l1.1-6.5L2.6 9.3l6.5-.9L12 2.5z" />
-        </svg>
+    <Link href="/" className="flex items-center gap-2.5" aria-label="SparkClean home">
+      <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-primary)] text-white shadow-[0_4px_15px_rgba(6,61,46,0.2)] overflow-hidden relative">
+        <Image
+          src="/img/sparkle.gif"
+          alt="Sparkling logo"
+          width={22}
+          height={22}
+          className="object-contain"
+          unoptimized
+        />
       </span>
-      <span className="font-display text-xl font-extrabold tracking-tight text-ink">
+      <span className="font-display text-xl font-extrabold tracking-tight text-[var(--color-ink)]">
         SparkClean
       </span>
     </Link>
   );
 }
-
-
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -51,29 +55,29 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)]"
+          ? "bg-white/70 backdrop-blur-xl border-b border-[var(--color-primary)]/10 shadow-[0_10px_30px_rgba(6,61,46,0.03)]"
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-[var(--maxw)] items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-[var(--maxw)] items-center justify-between gap-4 px-6">
         <div className="flex items-center gap-3">
           <Logo />
         </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           {NAV.map((item) => {
             const active = isActive(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-semibold transition-all duration-300 hover:text-primary relative py-1 ${
+                className={`text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 hover:text-[var(--color-primary)] relative py-1 ${
                   active
-                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[var(--color-primary)]"
-                    : "text-ink"
+                    ? "text-[var(--color-primary)] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1.5px] after:bg-[var(--color-primary)]"
+                    : "text-[var(--color-ink)]"
                 }`}
               >
                 {item.label}
@@ -82,19 +86,19 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right side — phone + Book Now stay visible at every breakpoint */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Right side controls */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <a
             href={PHONE_TEL}
-            className="hidden items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-primary sm:flex"
+            className="hidden items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-ink)] transition-colors hover:text-[var(--color-primary)] sm:flex"
           >
-            <PhoneIcon width={14} height={14} className="text-primary shrink-0" />
+            <PhoneIcon width={12} height={12} className="text-[var(--color-primary)] shrink-0" />
             {PHONE_DISPLAY}
           </a>
           <a
             href={PHONE_TEL}
             aria-label={`Call ${PHONE_DISPLAY}`}
-            className="grid h-10 w-10 place-items-center rounded-full border border-[var(--color-border)] text-primary transition-colors hover:bg-[var(--color-surface)] sm:hidden"
+            className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--color-border)] text-[var(--color-primary)] transition-colors hover:bg-white sm:hidden"
           >
             <PhoneIcon width={16} height={16} />
           </a>
@@ -102,7 +106,7 @@ export default function Header() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-ink shadow-[0_4px_10px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_15px_rgba(255,197,61,0.4)] active:translate-y-0"
+            className="rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-d)] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-all duration-200"
           >
             Book Now
           </a>
@@ -111,20 +115,20 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-[var(--color-border)] text-ink transition-colors hover:bg-[var(--color-surface)] md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--color-border)] text-[var(--color-ink)] transition-colors hover:bg-white md:hidden"
           >
-            {open ? <CloseIcon width={20} height={20} /> : <MenuIcon width={20} height={20} />}
+            {open ? <CloseIcon width={18} height={18} /> : <MenuIcon width={18} height={18} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile dropdown nav */}
+      {/* Mobile dropdown navigation */}
       {open && (
         <nav
-          className="border-t border-[var(--color-border)] bg-white/95 backdrop-blur-md md:hidden shadow-[0_10px_30px_rgba(15,26,23,0.08)]"
+          className="border-t border-[var(--color-border)] bg-white/95 backdrop-blur-xl md:hidden shadow-[0_10px_35px_rgba(6,61,46,0.06)]"
           aria-label="Mobile"
         >
-          <ul className="mx-auto flex max-w-[var(--maxw)] flex-col px-4 py-2">
+          <ul className="mx-auto flex max-w-[var(--maxw)] flex-col px-6 py-4 gap-2">
             {NAV.map((item) => {
               const active = isActive(item.href);
               return (
@@ -132,8 +136,8 @@ export default function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className={`block rounded-lg px-2 py-3 text-base font-semibold transition-colors hover:bg-[var(--color-surface)] ${
-                      active ? "text-primary bg-[var(--color-surface)]" : "text-ink"
+                    className={`block rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-widest transition-colors hover:bg-[var(--color-surface-2)]/50 ${
+                      active ? "text-[var(--color-primary)] bg-[var(--color-surface-2)]/30 font-bold" : "text-[var(--color-ink)]"
                     }`}
                   >
                     {item.label}
@@ -141,7 +145,6 @@ export default function Header() {
                 </li>
               );
             })}
-
           </ul>
         </nav>
       )}

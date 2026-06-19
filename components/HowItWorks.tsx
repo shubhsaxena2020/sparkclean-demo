@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useMotionValue, useTransform } from "motion/react";
 import Image from "next/image";
 import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
 import { TagIcon, ClockIcon, SparkleIcon } from "./icons";

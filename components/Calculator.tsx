@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { animate, useReducedMotion } from "framer-motion";
+import { animate, useReducedMotion } from "motion/react";
 import {
   SERVICES,
   FREQUENCIES,
@@ -11,7 +11,6 @@ import {
   type Frequency,
 } from "@/lib/pricing";
 import { BOOKING_URL } from "@/lib/site";
-import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
 import { MinusIcon, PlusIcon, ArrowRightIcon, CheckIcon } from "./icons";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -64,18 +63,18 @@ function Segmented<T extends string>({
 }) {
   const colClass = cols === 2 ? "grid-cols-2" : cols === 4 ? "grid-cols-4" : "grid-cols-3";
   return (
-    <fieldset>
-      <legend className="mb-2 block text-sm font-semibold text-ink">{legend}</legend>
-      <div className={`grid ${colClass} gap-2`} role="radiogroup" aria-label={legend}>
+    <fieldset className="border-0 p-0 m-0">
+      <legend className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-primary)]">{legend}</legend>
+      <div className={`grid ${colClass} gap-2.5`} role="radiogroup" aria-label={legend}>
         {options.map((opt) => {
           const active = opt.id === value;
           return (
             <label
               key={opt.id}
-              className={`cursor-pointer rounded-full border px-3 py-2.5 text-center text-sm font-semibold transition-all outline-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary/60 has-[:focus-visible]:ring-offset-1 ${
+              className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-semibold transition-all duration-300 outline-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[var(--color-primary)]/40 has-[:focus-visible]:ring-offset-1 ${
                 active
-                  ? "border-primary bg-primary text-white"
-                  : "border-[var(--color-border)] bg-white text-ink hover:border-primary/40 hover:bg-surface"
+                  ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)]"
+                  : "border-[var(--color-border)] bg-[var(--color-bg)]/80 text-[var(--color-ink)] hover:border-[var(--color-primary)]/40 hover:bg-white"
               }`}
             >
               <input
@@ -113,18 +112,18 @@ function Stepper({
 }) {
   return (
     <div>
-      <span className="mb-2 block text-sm font-semibold text-ink">{label}</span>
-      <div className="flex items-center justify-between rounded-full border border-[var(--color-border)] bg-white p-1.5">
+      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-primary)]">{label}</span>
+      <div className="flex items-center justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]/80 p-1.5">
         <button
           type="button"
           aria-label={`Decrease ${label.toLowerCase()}`}
           disabled={value <= min}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="grid h-9 w-9 place-items-center rounded-full border border-[var(--color-border)] text-ink transition-all hover:bg-surface hover:text-primary disabled:cursor-not-allowed disabled:opacity-35 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
-          <MinusIcon width={18} height={18} />
+          <MinusIcon width={16} height={16} />
         </button>
-        <span aria-live="polite" className="min-w-[3.5rem] text-center text-base font-bold text-ink">
+        <span aria-live="polite" className="min-w-[3rem] text-center text-sm font-bold text-[var(--color-ink)]">
           {display}
         </span>
         <button
@@ -132,16 +131,16 @@ function Stepper({
           aria-label={`Increase ${label.toLowerCase()}`}
           disabled={value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="grid h-9 w-9 place-items-center rounded-full border border-[var(--color-border)] text-ink transition-all hover:bg-surface hover:text-primary disabled:cursor-not-allowed disabled:opacity-35 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
-          <PlusIcon width={18} height={18} />
+          <PlusIcon width={16} height={16} />
         </button>
       </div>
     </div>
   );
 }
 
-export default function Calculator() {
+export default function Calculator({ compact = false }: { compact?: boolean }) {
   const [service, setService] = useState<ServiceType>("standard");
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(1);
@@ -151,18 +150,18 @@ export default function Calculator() {
   const included = getService(service).included;
 
   return (
-    <div className="w-full grid overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white/75 backdrop-blur-md shadow-[0_20px_50px_-15px_rgba(9,79,59,0.1)] md:grid-cols-[1.15fr_1fr]">
+    <div className={`w-full grid overflow-hidden rounded-[32px] border border-[var(--color-primary)]/10 bg-white/40 backdrop-blur-xl shadow-[0_20px_50px_rgba(6,61,46,0.05)] ${compact ? "grid-cols-1" : "md:grid-cols-[1.2fr_1fr]"}`}>
       {/* Inputs */}
-      <div className="flex flex-col gap-6 p-6 sm:p-8 md:p-10">
+      <div className={`flex flex-col gap-7 p-6 sm:p-8 ${compact ? "" : "md:p-10"}`}>
         <Segmented
-          legend="Service type"
+          legend="Select Cleaning tier"
           name="service"
           value={service}
           onChange={setService}
-          options={SERVICES.map((s) => ({ id: s.id, label: s.label.replace(" Clean", "").replace("Move-In / Move-Out", "Move") }))}
+          options={SERVICES.map((s) => ({ id: s.id, label: s.label.replace(" Clean", "").replace("Move-In / Move-Out", "Move-In") }))}
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-5">
           <Stepper
             label="Bedrooms"
             value={bedrooms}
@@ -182,52 +181,54 @@ export default function Calculator() {
         </div>
 
         <Segmented
-          legend="How often?"
+          legend="Cleaning Frequency"
           name="frequency"
           cols={2}
           value={frequency}
           onChange={setFrequency}
           options={FREQUENCIES.map((f) => ({ id: f.id, label: f.label }))}
         />
-        <p className="-mt-2 text-xs text-muted">
-          Recurring plans save up to 18% — Weekly saves the most.
+        <p className="-mt-2.5 text-[11px] font-medium text-[var(--color-muted)]">
+          * Recurring elite plans save up to 18% — Weekly saves the most.
         </p>
       </div>
 
       {/* Output */}
-      <div className="flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-[var(--color-surface)]/60 backdrop-blur-md p-6 sm:p-8 md:p-10 md:border-l md:border-t-0">
+      <div className={`flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-white/50 backdrop-blur-md p-6 sm:p-8 ${compact ? "" : "md:p-10 md:border-l md:border-t-0"}`}>
         <div>
-          <p className="text-sm font-semibold text-muted">Your estimated price</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">Your estimated rate</p>
           <div
             aria-live="polite"
-            className="mt-1 flex items-end gap-2"
+            className="mt-2 flex items-baseline gap-2"
           >
-            <span className="font-display text-6xl font-extrabold tracking-tight text-ink sm:text-7xl leading-none">
+            <span className="font-display text-5xl font-extrabold tracking-tight text-[var(--color-ink)] sm:text-6xl leading-none">
               $<AnimatedPrice value={result.price} />
             </span>
             {result.discountPct > 0 && (
-              <span className="mb-2 text-sm font-medium text-muted line-through">
+              <span className="text-base font-semibold text-[var(--color-muted)] line-through">
                 ${result.fullPrice}
               </span>
             )}
           </div>
 
-          {result.discountPct > 0 ? (
-            <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
-              You save {result.discountPct}% with{" "}
-              {FREQUENCIES.find((f) => f.id === frequency)?.label.toLowerCase()}{" "}
-              service
-            </span>
-          ) : (
-            <span className="mt-3 inline-flex items-center rounded-full bg-[var(--color-border)] px-3 py-1 text-xs font-semibold text-ink/80">
-              One-time clean — no commitment
-            </span>
-          )}
+          <div className="mt-4">
+            {result.discountPct > 0 ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-primary)] px-3 py-1.5 text-xs font-semibold tracking-wide text-white">
+                Save {result.discountPct}% with {FREQUENCIES.find((f) => f.id === frequency)?.label.toLowerCase()}
+              </span>
+            ) : (
+              <span className="inline-flex items-center rounded-full bg-[var(--color-surface-2)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)]">
+                One-time premium clean
+              </span>
+            )}
+          </div>
 
-          <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-ink/80">
-            <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-primary" />
-            <span>{included}</span>
-          </p>
+          <div className="mt-6 border-t border-[var(--color-border)] pt-5">
+            <p className="flex items-start gap-2.5 text-sm leading-relaxed text-[var(--color-ink)]/90">
+              <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-[var(--color-primary)]" />
+              <span>{included}</span>
+            </p>
+          </div>
         </div>
 
         <div>
@@ -235,17 +236,13 @@ export default function Calculator() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-[#c39c2c] hover:shadow-[0_6px_20px_rgba(212,175,55,0.45)] active:translate-y-0"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-d)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-all duration-300 ease-out hover:-translate-y-[2px]"
           >
-            Book this clean
-            <ArrowRightIcon width={18} height={18} />
+            Book Standard Rate
+            <ArrowRightIcon width={16} height={16} className="text-white" />
           </a>
-          <p className="mt-3 text-center text-sm text-muted">
-            Send your address and preferred time in the DM and we&apos;ll
-            confirm your slot.
-          </p>
-          <p className="mt-2 text-center text-xs text-muted/80">
-            Estimate only — final quote confirmed at booking.
+          <p className="mt-4 text-center text-xs text-[var(--color-muted)] leading-relaxed">
+            Estimate only — final quotes confirmed at dispatch booking.
           </p>
         </div>
       </div>

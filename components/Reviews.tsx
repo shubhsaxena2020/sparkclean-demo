@@ -68,7 +68,7 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
             <RevealItem
               key={r.name}
               as="article"
-              className="flex flex-col rounded-[var(--radius)] border-l-[3px] border-l-primary border-y border-r border-[var(--color-border)] bg-white p-8 shadow-[0_10px_30px_-12px_rgba(15, 26, 23, 0.12)] transition-all duration-300 hover:shadow-[0_18px_44px_-14px_rgba(15, 26, 23, 0.18)]"
+              className="flex flex-col rounded-[var(--radius)] border-l-[3px] border-l-primary border-y border-r border-[var(--color-border)] bg-white p-8 premium-shadow premium-shadow-hover"
             >
               <Stars />
               <blockquote className="mt-4 flex-1 text-[0.95rem] leading-[1.7] text-ink italic">

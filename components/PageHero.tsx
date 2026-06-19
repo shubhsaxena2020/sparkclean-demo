@@ -11,7 +11,7 @@ interface PageHeroProps {
 export default function PageHero({ eyebrow, title, intro }: PageHeroProps) {
   return (
     <section 
-      className="relative overflow-hidden bg-[var(--color-bg)] blueprint-grid border-b border-[var(--color-border)] py-20 sm:py-28"
+      className="relative overflow-hidden bg-[var(--color-bg)] blueprint-grid border-b border-[var(--color-border)] pt-32 pb-20 sm:pt-40 sm:pb-28"
       style={{ background: "radial-gradient(circle at 10% 20%, rgba(9, 79, 59, 0.05), transparent 60%)" }}
     >
       {/* Noise overlay for texture */}
