@@ -182,3 +182,39 @@ section[id], footer[id] {
   animation: float-fast 6s ease-in-out infinite;
 }
 
+/* Shifting background gradient */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ambient-bg {
+  background: linear-gradient(-45deg, #FAFAF9, #F5F8F6, #EDF3F0, #FDFBF7);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Premium Glass Bento panels */
+.bento-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(9, 79, 59, 0.08);
+  box-shadow: 
+    0 10px 30px -10px rgba(9, 79, 59, 0.04),
+    0 1px 1px 0 rgba(255, 255, 255, 0.8) inset;
+  border-radius: 32px;
+  overflow: hidden;
+  transition: all 0.4s var(--ease);
+}
+
+.bento-panel:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(9, 79, 59, 0.15);
+  box-shadow: 
+    0 20px 40px -15px rgba(9, 79, 59, 0.08),
+    0 0 0 1px rgba(9, 79, 59, 0.05);
+  transform: translateY(-2px);
+}
+
