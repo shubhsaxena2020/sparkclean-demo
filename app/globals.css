@@ -2,21 +2,21 @@
 
 /* ── Design tokens — single source of truth ───────────────────────────────── */
 @theme {
-  --color-bg:        #FFFFFF;   /* page background — WHITE */
-  --color-surface:   #F4FBF8;   /* faint mint for alternating sections */
-  --color-surface-2: #EFF8F3;   /* slightly deeper mint, optional */
-  --color-ink:       #0F1A17;   /* near-black TEXT colour */
-  --color-primary:   #0FB67E;   /* brand green — accents, icons, eyebrows */
-  --color-primary-d: #0A8C60;   /* darker green — hovers, gradients */
-  --color-accent:    #FFC53D;   /* warm yellow — BOOKING CTAs ONLY */
-  --color-muted:     #66726E;   /* muted grey-green for sub-text */
-  --color-border:    #E3EAE7;   /* hairline borders */
-  --radius:          20px;
-  --maxw:            1180px;
+  --color-bg:        #FAFAF9;   /* stone white background */
+  --color-surface:   #F4F8F6;   /* ultra light emerald tint */
+  --color-surface-2: #EDF3F0;   
+  --color-ink:       #0A120F;   /* rich charcoal ink */
+  --color-primary:   #094F3B;   /* deep luxury emerald green */
+  --color-primary-d: #053326;   
+  --color-accent:    #D4AF37;   /* champagne gold for CTA/Trust */
+  --color-muted:     #52605C;   
+  --color-border:    #E2E8F0;   
+  --radius:          24px;
+  --maxw:            1200px;
   --ease:            cubic-bezier(0.22, 1, 0.36, 1);
 
-  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bodoni), serif;
+  --font-sans: var(--font-jost), sans-serif;
 }
 
 /* ── Base ────────────────────────────────────────────────────────────────── */

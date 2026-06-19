@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const jakarta = Plus_Jakarta_Sans({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-jakarta",
-  weight: ["500", "600", "700", "800"],
+  variable: "--font-bodoni",
 });
 
-const inter = Inter({
+const jost = Jost({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-jost",
 });
 
 export const metadata: Metadata = {
@@ -49,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${inter.variable}`}>
+    <html lang="en" className={`${bodoni.variable} ${jost.variable}`}>
       <body>
         <a
           href="#main"
