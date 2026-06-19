@@ -56,7 +56,7 @@ const WHY_US = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ambient-bg">
       {/* 1. PageHero */}
       <PageHero
         eyebrow="ABOUT US"

@@ -1,6 +1,8 @@
 "use client";
 
 import { RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
+import Scene3D from "./Scene3D";
+import CursorFollower from "./CursorFollower";
 
 interface PageHeroProps {
   eyebrow: string;
@@ -10,8 +12,20 @@ interface PageHeroProps {
 
 export default function PageHero({ eyebrow, title, intro }: PageHeroProps) {
   return (
-    <section className="w-full bg-white py-16 sm:py-24 border-b border-[var(--color-border)]">
-      <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
+    <section 
+      className="relative overflow-hidden bg-[var(--color-bg)] blueprint-grid border-b border-[var(--color-border)] py-20 sm:py-28"
+      style={{ background: "radial-gradient(circle at 10% 20%, rgba(9, 79, 59, 0.05), transparent 60%)" }}
+    >
+      {/* Noise overlay for texture */}
+      <div className="noise-overlay" />
+
+      {/* Interactive 3D Soap Bubbles Backdrop */}
+      <Scene3D />
+
+      {/* Interactive Cursor Glow Follower */}
+      <CursorFollower />
+
+      <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6 relative z-10">
         <div className="max-w-3xl">
           <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
             {eyebrow}

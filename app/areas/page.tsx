@@ -27,7 +27,7 @@ const AREA_DETAILS = [
 
 export default function AreasPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ambient-bg">
       {/* 1. PageHero */}
       <PageHero
         eyebrow="SERVICE AREAS"

@@ -39,7 +39,7 @@ const PLANS = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ambient-bg">
       {/* 1. PageHero */}
       <PageHero
         eyebrow="WHAT WE CLEAN"
