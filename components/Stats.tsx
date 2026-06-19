@@ -79,9 +79,7 @@ export default function Stats() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-[10px] text-muted/60">
-            * illustrative demo figures
-          </p>
+
         </Reveal>
       </div>
     </section>

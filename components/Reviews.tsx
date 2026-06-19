@@ -100,11 +100,7 @@ export default function Reviews({ showLink = false }: { showLink?: boolean }) {
         </Reveal>
       )}
 
-        <Reveal className="mt-6 text-center">
-          <p className="text-xs text-muted/80">
-            Reviews shown are illustrative demo content.
-          </p>
-        </Reveal>
+
       </div>
     </section>
   );

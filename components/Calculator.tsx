@@ -171,7 +171,7 @@ export default function Calculator() {
         </div>
 
         <Reveal delay={0.05}>
-          <div className="mx-auto mt-12 grid max-w-4xl overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white shadow-[0_10px_30px_-12px_rgba(15, 26, 23, 0.12)] md:grid-cols-[1.15fr_1fr]">
+          <div className="mx-auto mt-12 grid max-w-4xl overflow-hidden rounded-[24px] border border-[var(--color-border)] bg-white/75 backdrop-blur-md shadow-[0_20px_50px_-15px_rgba(9,79,59,0.1)] md:grid-cols-[1.15fr_1fr]">
             {/* Inputs */}
             <div className="flex flex-col gap-6 p-6 sm:p-8 md:p-10">
               <Segmented
@@ -215,7 +215,7 @@ export default function Calculator() {
             </div>
 
             {/* Output */}
-            <div className="flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-surface p-6 sm:p-8 md:p-10 md:border-l md:border-t-0">
+            <div className="flex flex-col justify-between gap-6 border-t border-[var(--color-border)] bg-[var(--color-surface)]/60 backdrop-blur-md p-6 sm:p-8 md:p-10 md:border-l md:border-t-0">
               <div>
                 <p className="text-sm font-semibold text-muted">Your estimated price</p>
                 <div
@@ -255,7 +255,7 @@ export default function Calculator() {
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-[#c39c2c] hover:shadow-[0_6px_20px_rgba(212,175,55,0.45)] active:translate-y-0"
                 >
                   Book this clean
                   <ArrowRightIcon width={18} height={18} />
