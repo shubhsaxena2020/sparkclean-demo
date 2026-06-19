@@ -218,3 +218,109 @@ section[id], footer[id] {
   translate: 0 -2px;
 }
 
+.sparkclean-depth-field {
+  perspective: 1100px;
+  transform-style: preserve-3d;
+}
+
+.sparkclean-plane,
+.sparkclean-glint {
+  position: absolute;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.sparkclean-plane {
+  border: 1px solid rgba(6, 61, 46, 0.08);
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.08)),
+    linear-gradient(90deg, rgba(6, 61, 46, 0.06), rgba(212, 175, 55, 0.08));
+  box-shadow: 0 24px 80px -60px rgba(6, 61, 46, 0.55);
+  transform-origin: center;
+}
+
+.sparkclean-plane-a {
+  left: -8%;
+  top: 14%;
+  width: 58%;
+  height: 34%;
+  transform: rotateX(58deg) rotateZ(-11deg) translate3d(0, 0, -120px);
+  animation: clean-plane-drift-a 16s var(--ease) infinite alternate;
+}
+
+.sparkclean-plane-b {
+  bottom: 2%;
+  right: -10%;
+  width: 62%;
+  height: 38%;
+  transform: rotateX(62deg) rotateZ(10deg) translate3d(0, 0, -180px);
+  animation: clean-plane-drift-b 18s var(--ease) infinite alternate;
+}
+
+.sparkclean-plane-c {
+  left: 18%;
+  top: 38%;
+  width: 70%;
+  height: 22%;
+  opacity: 0.72;
+  transform: rotateX(66deg) rotateZ(-2deg) translate3d(0, 0, -260px);
+  animation: clean-plane-drift-c 22s var(--ease) infinite alternate;
+}
+
+.sparkclean-glint {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+.sparkclean-glint-a {
+  left: 10%;
+  top: 30%;
+  width: 48%;
+  transform: rotateZ(-8deg) translate3d(0, 0, 40px);
+  animation: clean-glint-slide 9s ease-in-out infinite;
+}
+
+.sparkclean-glint-b {
+  bottom: 24%;
+  right: 12%;
+  width: 38%;
+  transform: rotateZ(9deg) translate3d(0, 0, 20px);
+  animation: clean-glint-slide 11s ease-in-out infinite reverse;
+}
+
+@keyframes clean-plane-drift-a {
+  to {
+    transform: rotateX(58deg) rotateZ(-8deg) translate3d(4%, -3%, -90px);
+  }
+}
+
+@keyframes clean-plane-drift-b {
+  to {
+    transform: rotateX(62deg) rotateZ(7deg) translate3d(-3%, -4%, -140px);
+  }
+}
+
+@keyframes clean-plane-drift-c {
+  to {
+    transform: rotateX(66deg) rotateZ(2deg) translate3d(2%, 3%, -220px);
+  }
+}
+
+@keyframes clean-glint-slide {
+  0%, 100% {
+    opacity: 0.18;
+    transform: translate3d(-4%, 0, 0) rotateZ(-8deg);
+  }
+  50% {
+    opacity: 0.58;
+    transform: translate3d(6%, 0, 0) rotateZ(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkclean-plane,
+  .sparkclean-glint {
+    animation: none;
+  }
+}
+

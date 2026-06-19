@@ -3,7 +3,7 @@ import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PremiumBackground3D from "@/components/PremiumBackground3D";
+import { SITE_URL } from "@/lib/site";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
@@ -18,22 +18,42 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sparkclean-gta.vercel.app"),
-  title: "SparkClean — Toronto's Trusted Home Cleaning, Booked in 60 Seconds",
+  metadataBase: new URL(SITE_URL),
+  title: "SparkClean - Toronto Cleaning Quote Website Template",
   description:
-    "Eco-friendly, insured home cleaning trusted across the GTA. Get an instant price and book online in under a minute — no waiting for a callback.",
+    "A premium, conversion-ready cleaning website template with quote intake, transparent estimates, policy modules, and service-area proof slots.",
   keywords: [
-    "Toronto cleaning service",
-    "GTA house cleaning",
-    "eco-friendly cleaning",
+    "Toronto cleaning service website",
+    "GTA house cleaning quote",
+    "cleaning service booking website",
     "deep clean Toronto",
-    "move-out cleaning",
+    "move-out cleaning quote",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "SparkClean — Toronto's Trusted Home Cleaning",
+    title: "SparkClean - Toronto Cleaning Quote Website Template",
     description:
-      "Instant pricing, eco-friendly, insured. Book your GTA home clean in 60 seconds.",
+      "Transparent estimates, quote intake, policy modules, and proof-ready design for a local cleaning business.",
+    url: "/",
+    siteName: "SparkClean",
     type: "website",
+    images: [
+      {
+        url: "/img/hero.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Professionally cleaned bright home interior",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SparkClean - Toronto Cleaning Quote Website Template",
+    description:
+      "A client-ready cleaning website experience with quote intake and trust-first conversion design.",
+    images: ["/img/hero.jpg"],
   },
 };
 
@@ -51,9 +71,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bodoni.variable} ${jost.variable}`}>
       <body>
-        <div className="fixed inset-0 -z-10 pointer-events-none w-screen h-screen">
-          <PremiumBackground3D />
-        </div>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"

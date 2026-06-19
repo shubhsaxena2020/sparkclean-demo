@@ -2,38 +2,26 @@ import Link from "next/link";
 import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
 import { StarIcon } from "./icons";
 
-const REVIEWS = [
+const REVIEW_SLOTS = [
   {
-    quote:
-      "Booking took two minutes and the price was exactly what the site quoted. Team showed up on time and the condo looked better than move-in day.",
-    name: "Priya K.",
-    area: "Downtown Toronto",
-    date: "May 2026",
-    initials: "PK",
+    title: "Google Review Slot",
+    body: "Connect a real Google Business Profile and show source, date, rating, and profile link.",
   },
   {
-    quote:
-      "Used them for a move-out clean on short notice and got my full deposit back. The eco products were a big plus with two little kids at home.",
-    name: "Sarah M.",
-    area: "North York",
-    date: "Apr 2026",
-    initials: "SM",
+    title: "Service Story Slot",
+    body: "Use one real client-approved before/after story with room type, neighborhood, and service scope.",
   },
   {
-    quote:
-      "Finally a cleaning company that just tells you the price online. No phone tag. Been on their bi-weekly plan for three months now.",
-    name: "James T.",
-    area: "Mississauga",
-    date: "Mar 2026",
-    initials: "JT",
+    title: "Referral Proof Slot",
+    body: "Show a verified repeat-client or referral metric only after the client can prove it.",
   },
 ];
 
 function Stars() {
   return (
-    <div className="flex gap-0.5 text-[#FFC53D]" aria-label="5 out of 5 stars">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <StarIcon key={i} width={18} height={18} />
+    <div className="flex gap-0.5 text-[#FFC53D]" aria-label="Review proof placeholder">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <StarIcon key={index} width={18} height={18} />
       ))}
     </div>
   );
@@ -41,66 +29,48 @@ function Stars() {
 
 export default function Reviews({ showLink = false }: { showLink?: boolean }) {
   return (
-    <section id="reviews" className="w-full bg-white relative overflow-hidden">
-      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
-        <div className="mx-auto max-w-2xl text-center relative">
-          <span className="absolute -top-14 left-1/2 -translate-x-1/2 font-display text-[13rem] font-black text-primary/[0.06] leading-none pointer-events-none select-none">
-            “
-          </span>
-          <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary relative z-10">
-            Reviews
+    <section id="reviews" className="relative w-full overflow-hidden bg-white">
+      <div className="mx-auto max-w-[var(--maxw)] px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
+        <div className="relative mx-auto max-w-2xl text-center">
+          <RevealEyebrow className="relative z-10 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            Review System
           </RevealEyebrow>
           <RevealHeading
-            text="GTA homeowners trust SparkClean."
-            className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05] relative z-10"
+            text="Reviews belong here after they are real."
+            className="relative z-10 mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05]"
           />
-          <RevealSubtext className="mt-6 flex flex-wrap justify-center gap-2.5 relative z-10">
-            {["Insured ✓", "Bonded ✓", "Eco-Certified ✓", "Background-Checked ✓"].map((label) => (
-              <span key={label} className="rounded-full bg-surface border border-[var(--color-border)] px-3.5 py-1 text-xs font-semibold text-primary-d shadow-[0_2px_6px_rgba(15,182,126,0.02)]">
-                {label}
-              </span>
-            ))}
+          <RevealSubtext className="relative z-10 mt-5 text-base leading-7 text-muted">
+            This section is structured for proof, not invented testimonials. Add source links,
+            dates, and customer permission before using live reviews.
           </RevealSubtext>
         </div>
 
         <RevealGroup className="mt-12 grid gap-8 md:grid-cols-3">
-          {REVIEWS.map((r) => (
+          {REVIEW_SLOTS.map((slot) => (
             <RevealItem
-              key={r.name}
+              key={slot.title}
               as="article"
               className="flex flex-col rounded-[var(--radius)] border-l-[3px] border-l-primary border-y border-r border-[var(--color-border)] bg-white p-8 premium-shadow premium-shadow-hover"
             >
               <Stars />
-              <blockquote className="mt-4 flex-1 text-[0.95rem] leading-[1.7] text-ink italic">
-                &ldquo;{r.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-5 flex items-center gap-3 border-t border-[var(--color-border)] pt-4">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-surface text-sm font-bold text-primary border border-[var(--color-border)]">
-                  {r.initials}
-                </span>
-                <span className="text-sm">
-                  <span className="block font-bold text-ink">{r.name}</span>
-                  <span className="block text-muted">
-                    {r.area} · {r.date}
-                  </span>
-                </span>
-              </figcaption>
+              <h3 className="mt-5 text-lg font-bold text-ink">{slot.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-[1.7] text-muted">
+                {slot.body}
+              </p>
             </RevealItem>
           ))}
         </RevealGroup>
 
-      {showLink && (
-        <Reveal className="mt-8 text-center">
-          <Link
-            href="/about#reviews"
-            className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary-d transition-colors"
-          >
-            Read more reviews →
-          </Link>
-        </Reveal>
-      )}
-
-
+        {showLink && (
+          <Reveal className="mt-8 text-center">
+            <Link
+              href="/about#reviews"
+              className="inline-flex items-center gap-1 text-sm font-bold text-primary transition-colors duration-200 hover:text-primary-d"
+            >
+              View proof slots
+            </Link>
+          </Reveal>
+        )}
       </div>
     </section>
   );

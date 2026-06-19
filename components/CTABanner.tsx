@@ -3,31 +3,28 @@ import { BOOKING_URL } from "@/lib/site";
 
 export default function CTABanner() {
   return (
-    <section 
-      className="w-full py-20 text-center relative overflow-hidden"
+    <section
+      className="relative w-full overflow-hidden py-20 text-center"
       style={{ background: "linear-gradient(135deg, #063D2E, #094F3B)" }}
     >
-      {/* Subtle static dot matrix overlay (<5% opacity) */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1.2px,transparent_1.2px)] [background-size:20px_20px] opacity-[0.035] pointer-events-none" />
 
-      <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6 relative z-10">
+      <div className="relative z-10 mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
         <RevealHeading
           as="h2"
-          text="Ready for a spotless space?"
+          text="Ready to turn estimate interest into a quote request?"
           className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl leading-[1.05]"
         />
-        <RevealSubtext className="mx-auto mt-4 max-w-xl text-base text-white/95 sm:text-lg leading-[1.7]">
-          Get your instant price and book in under a minute. Same-day slots
-          across the GTA.
+        <RevealSubtext className="mx-auto mt-4 max-w-xl text-base leading-[1.7] text-white/90 sm:text-lg">
+          Capture the details a cleaning team needs before confirming availability,
+          final price, access instructions, and service scope.
         </RevealSubtext>
         <RevealSubtext delay={0.16}>
           <a
             href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-[background-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0"
           >
-            Book Now
+            Request Quote
           </a>
         </RevealSubtext>
       </div>

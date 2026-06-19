@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 import { RevealEyebrow, RevealSubtext } from "./Reveal";
 import { ArrowRightIcon } from "./icons";

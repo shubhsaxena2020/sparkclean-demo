@@ -1,7 +1,6 @@
 "use client";
 
 import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext } from "./Reveal";
-import { LeafIcon } from "./icons";
 import Image from "next/image";
 import Link from "next/link";
 

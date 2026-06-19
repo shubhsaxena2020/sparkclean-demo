@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { animate, useReducedMotion } from "motion/react";
+import { useState } from "react";
 import {
   SERVICES,
   FREQUENCIES,
@@ -13,7 +12,6 @@ import {
 import { BOOKING_URL } from "@/lib/site";
 import { MinusIcon, PlusIcon, ArrowRightIcon, CheckIcon } from "./icons";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
 const MAX_BEDROOMS = 5;
 const MAX_BATHROOMS = 4;
 
@@ -21,28 +19,9 @@ const bedroomLabel = (n: number) =>
   n === 0 ? "Studio" : n >= MAX_BEDROOMS ? `${n}+` : `${n}`;
 const bathroomLabel = (n: number) => (n >= MAX_BATHROOMS ? `${n}+` : `${n}`);
 
-/** Rolling price number; snaps instantly under prefers-reduced-motion. */
+/** Static price output; the quote form is the primary conversion interaction. */
 function AnimatedPrice({ value }: { value: number }) {
-  const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(value);
-  const prev = useRef(value);
-
-  useEffect(() => {
-    if (reduce) {
-      setDisplay(value);
-      prev.current = value;
-      return;
-    }
-    const controls = animate(prev.current, value, {
-      duration: 0.5,
-      ease: EASE,
-      onUpdate: (v) => setDisplay(Math.round(v)),
-    });
-    prev.current = value;
-    return () => controls.stop();
-  }, [value, reduce]);
-
-  return <>{display}</>;
+  return <>{value}</>;
 }
 
 /** Accessible segmented radio control. */
@@ -71,7 +50,7 @@ function Segmented<T extends string>({
           return (
             <label
               key={opt.id}
-              className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-semibold transition-all duration-300 outline-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[var(--color-primary)]/40 has-[:focus-visible]:ring-offset-1 ${
+              className={`cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-semibold transition-[background-color,border-color,color,box-shadow] duration-300 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[var(--color-primary)]/40 has-[:focus-visible]:ring-offset-1 ${
                 active
                   ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)]"
                   : "border-[var(--color-border)] bg-[var(--color-bg)]/80 text-[var(--color-ink)] hover:border-[var(--color-primary)]/40 hover:bg-white"
@@ -119,7 +98,7 @@ function Stepper({
           aria-label={`Decrease ${label.toLowerCase()}`}
           disabled={value <= min}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-[background-color,border-color,color,opacity] duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
           <MinusIcon width={16} height={16} />
         </button>
@@ -131,7 +110,7 @@ function Stepper({
           aria-label={`Increase ${label.toLowerCase()}`}
           disabled={value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-[var(--color-border)] bg-white text-[var(--color-ink)] transition-[background-color,border-color,color,opacity] duration-200 hover:bg-[var(--color-primary)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
           <PlusIcon width={16} height={16} />
         </button>
@@ -234,11 +213,9 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
         <div>
           <a
             href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-d)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-all duration-300 ease-out hover:-translate-y-[2px]"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-d)] px-6 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(6,61,46,0.15)] transition-[background-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-[2px]"
           >
-            Book Standard Rate
+            Request {getService(service).label} Quote
             <ArrowRightIcon width={16} height={16} className="text-white" />
           </a>
           <p className="mt-4 text-center text-xs text-[var(--color-muted)] leading-relaxed">

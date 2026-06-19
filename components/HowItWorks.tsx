@@ -68,7 +68,7 @@ export default function HowItWorks() {
               How it works
             </RevealEyebrow>
             <RevealHeading
-              text="Booked in 60 seconds."
+              text="Request availability with details."
               className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-5xl leading-[1.05] relative z-10"
               as="h2"
             />

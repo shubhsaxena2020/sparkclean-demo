@@ -5,7 +5,7 @@ import Stats from "@/components/Stats";
 import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import CTABanner from "@/components/CTABanner";
-import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
+import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
 import {
   ShieldIcon,
   LeafIcon,
@@ -16,70 +16,67 @@ import {
 } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "About SparkClean — Local, Family-Owned GTA Cleaning",
+  title: "About SparkClean - Trust-Ready Cleaning Website Template",
   description:
-    "Learn about the family behind Toronto's trusted local cleaning company. Our mission is to deliver spotless homes using safe, green products.",
+    "See how SparkClean structures trust, policies, cleaner safety, and proof slots for a client-ready cleaning service website.",
 };
 
 const WHY_US = [
   {
     icon: ShieldIcon,
-    title: "Insured & Bonded",
-    blurb: "Full liability coverage for complete peace of mind during every single visit.",
+    title: "Insurance Proof Slot",
+    blurb: "Add the client's actual insurer, certificate summary, and coverage limits before publishing this claim.",
   },
   {
     icon: LeafIcon,
-    title: "Eco-Friendly",
-    blurb: "We use non-toxic, biodegradable products that are safe for kids and pets.",
+    title: "Product Safety Policy",
+    blurb: "List product standards, supply defaults, allergy notes, and pet-safe handling in plain language.",
   },
   {
     icon: BadgeCheckIcon,
-    title: "Background-Checked",
-    blurb: "Every member of our cleaning staff is vetted and thoroughly screened.",
+    title: "Cleaner Vetting Slot",
+    blurb: "Explain screening, training, supervision, access handling, and replacement policy with real client operations.",
   },
   {
     icon: GuaranteeIcon,
-    title: "100% Guarantee",
-    blurb: "If you are not completely satisfied with our service, we will re-clean it for free.",
+    title: "Re-Clean Policy",
+    blurb: "Define the service window, eligible issues, photo/request process, and response time for missed areas.",
   },
   {
     icon: TagIcon,
-    title: "Instant Pricing",
-    blurb: "No callbacks or waiting times. Get your exact estimate and book online in seconds.",
+    title: "Transparent Estimate",
+    blurb: "Show a credible estimate first, then explain what can change the final confirmed quote.",
   },
   {
     icon: BriefcaseIcon,
-    title: "Family-Owned",
-    blurb: "We operate locally and care deeply about the GTA communities we serve.",
+    title: "Local Identity Slot",
+    blurb: "Add the real founder, business address, service base, hours, and response-time expectations.",
   },
 ];
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen ambient-bg">
-      {/* 1. PageHero */}
       <PageHero
         eyebrow="ABOUT US"
-        title="Local, and we act like it."
-        intro="We are a local, family-owned cleaning company dedicated to providing premium care for households throughout the Greater Toronto Area. Our commitment is simple: safe products, consistent quality, and trusted service."
+        title="Trust infrastructure before trust claims."
+        intro="This page is shaped for a real cleaning client to add verified business identity, proof of coverage, product safety, staff policies, and a clear re-clean process before launch."
       />
 
-      {/* 2. FounderStory */}
       <FounderStory showLink={false} />
 
-      {/* 3. Why choose SparkClean trust grid */}
       <section className="w-full bg-surface py-16 sm:py-20 border-t border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-[var(--maxw)] px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
             <RevealEyebrow className="text-xs font-semibold uppercase tracking-[0.22em] text-primary block">
-              OUR PROMISE
+              TRUST MODULES
             </RevealEyebrow>
             <RevealHeading
-              text="Why GTA families choose us."
+              text="What a real client must verify."
               className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl leading-[1.05]"
             />
             <RevealSubtext className="mt-3 text-base text-muted">
-              We focus on detail, safety, and reliability to keep your home feeling its best.
+              These modules prevent the website from pretending. Each slot should be filled with real operating proof before production.
             </RevealSubtext>
           </div>
 
@@ -89,7 +86,7 @@ export default function AboutPage() {
               return (
                 <RevealItem
                   key={item.title}
-                  className="flex flex-col p-8 rounded-[var(--radius)] border border-[var(--color-border)] bg-white shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] hover:shadow-[0_18px_44px_-14px_rgba(15,26,23,0.18)] hover:-translate-y-1 transition-all duration-300"
+                  className="flex flex-col p-8 rounded-[var(--radius)] border border-[var(--color-border)] bg-white shadow-[0_10px_30px_-12px_rgba(15,26,23,0.12)] hover:shadow-[0_18px_44px_-14px_rgba(15,26,23,0.18)] hover:-translate-y-1 transition-[box-shadow,transform] duration-300"
                 >
                   <span className="grid h-12 w-12 place-items-center rounded-xl bg-surface text-primary">
                     <Icon width={24} height={24} />
@@ -103,16 +100,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Stats band */}
       <Stats />
-
-      {/* 5. Reviews */}
       <Reviews showLink={false} />
-
-      {/* 6. FAQ accordion */}
       <FAQ />
-
-      {/* 7. CTABanner */}
       <CTABanner />
     </div>
   );

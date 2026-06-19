@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
-import { StarIcon } from "./icons";
+import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "./Reveal";
 import {
   RepeatIcon,
   SparkleIcon,

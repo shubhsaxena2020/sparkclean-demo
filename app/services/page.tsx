@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 import Services from "@/components/Services";
 import Calculator from "@/components/Calculator";
 import CTABanner from "@/components/CTABanner";
-import { Reveal, RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
+import { RevealEyebrow, RevealHeading, RevealSubtext, RevealGroup, RevealItem } from "@/components/Reveal";
 import { CheckIcon } from "@/components/icons";
 import Image from "next/image";
 
@@ -92,7 +92,7 @@ export default function ServicesPage() {
             {/* Right Column: Stacked plans checklists */}
             <div className="lg:col-span-7">
               <RevealGroup className="flex flex-col gap-6 sm:gap-8">
-                {PLANS.map((plan, i) => {
+                {PLANS.map((plan) => {
                   const isFeatured = plan.name === "Deep Clean";
                   return (
                     <RevealItem

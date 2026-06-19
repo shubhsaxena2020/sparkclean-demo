@@ -7,27 +7,27 @@ import { useReducedMotion } from "motion/react";
 const FAQS = [
   {
     q: "Do I need to be home for the cleaning?",
-    a: "No, you do not need to be present. Many of our clients provide a key code or lockbox access. We ensure secure entry and exit for every home.",
+    a: "The template includes an access-notes field so a real client can define lockbox, concierge, key, and arrival policies before accepting a job.",
   },
   {
     q: "Are your cleaning products safe for pets and children?",
-    a: "Yes, absolutely. We use eco-certified, non-toxic products that clean effectively without leaving harsh chemicals or residues.",
+    a: "The product-safety module should list the client's actual supply standards, allergy process, pet rules, and any eco certifications they can prove.",
   },
   {
     q: "What is your rescheduling or cancellation policy?",
-    a: "We request at least 24 hours notice for any schedule changes or cancellations. Changes made inside 24 hours may incur a small booking fee.",
+    a: "Use this section to publish the client's real rescheduling window, cancellation fee, lockout fee, and same-day availability policy.",
   },
   {
     q: "Do you bring your own cleaning supplies and equipment?",
-    a: "Yes, our teams arrive fully equipped with premium microfiber cloths, eco-friendly products, and high-filtration HEPA vacuums.",
+    a: "The quote form can capture whether the cleaner brings supplies or uses client-provided products. A live site should state this clearly by service tier.",
   },
   {
     q: "What happens if I am not happy with the clean?",
-    a: "We offer a 100% satisfaction guarantee. If any area is missed or not cleaned to your standards, let us know within 24 hours and we will return to re-clean it.",
+    a: "Publish a specific re-clean policy: report window, eligible missed areas, photo requirements, and response time. Avoid broad guarantees without written terms.",
   },
   {
     q: "Which areas in the GTA do you serve?",
-    a: "We service Toronto, North York, Scarborough, Etobicoke, East York, Mississauga, Vaughan, Markham, Richmond Hill, Brampton, Thornhill, and Oakville.",
+    a: "A real launch should connect service-area availability to postal codes or route rules. The template includes GTA area slots that need client verification.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function FAQ() {
             return (
               <RevealItem
                 key={idx}
-                className="rounded-[var(--radius)] border border-[var(--color-border)] bg-surface overflow-hidden transition-all"
+                className="rounded-[var(--radius)] border border-[var(--color-border)] bg-surface overflow-hidden transition-[background-color,border-color,box-shadow]"
               >
                 <h3>
                   <button
@@ -70,7 +70,7 @@ export default function FAQ() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${idx}`}
                     id={`faq-btn-${idx}`}
-                    className="flex w-full items-center justify-between px-6 py-5 text-left font-bold text-ink hover:text-primary transition-colors focus-visible:outline-none"
+                    className="flex w-full items-center justify-between px-6 py-5 text-left font-bold text-ink hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary/30"
                   >
                     <span>{faq.q}</span>
                     <span
@@ -87,7 +87,8 @@ export default function FAQ() {
                   id={`faq-answer-${idx}`}
                   role="region"
                   aria-labelledby={`faq-btn-${idx}`}
-                  className={`px-6 overflow-hidden transition-all duration-300 ${
+                  hidden={!isOpen}
+                  className={`px-6 overflow-hidden transition-[max-height,opacity,padding-bottom] duration-300 ${
                     isOpen ? "pb-6 max-h-[200px] opacity-100" : "max-h-0 opacity-0"
                   }`}
                   style={reduce ? { transition: "none" } : undefined}
