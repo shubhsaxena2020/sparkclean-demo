@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 import { RevealEyebrow, RevealSubtext } from "./Reveal";
 import { ArrowRightIcon } from "./icons";
 import Scene3D from "./Scene3D";
+import CursorFollower from "./CursorFollower";
 
 const BADGES = [
   "Insured & Bonded",
@@ -20,29 +21,6 @@ export default function Hero() {
   const layerBg1Ref = useRef<HTMLDivElement>(null);
   const layerBg2Ref = useRef<HTMLDivElement>(null);
   const layerImageRef = useRef<HTMLDivElement>(null);
-
-  // Mouse tilt tracking values (trysoloai.com premium 3D feel)
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-200, 200], [8, -8]);
-  const rotateY = useTransform(x, [-200, 200], [-8, 8]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduce) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const clientX = e.clientX - rect.left - width / 2;
-    const clientY = e.clientY - rect.top - height / 2;
-    x.set(clientX);
-    y.set(clientY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -106,14 +84,18 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative overflow-hidden bg-white blueprint-grid border-b border-[var(--color-border)]" 
-      style={{ background: "radial-gradient(circle at 10% 20%, rgba(15,182,126,0.04), transparent 50%)" }}
+      className="relative overflow-hidden bg-[var(--color-bg)] blueprint-grid border-b border-[var(--color-border)] min-h-[85vh] flex items-center" 
+      style={{ background: "radial-gradient(circle at 10% 20%, rgba(9, 79, 59, 0.05), transparent 60%)" }}
     >
       {/* Noise overlay for texture */}
       <div className="noise-overlay" />
 
       {/* Interactive 3D Soap Bubbles Backdrop */}
       <Scene3D />
+
+      {/* Interactive Cursor Glow Follower */}
+      <CursorFollower />
+
 
       {/* Background blobs for parallax */}
       <div 
@@ -156,16 +138,16 @@ export default function Hero() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-bold text-ink shadow-[0_4px_12px_rgba(255,197,61,0.25)] transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-[#F5B625] hover:shadow-[0_6px_20px_rgba(255,197,61,0.4)] active:translate-y-0 relative z-25"
+              className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-4 text-base font-bold text-white shadow-[0_4px_15px_rgba(212,175,55,0.3)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:scale-[1.02] hover:shadow-[0_8px_25px_rgba(212,175,55,0.45)] active:translate-y-0 relative z-25"
             >
-              Book Now
+              Book in 60 Seconds
             </a>
             <a
               href="#calculator"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-8 py-4 text-base font-bold text-primary transition-all duration-200 ease-out hover:-translate-y-[2px] hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(15,182,126,0.1)] active:translate-y-0 relative z-25"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[var(--color-primary)] px-8 py-4 text-base font-bold text-[var(--color-primary)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:bg-[var(--color-primary)]/5 hover:shadow-[0_4px_15px_rgba(9,79,59,0.15)] active:translate-y-0 relative z-25"
             >
               Calculate Your Price
-              <ArrowRightIcon width={18} height={18} className="text-primary" />
+              <ArrowRightIcon width={18} height={18} className="text-[var(--color-primary)]" />
             </a>
           </RevealSubtext>
 
@@ -199,20 +181,16 @@ export default function Hero() {
 
         <div ref={layerImageRef} className="will-change-transform w-full flex justify-center lg:justify-end relative z-20">
           <motion.div
-            className="flex justify-center lg:justify-end items-center w-full max-w-[440px] cursor-grab active:cursor-grabbing"
+            className="flex justify-center lg:justify-end items-center w-full max-w-[440px]"
             initial={reduce ? false : { opacity: 0, y: 24, scale: 1.03 }}
             animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            style={reduce ? {} : { rotateX, rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
           >
-            <div className="relative w-full aspect-[4/3] sm:aspect-square" style={{ transformStyle: "preserve-3d" }}>
+            <div className="relative w-full aspect-[4/3] sm:aspect-square">
               
-              {/* Floating Cards (SoloAI vibe) */}
+              {/* Trust Cards */}
               <div 
-                className="absolute -top-6 -left-6 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md animate-float-1 pointer-events-auto hover:scale-105 transition-transform"
-                style={{ transform: "translateZ(30px)" }}
+                className="absolute -top-6 -left-6 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md pointer-events-auto hover:-translate-y-1 transition-transform"
               >
                 <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/10 text-primary text-sm font-bold">★</div>
                 <div>
@@ -222,8 +200,7 @@ export default function Hero() {
               </div>
 
               <div 
-                className="absolute top-1/3 -right-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md animate-float-2 pointer-events-auto hover:scale-105 transition-transform"
-                style={{ transform: "translateZ(40px)" }}
+                className="absolute top-1/3 -right-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md pointer-events-auto hover:-translate-y-1 transition-transform"
               >
                 <div className="grid h-8 w-8 place-items-center rounded-xl bg-accent/20 text-[#c2911b] text-sm font-bold">⚡</div>
                 <div>
@@ -233,8 +210,7 @@ export default function Hero() {
               </div>
 
               <div 
-                className="absolute -bottom-8 -left-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md animate-float-3 pointer-events-auto hover:scale-105 transition-transform"
-                style={{ transform: "translateZ(50px)" }}
+                className="absolute -bottom-8 -left-8 z-20 hidden sm:flex items-center gap-3.5 rounded-2xl bg-white/95 p-3.5 shadow-[0_12px_30px_-5px_rgba(15,26,23,0.08)] border border-[var(--color-border)] backdrop-blur-md pointer-events-auto hover:-translate-y-1 transition-transform"
               >
                 <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary/10 text-primary text-sm font-bold">✓</div>
                 <div>
@@ -243,10 +219,9 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Main Image Frame with border glow and perspective */}
+              {/* Main Image Frame with border glow */}
               <div 
                 className="overflow-hidden rounded-[24px] border border-[var(--color-border)] shadow-[0_15px_40px_-15px_rgba(15,26,23,0.18)] w-full h-full relative group"
-                style={{ transform: "translateZ(10px)" }}
               >
                 <Image
                   src="/img/hero.jpg"
@@ -261,7 +236,6 @@ export default function Hero() {
               
               <div 
                 className="absolute -bottom-3 -right-3 rounded-full bg-primary px-4 py-2 text-xs font-bold text-white shadow-[0_4px_12px_rgba(15,182,126,0.25)] flex items-center gap-1 z-10 sm:hidden"
-                style={{ transform: "translateZ(20px)" }}
               >
                 <span>★ 4.9 average rating</span>
               </div>
