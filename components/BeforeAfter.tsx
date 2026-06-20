@@ -10,11 +10,11 @@ export default function BeforeAfter() {
   return (
     <div className="grid gap-4">
       <div
-        className="@container relative h-[360px] w-full overflow-hidden rounded-[28px] border border-[var(--color-primary)]/15 shadow-[0_12px_40px_rgba(21,19,13,0.07)]"
+        className="@container relative group h-[360px] w-full overflow-hidden rounded-[28px] border border-[var(--color-primary)]/15 shadow-[0_12px_40px_rgba(21,19,13,0.07)]"
       >
         <div className="absolute inset-0 h-full w-full">
           <Image
-            src="/img/after.webp"
+            src="/img/after.png"
             alt="Sample kitchen after a professional deep cleaning"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -33,7 +33,7 @@ export default function BeforeAfter() {
         >
           <div className="absolute inset-0 h-full" style={{ width: "100cqw" }}>
             <Image
-              src="/img/before.webp"
+              src="/img/before.png"
               alt="Sample kitchen before a professional deep cleaning"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -48,10 +48,10 @@ export default function BeforeAfter() {
         </div>
 
         <div
-          className="pointer-events-none absolute bottom-0 top-0 z-20 w-[2px] bg-[var(--color-accent)] shadow-[0_0_12px_rgba(212,175,55,0.5)]"
+          className="pointer-events-none absolute bottom-0 top-0 z-20 w-[2px] bg-[var(--color-accent)] shadow-[0_0_12px_rgba(212,175,55,0.5)] group-focus-within:bg-[var(--color-primary)]"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className="absolute top-1/2 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)] text-[var(--color-primary)] shadow-[0_4px_20px_rgba(212,175,55,0.3)]">
+          <div className="absolute top-1/2 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-bg)] text-[var(--color-primary)] shadow-[0_4px_20px_rgba(212,175,55,0.3)] transition-transform duration-200 group-hover:scale-110 group-focus-within:scale-110 group-focus-within:border-[var(--color-primary)]">
             <svg
               viewBox="0 0 24 24"
               className="h-5 w-5"
@@ -62,23 +62,21 @@ export default function BeforeAfter() {
               strokeLinejoin="round"
               aria-hidden="true"
             >
-              <path d="m15 18-6-6 6-6" />
-              <path d="M9 18v-12" />
+              <path d="m8 8-4 4 4 4" />
+              <path d="m16 8 4 4-4 4" />
+              <path d="M4 12h16" />
             </svg>
           </div>
         </div>
 
         <input
           aria-labelledby={labelId}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={sliderPos}
           type="range"
           min="0"
           max="100"
           value={sliderPos}
           onChange={(event) => setSliderPos(Number(event.target.value))}
-          className="absolute inset-x-4 bottom-4 z-30 h-8 cursor-ew-resize accent-[var(--color-accent)]"
+          className="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0 m-0 p-0 focus-visible:outline-none"
         />
       </div>
       <p id={labelId} className="text-sm font-semibold text-[var(--color-muted)]">

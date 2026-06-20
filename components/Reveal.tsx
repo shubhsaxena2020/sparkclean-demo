@@ -22,7 +22,7 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 1, y: 18 }}
+      initial={reduce ? false : { opacity: 0, y: 18 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, ease: EASE, delay }}
@@ -38,7 +38,7 @@ const groupVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 1, y: 14, scale: 0.99 },
+  hidden: { opacity: 0, y: 14, scale: 0.99 },
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: EASE } },
 };
 
@@ -108,7 +108,7 @@ export function RevealHeading({
   };
 
   const wordVariants: Variants = {
-    hidden: { opacity: 1, y: 10 },
+    hidden: { opacity: 0, y: 10 },
     show: {
       opacity: 1,
       y: 0,
@@ -151,7 +151,7 @@ export function RevealEyebrow({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 1, x: -8 }}
+      initial={reduce ? false : { opacity: 0, x: -8 }}
       whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.4, ease: EASE }}
@@ -178,7 +178,7 @@ export function RevealSubtext({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? false : { opacity: 1, y: 10 }}
+      initial={reduce ? false : { opacity: 0, y: 10 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.5, ease: EASE, delay }}

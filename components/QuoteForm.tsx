@@ -232,7 +232,7 @@ export default function QuoteForm() {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/65">Estimated Rate</p>
             <div className="mt-2 flex items-end gap-3">
               <span className="font-display text-6xl font-extrabold tabular-nums leading-none">${price.price}</span>
-              {price.discountPct > 0 && (
+              {price.savings > 0 && (
                 <span className="pb-2 text-sm font-semibold text-white/65 line-through">${price.fullPrice}</span>
               )}
             </div>

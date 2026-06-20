@@ -86,7 +86,7 @@ export default function FAQ() {
                   id={`faq-answer-${idx}`}
                   role="region"
                   aria-labelledby={`faq-btn-${idx}`}
-                  hidden={!isOpen}
+                  aria-hidden={!isOpen}
                   className={`overflow-hidden px-6 transition-[max-height,opacity,padding-bottom] duration-300 ${
                     isOpen ? "max-h-[200px] pb-6 opacity-100" : "max-h-0 opacity-0"
                   }`}

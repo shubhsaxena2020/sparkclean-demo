@@ -175,7 +175,7 @@ export default function Calculator({ compact = false }: { compact?: boolean }) {
             <span className="font-display text-5xl font-extrabold leading-none tracking-tight text-[var(--color-ink)] sm:text-6xl">
               $<Price value={result.price} />
             </span>
-            {result.discountPct > 0 && (
+            {result.savings > 0 && (
               <span className="text-base font-semibold text-[var(--color-muted)] line-through">
                 ${result.fullPrice}
               </span>
